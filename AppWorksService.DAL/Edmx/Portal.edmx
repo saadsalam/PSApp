@@ -1,0 +1,746 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PortalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DealerStorageRequest">
+          <Key>
+            <PropertyRef Name="requestId" />
+          </Key>
+          <Property Name="requestId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="requestedBy" Type="varchar" MaxLength="50" />
+          <Property Name="dateRequested" Type="datetime" />
+          <Property Name="estPickupTime" Type="datetime" />
+          <Property Name="status" Type="varchar" MaxLength="50" />
+          <Property Name="datePrinted" Type="datetime" />
+          <Property Name="printedBy" Type="varchar" MaxLength="50" />
+          <Property Name="customerId" Type="int" />
+          <Property Name="dealerPrint" Type="int" />
+          <Property Name="generateNotification" Type="int" />
+        </EntityType>
+        <EntityType Name="DealerStorageRequestItem">
+          <Key>
+            <PropertyRef Name="requestItemId" />
+          </Key>
+          <Property Name="requestItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="requestId" Type="int" />
+          <Property Name="vehicleId" Type="int" />
+          <Property Name="vinkey" Type="varchar" MaxLength="17" />
+          <Property Name="origLocation" Type="varchar" MaxLength="20" />
+          <Property Name="pendingMove" Type="int" />
+          <Property Name="dateMoved" Type="datetime" />
+        </EntityType>
+        <EntityType Name="GroupMember">
+          <Key>
+            <PropertyRef Name="groupmemberID" />
+          </Key>
+          <Property Name="groupmemberID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="groupID" Type="int" />
+          <Property Name="userID" Type="int" />
+          <Property Name="dateCreated" Type="datetime" />
+          <Property Name="whoCreated" Type="varchar" MaxLength="30" />
+          <Property Name="dateUpdated" Type="datetime" />
+          <Property Name="whoUpdated" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Module">
+          <Key>
+            <PropertyRef Name="moduleId" />
+          </Key>
+          <Property Name="moduleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="code" Type="varchar" MaxLength="255" />
+          <Property Name="name" Type="varchar" MaxLength="255" />
+          <Property Name="description" Type="varchar" MaxLength="5000" />
+          <Property Name="sortOrder" Type="int" />
+        </EntityType>
+        <EntityType Name="ModuleUser">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userId" Type="int" />
+          <Property Name="moduleId" Type="int" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="roleName" Type="varchar" MaxLength="255" />
+          <Property Name="description" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="RoleMember">
+          <Key>
+            <PropertyRef Name="rolememberId" />
+          </Key>
+          <Property Name="rolememberId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="roleId" Type="int" />
+          <Property Name="userId" Type="int" />
+          <Property Name="dateCreated" Type="datetime" />
+          <Property Name="whoCreated" Type="varchar" MaxLength="30" />
+          <Property Name="dateUpdated" Type="datetime" />
+          <Property Name="whoUpdated" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="SysProperty">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="propName" Type="varchar" MaxLength="255" />
+          <Property Name="propValue" Type="varchar" MaxLength="5000" />
+        </EntityType>
+        <EntityType Name="UserAccount">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="50" />
+          <Property Name="password" Type="varchar" MaxLength="255" />
+          <Property Name="firstname" Type="varchar" MaxLength="50" />
+          <Property Name="lastname" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="255" />
+          <Property Name="isActive" Type="int" />
+          <Property Name="isSuperUser" Type="int" />
+          <Property Name="lastLogin" Type="datetime" />
+          <Property Name="dateCreated" Type="datetime" />
+          <Property Name="whoCreated" Type="varchar" MaxLength="50" />
+          <Property Name="dateModified" Type="datetime" />
+          <Property Name="whoModified" Type="varchar" MaxLength="50" />
+          <Property Name="Phone" Type="varchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="UserCustomerRole">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userId" Type="int" />
+          <Property Name="customerId" Type="int" />
+          <Property Name="roleId" Type="int" />
+        </EntityType>
+        <EntityType Name="UserGroup">
+          <Key>
+            <PropertyRef Name="groupID" />
+          </Key>
+          <Property Name="groupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="groupname" Type="varchar" MaxLength="50" />
+          <Property Name="description" Type="varchar" MaxLength="50" />
+          <Property Name="dateCreated" Type="datetime" />
+          <Property Name="whoCreated" Type="varchar" MaxLength="50" />
+          <Property Name="dateUpdated" Type="datetime" />
+          <Property Name="whoUpdated" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_GroupMember_UserAccount">
+          <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="0..1" />
+          <End Role="GroupMember" Type="Self.GroupMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAccount">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="GroupMember">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupMember_UserGroup">
+          <End Role="UserGroup" Type="Self.UserGroup" Multiplicity="0..1" />
+          <End Role="GroupMember" Type="Self.GroupMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserGroup">
+              <PropertyRef Name="groupID" />
+            </Principal>
+            <Dependent Role="GroupMember">
+              <PropertyRef Name="groupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ModuleUser_Module">
+          <End Role="Module" Type="Self.Module" Multiplicity="0..1" />
+          <End Role="ModuleUser" Type="Self.ModuleUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="moduleId" />
+            </Principal>
+            <Dependent Role="ModuleUser">
+              <PropertyRef Name="moduleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ModuleUser_UserAccount">
+          <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="0..1" />
+          <End Role="ModuleUser" Type="Self.ModuleUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAccount">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="ModuleUser">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleMember_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="RoleMember" Type="Self.RoleMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RoleMember">
+              <PropertyRef Name="roleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleMember_UserAccount">
+          <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="0..1" />
+          <End Role="RoleMember" Type="Self.RoleMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAccount">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="RoleMember">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserCustomerRole_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="UserCustomerRole" Type="Self.UserCustomerRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="UserCustomerRole">
+              <PropertyRef Name="roleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserCustomerRole_UserAccount">
+          <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="0..1" />
+          <End Role="UserCustomerRole" Type="Self.UserCustomerRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAccount">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="UserCustomerRole">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="spGetSelectedUserCustomerList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserID" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="PortalModelStoreContainer">
+          <EntitySet Name="DealerStorageRequest" EntityType="Self.DealerStorageRequest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DealerStorageRequestItem" EntityType="Self.DealerStorageRequestItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupMember" EntityType="Self.GroupMember" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Module" EntityType="Self.Module" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ModuleUser" EntityType="Self.ModuleUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoleMember" EntityType="Self.RoleMember" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysProperty" EntityType="Self.SysProperty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserAccount" EntityType="Self.UserAccount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserCustomerRole" EntityType="Self.UserCustomerRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserGroup" EntityType="Self.UserGroup" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_GroupMember_UserAccount" Association="Self.FK_GroupMember_UserAccount">
+            <End Role="UserAccount" EntitySet="UserAccount" />
+            <End Role="GroupMember" EntitySet="GroupMember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupMember_UserGroup" Association="Self.FK_GroupMember_UserGroup">
+            <End Role="UserGroup" EntitySet="UserGroup" />
+            <End Role="GroupMember" EntitySet="GroupMember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ModuleUser_Module" Association="Self.FK_ModuleUser_Module">
+            <End Role="Module" EntitySet="Module" />
+            <End Role="ModuleUser" EntitySet="ModuleUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ModuleUser_UserAccount" Association="Self.FK_ModuleUser_UserAccount">
+            <End Role="UserAccount" EntitySet="UserAccount" />
+            <End Role="ModuleUser" EntitySet="ModuleUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleMember_Role" Association="Self.FK_RoleMember_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="RoleMember" EntitySet="RoleMember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleMember_UserAccount" Association="Self.FK_RoleMember_UserAccount">
+            <End Role="UserAccount" EntitySet="UserAccount" />
+            <End Role="RoleMember" EntitySet="RoleMember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserCustomerRole_Role" Association="Self.FK_UserCustomerRole_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="UserCustomerRole" EntitySet="UserCustomerRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserCustomerRole_UserAccount" Association="Self.FK_UserCustomerRole_UserAccount">
+            <End Role="UserAccount" EntitySet="UserAccount" />
+            <End Role="UserCustomerRole" EntitySet="UserCustomerRole" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PortalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DealerStorageRequest">
+          <Key>
+            <PropertyRef Name="requestId" />
+          </Key>
+          <Property Name="requestId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="requestedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dateRequested" Type="DateTime" Precision="3" />
+          <Property Name="estPickupTime" Type="DateTime" Precision="3" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="datePrinted" Type="DateTime" Precision="3" />
+          <Property Name="printedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="customerId" Type="Int32" />
+          <Property Name="dealerPrint" Type="Int32" />
+          <Property Name="generateNotification" Type="Int32" />
+        </EntityType>
+        <EntityType Name="DealerStorageRequestItem">
+          <Key>
+            <PropertyRef Name="requestItemId" />
+          </Key>
+          <Property Name="requestItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="requestId" Type="Int32" />
+          <Property Name="vehicleId" Type="Int32" />
+          <Property Name="vinkey" Type="String" MaxLength="17" FixedLength="false" Unicode="false" />
+          <Property Name="origLocation" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="pendingMove" Type="Int32" />
+          <Property Name="dateMoved" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="GroupMember">
+          <Key>
+            <PropertyRef Name="groupmemberID" />
+          </Key>
+          <Property Name="groupmemberID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="groupID" Type="Int32" />
+          <Property Name="userID" Type="Int32" />
+          <Property Name="dateCreated" Type="DateTime" Precision="3" />
+          <Property Name="whoCreated" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="dateUpdated" Type="DateTime" Precision="3" />
+          <Property Name="whoUpdated" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="UserAccount" Relationship="Self.FK_GroupMember_UserAccount" FromRole="GroupMember" ToRole="UserAccount" />
+          <NavigationProperty Name="UserGroup" Relationship="Self.FK_GroupMember_UserGroup" FromRole="GroupMember" ToRole="UserGroup" />
+        </EntityType>
+        <EntityType Name="Module">
+          <Key>
+            <PropertyRef Name="moduleId" />
+          </Key>
+          <Property Name="moduleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="code" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="sortOrder" Type="Int32" />
+          <NavigationProperty Name="ModuleUsers" Relationship="Self.FK_ModuleUser_Module" FromRole="Module" ToRole="ModuleUser" />
+        </EntityType>
+        <EntityType Name="ModuleUser">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="Int32" />
+          <Property Name="moduleId" Type="Int32" />
+          <NavigationProperty Name="Module" Relationship="Self.FK_ModuleUser_Module" FromRole="ModuleUser" ToRole="Module" />
+          <NavigationProperty Name="UserAccount" Relationship="Self.FK_ModuleUser_UserAccount" FromRole="ModuleUser" ToRole="UserAccount" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="roleName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="RoleMembers" Relationship="Self.FK_RoleMember_Role" FromRole="Role" ToRole="RoleMember" />
+          <NavigationProperty Name="UserCustomerRoles" Relationship="Self.FK_UserCustomerRole_Role" FromRole="Role" ToRole="UserCustomerRole" />
+        </EntityType>
+        <EntityType Name="RoleMember">
+          <Key>
+            <PropertyRef Name="rolememberId" />
+          </Key>
+          <Property Name="rolememberId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="roleId" Type="Int32" />
+          <Property Name="userId" Type="Int32" />
+          <Property Name="dateCreated" Type="DateTime" Precision="3" />
+          <Property Name="whoCreated" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="dateUpdated" Type="DateTime" Precision="3" />
+          <Property Name="whoUpdated" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_RoleMember_Role" FromRole="RoleMember" ToRole="Role" />
+          <NavigationProperty Name="UserAccount" Relationship="Self.FK_RoleMember_UserAccount" FromRole="RoleMember" ToRole="UserAccount" />
+        </EntityType>
+        <EntityType Name="SysProperty">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="propName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="propValue" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="UserAccount">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Int32" />
+          <Property Name="isSuperUser" Type="Int32" />
+          <Property Name="lastLogin" Type="DateTime" Precision="3" />
+          <Property Name="dateCreated" Type="DateTime" Precision="3" />
+          <Property Name="whoCreated" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dateModified" Type="DateTime" Precision="3" />
+          <Property Name="whoModified" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GroupMembers" Relationship="Self.FK_GroupMember_UserAccount" FromRole="UserAccount" ToRole="GroupMember" />
+          <NavigationProperty Name="ModuleUsers" Relationship="Self.FK_ModuleUser_UserAccount" FromRole="UserAccount" ToRole="ModuleUser" />
+          <NavigationProperty Name="RoleMembers" Relationship="Self.FK_RoleMember_UserAccount" FromRole="UserAccount" ToRole="RoleMember" />
+          <NavigationProperty Name="UserCustomerRoles" Relationship="Self.FK_UserCustomerRole_UserAccount" FromRole="UserAccount" ToRole="UserCustomerRole" />
+        </EntityType>
+        <EntityType Name="UserCustomerRole">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="Int32" />
+          <Property Name="customerId" Type="Int32" />
+          <Property Name="roleId" Type="Int32" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_UserCustomerRole_Role" FromRole="UserCustomerRole" ToRole="Role" />
+          <NavigationProperty Name="UserAccount" Relationship="Self.FK_UserCustomerRole_UserAccount" FromRole="UserCustomerRole" ToRole="UserAccount" />
+        </EntityType>
+        <EntityType Name="UserGroup">
+          <Key>
+            <PropertyRef Name="groupID" />
+          </Key>
+          <Property Name="groupID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="groupname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dateCreated" Type="DateTime" Precision="3" />
+          <Property Name="whoCreated" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dateUpdated" Type="DateTime" Precision="3" />
+          <Property Name="whoUpdated" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GroupMembers" Relationship="Self.FK_GroupMember_UserGroup" FromRole="UserGroup" ToRole="GroupMember" />
+        </EntityType>
+        <Association Name="FK_GroupMember_UserAccount">
+          <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="0..1" />
+          <End Role="GroupMember" Type="Self.GroupMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAccount">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="GroupMember">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupMember_UserGroup">
+          <End Role="UserGroup" Type="Self.UserGroup" Multiplicity="0..1" />
+          <End Role="GroupMember" Type="Self.GroupMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserGroup">
+              <PropertyRef Name="groupID" />
+            </Principal>
+            <Dependent Role="GroupMember">
+              <PropertyRef Name="groupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ModuleUser_Module">
+          <End Role="Module" Type="Self.Module" Multiplicity="0..1" />
+          <End Role="ModuleUser" Type="Self.ModuleUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="moduleId" />
+            </Principal>
+            <Dependent Role="ModuleUser">
+              <PropertyRef Name="moduleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ModuleUser_UserAccount">
+          <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="0..1" />
+          <End Role="ModuleUser" Type="Self.ModuleUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAccount">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="ModuleUser">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleMember_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="RoleMember" Type="Self.RoleMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RoleMember">
+              <PropertyRef Name="roleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserCustomerRole_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="UserCustomerRole" Type="Self.UserCustomerRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="UserCustomerRole">
+              <PropertyRef Name="roleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleMember_UserAccount">
+          <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="0..1" />
+          <End Role="RoleMember" Type="Self.RoleMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAccount">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="RoleMember">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserCustomerRole_UserAccount">
+          <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="0..1" />
+          <End Role="UserCustomerRole" Type="Self.UserCustomerRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAccount">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="UserCustomerRole">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PortalDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DealerStorageRequests" EntityType="Self.DealerStorageRequest" />
+          <EntitySet Name="DealerStorageRequestItems" EntityType="Self.DealerStorageRequestItem" />
+          <EntitySet Name="GroupMembers" EntityType="Self.GroupMember" />
+          <EntitySet Name="Modules" EntityType="Self.Module" />
+          <EntitySet Name="ModuleUsers" EntityType="Self.ModuleUser" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="RoleMembers" EntityType="Self.RoleMember" />
+          <EntitySet Name="SysProperties" EntityType="Self.SysProperty" />
+          <EntitySet Name="UserAccounts" EntityType="Self.UserAccount" />
+          <EntitySet Name="UserCustomerRoles" EntityType="Self.UserCustomerRole" />
+          <EntitySet Name="UserGroups" EntityType="Self.UserGroup" />
+          <AssociationSet Name="FK_GroupMember_UserAccount" Association="Self.FK_GroupMember_UserAccount">
+            <End Role="UserAccount" EntitySet="UserAccounts" />
+            <End Role="GroupMember" EntitySet="GroupMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupMember_UserGroup" Association="Self.FK_GroupMember_UserGroup">
+            <End Role="UserGroup" EntitySet="UserGroups" />
+            <End Role="GroupMember" EntitySet="GroupMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ModuleUser_Module" Association="Self.FK_ModuleUser_Module">
+            <End Role="Module" EntitySet="Modules" />
+            <End Role="ModuleUser" EntitySet="ModuleUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ModuleUser_UserAccount" Association="Self.FK_ModuleUser_UserAccount">
+            <End Role="UserAccount" EntitySet="UserAccounts" />
+            <End Role="ModuleUser" EntitySet="ModuleUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleMember_Role" Association="Self.FK_RoleMember_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="RoleMember" EntitySet="RoleMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserCustomerRole_Role" Association="Self.FK_UserCustomerRole_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="UserCustomerRole" EntitySet="UserCustomerRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleMember_UserAccount" Association="Self.FK_RoleMember_UserAccount">
+            <End Role="UserAccount" EntitySet="UserAccounts" />
+            <End Role="RoleMember" EntitySet="RoleMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserCustomerRole_UserAccount" Association="Self.FK_UserCustomerRole_UserAccount">
+            <End Role="UserAccount" EntitySet="UserAccounts" />
+            <End Role="UserCustomerRole" EntitySet="UserCustomerRoles" />
+          </AssociationSet>
+          <FunctionImport Name="spGetSelectedUserCustomerList" ReturnType="Collection(PortalModel.spGetSelectedUserCustomerList_Result)">
+            <Parameter Name="UserID" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="spGetSelectedUserCustomerList_Result">
+          <Property Type="Int32" Name="CustomerID" Nullable="false" />
+          <Property Type="String" Name="CustomerName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="IsSelected" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PortalModelStoreContainer" CdmEntityContainer="PortalDbEntities">
+          <EntitySetMapping Name="DealerStorageRequests">
+            <EntityTypeMapping TypeName="PortalModel.DealerStorageRequest">
+              <MappingFragment StoreEntitySet="DealerStorageRequest">
+                <ScalarProperty Name="requestId" ColumnName="requestId" />
+                <ScalarProperty Name="requestedBy" ColumnName="requestedBy" />
+                <ScalarProperty Name="dateRequested" ColumnName="dateRequested" />
+                <ScalarProperty Name="estPickupTime" ColumnName="estPickupTime" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="datePrinted" ColumnName="datePrinted" />
+                <ScalarProperty Name="printedBy" ColumnName="printedBy" />
+                <ScalarProperty Name="customerId" ColumnName="customerId" />
+                <ScalarProperty Name="dealerPrint" ColumnName="dealerPrint" />
+                <ScalarProperty Name="generateNotification" ColumnName="generateNotification" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DealerStorageRequestItems">
+            <EntityTypeMapping TypeName="PortalModel.DealerStorageRequestItem">
+              <MappingFragment StoreEntitySet="DealerStorageRequestItem">
+                <ScalarProperty Name="requestItemId" ColumnName="requestItemId" />
+                <ScalarProperty Name="requestId" ColumnName="requestId" />
+                <ScalarProperty Name="vehicleId" ColumnName="vehicleId" />
+                <ScalarProperty Name="vinkey" ColumnName="vinkey" />
+                <ScalarProperty Name="origLocation" ColumnName="origLocation" />
+                <ScalarProperty Name="pendingMove" ColumnName="pendingMove" />
+                <ScalarProperty Name="dateMoved" ColumnName="dateMoved" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupMembers">
+            <EntityTypeMapping TypeName="PortalModel.GroupMember">
+              <MappingFragment StoreEntitySet="GroupMember">
+                <ScalarProperty Name="groupmemberID" ColumnName="groupmemberID" />
+                <ScalarProperty Name="groupID" ColumnName="groupID" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
+                <ScalarProperty Name="whoCreated" ColumnName="whoCreated" />
+                <ScalarProperty Name="dateUpdated" ColumnName="dateUpdated" />
+                <ScalarProperty Name="whoUpdated" ColumnName="whoUpdated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Modules">
+            <EntityTypeMapping TypeName="PortalModel.Module">
+              <MappingFragment StoreEntitySet="Module">
+                <ScalarProperty Name="moduleId" ColumnName="moduleId" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="sortOrder" ColumnName="sortOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ModuleUsers">
+            <EntityTypeMapping TypeName="PortalModel.ModuleUser">
+              <MappingFragment StoreEntitySet="ModuleUser">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="moduleId" ColumnName="moduleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="PortalModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="roleName" ColumnName="roleName" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoleMembers">
+            <EntityTypeMapping TypeName="PortalModel.RoleMember">
+              <MappingFragment StoreEntitySet="RoleMember">
+                <ScalarProperty Name="rolememberId" ColumnName="rolememberId" />
+                <ScalarProperty Name="roleId" ColumnName="roleId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
+                <ScalarProperty Name="whoCreated" ColumnName="whoCreated" />
+                <ScalarProperty Name="dateUpdated" ColumnName="dateUpdated" />
+                <ScalarProperty Name="whoUpdated" ColumnName="whoUpdated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysProperties">
+            <EntityTypeMapping TypeName="PortalModel.SysProperty">
+              <MappingFragment StoreEntitySet="SysProperty">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="propName" ColumnName="propName" />
+                <ScalarProperty Name="propValue" ColumnName="propValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserAccounts">
+            <EntityTypeMapping TypeName="PortalModel.UserAccount">
+              <MappingFragment StoreEntitySet="UserAccount">
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isSuperUser" ColumnName="isSuperUser" />
+                <ScalarProperty Name="lastLogin" ColumnName="lastLogin" />
+                <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
+                <ScalarProperty Name="whoCreated" ColumnName="whoCreated" />
+                <ScalarProperty Name="dateModified" ColumnName="dateModified" />
+                <ScalarProperty Name="whoModified" ColumnName="whoModified" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserCustomerRoles">
+            <EntityTypeMapping TypeName="PortalModel.UserCustomerRole">
+              <MappingFragment StoreEntitySet="UserCustomerRole">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="customerId" ColumnName="customerId" />
+                <ScalarProperty Name="roleId" ColumnName="roleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserGroups">
+            <EntityTypeMapping TypeName="PortalModel.UserGroup">
+              <MappingFragment StoreEntitySet="UserGroup">
+                <ScalarProperty Name="groupID" ColumnName="groupID" />
+                <ScalarProperty Name="groupname" ColumnName="groupname" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
+                <ScalarProperty Name="whoCreated" ColumnName="whoCreated" />
+                <ScalarProperty Name="dateUpdated" ColumnName="dateUpdated" />
+                <ScalarProperty Name="whoUpdated" ColumnName="whoUpdated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spGetSelectedUserCustomerList" FunctionName="PortalModel.Store.spGetSelectedUserCustomerList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PortalModel.spGetSelectedUserCustomerList_Result">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

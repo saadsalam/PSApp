@@ -1,0 +1,306 @@
+﻿<UserControl x:Class="AppWorks.UI.View.Billing.BillingPeriodAdmin"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:brushes="clr-namespace:AppWorks.UI.Controls.Themes;assembly=AppWorks.UI.Controls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:local="clr-namespace:AppWorks.UI.ViewModel.Billing"
+             xmlns:localMultiSelect="clr-namespace:AppWorks.UI.ViewModel.Billing"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:themeEx="clr-namespace:AppWorks.UI.Controls.Extensions;assembly=AppWorks.UI.Controls"
+             mc:Ignorable="d">
+
+    <Grid Margin="0 0 0 5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="15" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="20 0 0 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" SharedSizeGroup="A" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="Auto" SharedSizeGroup="B" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0"
+                       Grid.Column="0"
+                       Margin="0,3"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       Style="{themeEx:ThemeResource TextTitle3Style}"
+                       Text="Calendar Year" />
+            <TextBox Grid.Row="0"
+                     Grid.Column="2"
+                     Width="{Binding ElementName=ClosedByValue,
+                                     Path=ActualWidth}"
+                     Margin="5"
+                     IsEnabled="{Binding IsReadOnly,
+                                         Mode=TwoWay,
+                                         UpdateSourceTrigger=PropertyChanged}"
+                     KeyDown="txtCalendar_KeyDown"
+                     MaxLength="4"
+                     Text="{Binding CalendarYear,
+                                    Mode=TwoWay,
+                                    UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Grid.Row="1"
+                       Grid.Column="0"
+                       Margin="0,3"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       Style="{themeEx:ThemeResource TextTitle3Style}"
+                       Text="Period Number" />
+            <TextBox Name="txtPeriodNumber"
+                     Grid.Row="1"
+                     Grid.Column="2"
+                     Width="{Binding ElementName=ClosedByValue,
+                                     Path=ActualWidth}"
+                     Margin="5"
+                     IsEnabled="{Binding IsReadOnly,
+                                         Mode=TwoWay,
+                                         UpdateSourceTrigger=PropertyChanged}"
+                     KeyDown="txtPeriodNumber_KeyDown"
+                     MaxLength="5"
+                     Text="{Binding PeriodNumber,
+                                    Mode=TwoWay,
+                                    UpdateSourceTrigger=PropertyChanged}" />
+        </Grid>
+
+
+        <Rectangle Grid.Row="1"
+                   Height="1"
+                   Margin="-5 7 -10 0"
+                   HorizontalAlignment="Stretch"
+                   VerticalAlignment="Center"
+                   Fill="{DynamicResource {x:Static brushes:BrushSet.BorderBrushKey}}" />
+        <GroupBox Grid.Row="2"
+                  Header="Billing Period Details"
+                  Style="{themeEx:ThemeResource GroupBoxLeftHeaderStyle}">
+            <Grid Margin="20 0 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" SharedSizeGroup="A" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" SharedSizeGroup="B" />
+                    <ColumnDefinition Width=".4*" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width=".7*" />
+                </Grid.ColumnDefinitions>
+
+                <Rectangle Grid.RowSpan="4"
+                           Grid.Column="3"
+                           Width="1"
+                           Margin="0 10"
+                           VerticalAlignment="Stretch"
+                           Fill="{DynamicResource {x:Static brushes:BrushSet.BorderBrushKey}}" />
+
+                <StackPanel Grid.Row="0"
+                            Grid.Column="2"
+                            Margin="5,0"
+                            Orientation="Horizontal">
+                    <CheckBox Grid.Row="0"
+                              Grid.Column="1"
+                              VerticalAlignment="Center"
+                              Command="{Binding CheckBox_Checked}"
+                              IsChecked="{Binding IsSelected}"
+                              IsEnabled="{Binding IsReadOnly,
+                                                  Mode=TwoWay,
+                                                  UpdateSourceTrigger=PropertyChanged}"
+                              Padding="0" />
+                    <TextBlock Margin="5 0 0 0"
+                               VerticalAlignment="Center"
+                               Style="{themeEx:ThemeResource TextTitle3Style}"
+                               Text="Period Closed" />
+                </StackPanel>
+
+                <TextBlock Grid.Row="0"
+                           Grid.Column="4"
+                           Margin="0,3"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                           Text="End Date" />
+                <telerik:RadDatePicker Name="txtEndDate"
+                                       Grid.Row="0"
+                                       Grid.Column="6"
+                                       Margin="5"
+                                       IsEnabled="{Binding IsReadOnly,
+                                                           Mode=TwoWay,
+                                                           UpdateSourceTrigger=PropertyChanged}"
+                                       SelectedValue="{Binding PeriodEndDate,
+                                                               Mode=TwoWay}" />
+
+                <TextBlock Grid.Row="1"
+                           Grid.Column="0"
+                           Margin="0,3"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                           Text="Closed By" />
+                <TextBox x:Name="ClosedByValue"
+                         Grid.Row="1"
+                         Grid.Column="2"
+                         Margin="5"
+                         IsReadOnly="True"
+                         Text="{Binding PeriodClosedBy,
+                                        Mode=TwoWay,
+                                        UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Grid.Row="1"
+                           Grid.Column="4"
+                           Margin="0,3"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                           Text="Closed Date" />
+                <TextBox Grid.Row="1"
+                         Grid.Column="6"
+                         Margin="5"
+                         IsReadOnly="True"
+                         Text="{Binding PeriodClosedDate,
+                                        Mode=TwoWay,
+                                        UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Grid.Row="2"
+                           Grid.Column="0"
+                           Margin="0,3"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                           Text="Creation Date" />
+                <TextBox Grid.Row="2"
+                         Grid.Column="2"
+                         Margin="5"
+                         IsReadOnly="True"
+                         Text="{Binding CreationDate,
+                                        Mode=TwoWay,
+                                        UpdateSourceTrigger=PropertyChanged,
+                                        StringFormat='{}{0:MM/dd/yyyy hh:mm tt}'}" />
+                <TextBlock Grid.Row="2"
+                           Grid.Column="4"
+                           Margin="0,3"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                           Text="Updated Date" />
+                <TextBox Grid.Row="2"
+                         Grid.Column="6"
+                         Margin="5"
+                         IsReadOnly="True"
+                         Text="{Binding UpdatedDate,
+                                        Mode=TwoWay,
+                                        UpdateSourceTrigger=PropertyChanged,
+                                        StringFormat='{}{0:MM/dd/yyyy hh:mm tt}'}" />
+                <TextBlock Grid.Row="3"
+                           Grid.Column="0"
+                           Margin="0,3"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                           Text="Created By" />
+                <TextBox Grid.Row="3"
+                         Grid.Column="2"
+                         Margin="5"
+                         IsReadOnly="True"
+                         Text="{Binding CreatedBy,
+                                        Mode=TwoWay,
+                                        UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Grid.Row="3"
+                           Grid.Column="4"
+                           Margin="0,3"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                           Text="Updated By" />
+                <TextBox Grid.Row="3"
+                         Grid.Column="6"
+                         Margin="5"
+                         IsReadOnly="True"
+                         Text="{Binding UpdatedBy,
+                                        Mode=TwoWay,
+                                        UpdateSourceTrigger=PropertyChanged}" />
+            </Grid>
+        </GroupBox>
+
+        <DockPanel Grid.Row="3">
+            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                <Button Width="100"
+                        Margin="7"
+                        HorizontalAlignment="Left"
+                        Command="{Binding BtnNew_Click}"
+                        Content="NEW"
+                        IsEnabled="{Binding EnabledNew,
+                                            Mode=TwoWay,
+                                            UpdateSourceTrigger=PropertyChanged}"
+                        Padding="5" />
+                <Button Width="100"
+                        Margin="7"
+                        HorizontalAlignment="Left"
+                        Command="{Binding BtnModify_Click}"
+                        Content="MODIFY"
+                        IsEnabled="{Binding EnabledModify,
+                                            Mode=TwoWay,
+                                            UpdateSourceTrigger=PropertyChanged}"
+                        Padding="5" />
+                <Button Width="100"
+                        Margin="7"
+                        HorizontalAlignment="Left"
+                        Command="{Binding BtnDelete_Click}"
+                        Content="DELETE"
+                        IsEnabled="{Binding EnabledModify,
+                                            Mode=TwoWay,
+                                            UpdateSourceTrigger=PropertyChanged}"
+                        Padding="5" />
+                <Button Width="100"
+                        Margin="7"
+                        HorizontalAlignment="Left"
+                        Command="{Binding BtnFind_Click}"
+                        IsEnabled="{Binding EnabledFind,
+                                            Mode=TwoWay,
+                                            UpdateSourceTrigger=PropertyChanged}"
+                        Padding="5">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="0,0,7,0"
+                                   VerticalAlignment="Center"
+                                   Style="{StaticResource IconText}"
+                                   Text="{StaticResource SearchTextIcon}" />
+                        <TextBlock Text="FIND" />
+                    </StackPanel>
+                </Button>
+                <Button Width="100"
+                        Margin="7"
+                        HorizontalAlignment="Left"
+                        Command="{Binding BtnOk_Click}"
+                        Content="{Binding Text,
+                                          Mode=TwoWay,
+                                          UpdateSourceTrigger=PropertyChanged}"
+                        IsEnabled="{Binding EnabledSaveUpdate,
+                                            Mode=TwoWay,
+                                            UpdateSourceTrigger=PropertyChanged}"
+                        Padding="5" />
+                <Button Width="100"
+                        Margin="7"
+                        HorizontalAlignment="Left"
+                        Command="{Binding BtnCancel_Click}"
+                        Content="CANCEL"
+                        IsEnabled="{Binding EnabledCancel,
+                                            Mode=TwoWay,
+                                            UpdateSourceTrigger=PropertyChanged}"
+                        Padding="5" />
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</UserControl>

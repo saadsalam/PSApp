@@ -1,0 +1,55 @@
+﻿<ResourceDictionary x:Class="AppWorks.UI.Controls.Themes.Light.LightTheme"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Brushes.xaml" />
+        <ResourceDictionary Source="Assets/ImageDictionary.xaml" />
+
+        <ResourceDictionary Source="Themes/GroupBox.xaml" />
+        <ResourceDictionary Source="Themes/CheckBox.xaml" />
+        <ResourceDictionary Source="Themes/ScrollBar.xaml" />
+        <ResourceDictionary Source="Themes/TextBox.xaml" />
+        <ResourceDictionary Source="Themes/Button.xaml" />
+        <ResourceDictionary Source="Themes/PasswordBox.xaml" />
+        <ResourceDictionary Source="Themes/RadioButton.xaml" />
+        <ResourceDictionary Source="Themes/VSWindow.xaml" />
+        <ResourceDictionary Source="Themes/RadComboBox.xaml" />
+        <ResourceDictionary Source="Themes/RadListBoxItem.xaml" />
+        <ResourceDictionary Source="Themes/RadNumericUpDown.xaml" />
+        <ResourceDictionary Source="Themes/RadTabControl.xaml" />
+        <ResourceDictionary Source="Themes/RadDataPager.xaml" />
+        <ResourceDictionary Source="Themes/TextBlock.xaml" />
+        <ResourceDictionary Source="Themes/Label.xaml" />
+        <ResourceDictionary Source="Themes/RadWatermarkTextBox.xaml" />
+        <ResourceDictionary Source="Themes/RadProgressBar.xaml" />
+        <ResourceDictionary Source="Themes/FilteringDropDown.xaml" />
+        <ResourceDictionary Source="Themes/FilteringControl.xaml" />
+        <ResourceDictionary Source="Themes/RadDatePicker.xaml" />
+        <ResourceDictionary Source="Themes/RadTreeViewItem.xaml" />
+        <ResourceDictionary Source="Themes/RadAutoCompleteBox.xaml" />
+        <ResourceDictionary Source="Themes/RadToggleButton.xaml" />
+        <ResourceDictionary Source="Themes/RadGridView.xaml" />
+        <ResourceDictionary Source="Themes/GridView.xaml" />
+        <ResourceDictionary Source="Themes/Plate.xaml" />
+        <ResourceDictionary Source="Themes/TelerikReportViewer.xaml" />
+        <ResourceDictionary Source="Themes/ListViewItem.xaml" />
+
+        <ResourceDictionary Source="Styles/Border.xaml" />
+        <ResourceDictionary Source="Styles/Buttons.xaml" />
+        <ResourceDictionary Source="Styles/TextBlock.xaml" />
+        <ResourceDictionary Source="Styles/ToolTip.xaml" />
+        <ResourceDictionary Source="Styles/RadExpander.xaml" />
+        <ResourceDictionary Source="Styles/RadListBox.xaml" />
+        <ResourceDictionary Source="Styles/RadTreeView.xaml" />
+        <ResourceDictionary Source="Styles/RadPanelBar.xaml" />
+        <ResourceDictionary Source="Styles/RadButton.xaml" />
+        <ResourceDictionary Source="Styles/GroupBox.xaml" />
+        <ResourceDictionary Source="Styles/RadToggleButton.xaml" />
+        <ResourceDictionary Source="Styles/RadWatermarkTextBoxes.xaml" />
+        <ResourceDictionary Source="Styles/TextBoxes.xaml" />
+        <ResourceDictionary Source="Styles/Plates.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <FontFamily x:Key="FontAwesome">pack://application:,,,/AppWorks.UI.Controls;Component/Fonts/#FontAwesome</FontFamily>
+    <FontFamily x:Key="SegoeUISymbol">pack://application:,,,/AppWorks.UI.Controls;Component/Fonts/#Segoe UI Symbol</FontFamily>
+</ResourceDictionary>

@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="AppWorks.UI.View.Reports.LaneSummaryReport"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:telerik="clr-namespace:Telerik.ReportViewer.Wpf;assembly=Telerik.ReportViewer.Wpf"
+             xmlns:telerikReporting="clr-namespace:Telerik.Reporting;assembly=Telerik.Reporting"
+             xmlns:themeEx="clr-namespace:AppWorks.UI.Controls.Extensions;assembly=AppWorks.UI.Controls">
+    <DockPanel>
+        <TextBlock DockPanel.Dock="Top"
+                   Margin="10"
+                   Style="{StaticResource TextTitleStyle}"
+                   Text="Lane Summary Report" />
+        <Border Style="{themeEx:ThemeResource BorderPanelStyle}">
+            <telerik:ReportViewer Name="ReportViewerLaneSummary" ReportSource="{Binding MyReportSource}" />
+        </Border>
+    </DockPanel>
+</UserControl>

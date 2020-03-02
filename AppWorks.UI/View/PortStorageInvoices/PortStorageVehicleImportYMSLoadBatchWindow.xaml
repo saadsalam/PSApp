@@ -1,0 +1,109 @@
+﻿<Window x:Class="AppWorks.UI.View.PortStorageInvoices.PortStorageVehicleImportYMSLoadBatchWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:AppWorks.UI.View.PortStorageInvoices"
+        xmlns:local1="clr-namespace:AppWorks.UI.ViewModel.PortStorageInvoices"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        Title="Load Batch"
+        Width="420"
+        Height="320"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="ToolWindow"
+        mc:Ignorable="d">
+
+    <Grid Margin="7">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <GroupBox Grid.Row="0"
+                  Header="Select Batch To Load"
+                  Style="{StaticResource GroupBoxInPanelStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Margin="7"
+                               VerticalAlignment="Center"
+                               Text="VIN Filter:" />
+                    <TextBox Grid.Column="1" />
+                </Grid>
+                <StackPanel Grid.Row="1">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <ListView Name="lvUsers"
+                                  Grid.Row="0"
+                                  Grid.Column="1"
+                                  Width="310"
+                                  Height="170"
+                                  HorizontalAlignment="Left"
+                                  ItemsSource="{Binding BatchList,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedValue="{Binding BatchId}"
+                                  SelectedValuePath="BatchId"
+                                  Validation.ErrorTemplate="{x:Null}">
+                            <ListView.Resources>
+                                <Style TargetType="{x:Type GridViewColumnHeader}">
+                                    <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                </Style>
+                            </ListView.Resources>
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="80"
+                                                    DisplayMemberBinding="{Binding BatchId}"
+                                                    Header="Batch ID" />
+                                    <GridViewColumn Width="100"
+                                                    DisplayMemberBinding="{Binding CreationDate,
+                                                                                   StringFormat='{}{0:MM/dd/yyyy}'}"
+                                                    Header="Date" />
+                                    <GridViewColumn Width="80"
+                                                    DisplayMemberBinding="{Binding BatchCount}"
+                                                    Header="Records" />
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </ScrollViewer>
+                </StackPanel>
+                <!--<telerik:RadGridView Grid.Row="1"
+                                     CanUserDeleteRows="False"
+                                     CanUserInsertRows="False"
+                                     ItemsSource="{Binding Batchs}"
+                                     RowIndicatorVisibility="Collapsed">
+                    <telerik:RadGridView.Columns>
+                        <telerik:GridViewDataColumn Header="Batch Id" />
+                        <telerik:GridViewDataColumn Header="Date" />
+                        <telerik:GridViewDataColumn Header="Units" />
+                    </telerik:RadGridView.Columns>
+                </telerik:RadGridView>-->
+            </Grid>
+        </GroupBox>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MaxWidth="150" />
+                <ColumnDefinition MaxWidth="150" />
+            </Grid.ColumnDefinitions>
+            <Button Margin="0,7,7,7"
+                    Command="{Binding Path=BtnContinue_Click}"
+                    Content="Continue"
+                    Padding="10,3" />
+
+            <Button Grid.Column="1"
+                    Margin="7"
+                    Command="{Binding Path=BtnClose}"
+                    Content="Cancel"
+                    Padding="10,3" />
+        </Grid>
+    </Grid>
+</Window>

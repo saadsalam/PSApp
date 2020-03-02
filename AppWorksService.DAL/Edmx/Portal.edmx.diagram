@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d3b28f1d2d49475ba10d0bf8e722e316" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="PortalModel.DealerStorageRequest" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PortalModel.DealerStorageRequestItem" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PortalModel.GroupMember" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="PortalModel.Module" Width="1.5" PointX="3.75" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PortalModel.ModuleUser" Width="1.5" PointX="6" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PortalModel.Role" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PortalModel.RoleMember" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="PortalModel.SysProperty" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PortalModel.UserAccount" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PortalModel.UserCustomerRole" Width="1.5" PointX="6" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PortalModel.UserGroup" Width="1.5" PointX="0.75" PointY="11.125" IsExpanded="true" />
+        <AssociationConnector Association="PortalModel.FK_GroupMember_UserAccount" ManuallyRouted="false" />
+        <AssociationConnector Association="PortalModel.FK_GroupMember_UserGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="PortalModel.FK_ModuleUser_Module" ManuallyRouted="false" />
+        <AssociationConnector Association="PortalModel.FK_ModuleUser_UserAccount" ManuallyRouted="false" />
+        <AssociationConnector Association="PortalModel.FK_RoleMember_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="PortalModel.FK_UserCustomerRole_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="PortalModel.FK_RoleMember_UserAccount" ManuallyRouted="false" />
+        <AssociationConnector Association="PortalModel.FK_UserCustomerRole_UserAccount" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

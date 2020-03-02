@@ -1,0 +1,465 @@
+﻿<Window x:Class="AppWorks.UI.View.Billing.InvoiceRecordFind"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:local="clr-namespace:AppWorks.UI.ViewModel.Billing"
+        xmlns:localEmpty="clr-namespace:AppWorks.UI.ViewModel.Vehicle"
+        xmlns:localMultiSelect="clr-namespace:AppWorks.UI.ViewModel.Billing"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:rex="clr-namespace:AppWorks.UI.ViewModel.Vehicle"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:theme="clr-namespace:AppWorks.UI.Controls.Themes;assembly=AppWorks.UI.Controls"
+        xmlns:themeEx="clr-namespace:AppWorks.UI.Controls.Extensions;assembly=AppWorks.UI.Controls"
+        Title="Invoice Record Find"
+        Width="880"
+        Height="700"
+        ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d">
+
+    <Window.Resources>
+        <localMultiSelect:BillingFindVM x:Key="BillingFindVM" />
+    </Window.Resources>
+    <DockPanel Name="InvoiceRecordFindDockPanel" Background="{DynamicResource {x:Static theme:BrushSet.BackgroundBrushKey}}" DataContext="{StaticResource BillingFindVM}">
+
+        <Grid Margin="7" DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+                <ColumnDefinition Width=".2*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+                <ColumnDefinition Width=".2*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0"
+                       Grid.Column="0"
+                       Margin="7"
+                       VerticalAlignment="Center"
+                       Style="{themeEx:ThemeResource TextTitle3Style}"
+                       Text="Customer Name" />
+            <TextBox Grid.Row="0"
+                     Grid.Column="1"
+                     Margin="7"
+                     Text="{Binding CustomerName,
+                                    Mode=TwoWay,
+                                    UpdateSourceTrigger=PropertyChanged}" />
+
+
+            <TextBlock Grid.Row="0"
+                       Grid.Column="3"
+                       Margin="7"
+                       VerticalAlignment="Center"
+                       Style="{themeEx:ThemeResource TextTitle3Style}"
+                       Text="Invoice Status" />
+            <telerik:RadComboBox Grid.Row="0"
+                                 Grid.Column="4"
+                                 Margin="7"
+                                 IsSynchronizedWithCurrentItem="True"
+                                 ItemsSource="{Binding InvoiceStatusList,
+                                                       Mode=TwoWay,
+                                                       UpdateSourceTrigger=PropertyChanged}"
+                                 SelectedItem="{Binding SelectedInvoiceStatus}" />
+
+
+            <!--<TextBlock Grid.Row="0"
+                       Grid.Column="6"
+                       Margin="7"
+                       VerticalAlignment="Center"
+                       Style="{themeEx:ThemeResource TextTitle3Style}"
+                       Text="PO Number" />
+            <TextBox Grid.Row="0"
+                     Grid.Column="7"
+                     Margin="7"
+                     Text="{Binding PONumber,
+                                    Mode=TwoWay,
+                                    UpdateSourceTrigger=PropertyChanged}" />-->
+
+            <TextBlock Grid.Row="1"
+                       Grid.Column="0"
+                       Margin="7"
+                       VerticalAlignment="Center"
+                       Style="{themeEx:ThemeResource TextTitle3Style}"
+                       Text="Invoice Type" />
+            <telerik:RadComboBox Grid.Row="1"
+                                 Grid.Column="1"
+                                 Margin="7"
+                                 IsSynchronizedWithCurrentItem="True"
+                                 ItemsSource="{Binding InvoiceTypeList,
+                                                       Mode=TwoWay,
+                                                       UpdateSourceTrigger=PropertyChanged}"
+                                 SelectedItem="{Binding SelectedInvoiceType}" />
+
+            <TextBlock Grid.Row="2"
+                       Grid.Column="0"
+                       Margin="7"
+                       VerticalAlignment="Center"
+                       Style="{themeEx:ThemeResource TextTitle3Style}"
+                       Text="Invoice Number" />
+            <TextBox Grid.Row="2"
+                     Grid.Column="1"
+                     Margin="7"
+                     Text="{Binding InvoiceNumber,
+                                    Mode=TwoWay}" />
+
+            <!--<TextBlock Grid.Row="1"
+                       Grid.Column="6"
+                       Margin="7"
+                       VerticalAlignment="Center"
+                       Style="{themeEx:ThemeResource TextTitle3Style}"
+                       Text="Order Number" />
+            <TextBox Grid.Row="1"
+                     Grid.Column="7"
+                     Margin="7"
+                     Text="{Binding OrderNumber,
+                                    Mode=TwoWay}" />-->
+
+            <TextBlock Grid.Row="0"
+                       Grid.Column="6"
+                       Margin="7"
+                       VerticalAlignment="Center"
+                       Style="{themeEx:ThemeResource TextTitle3Style}"
+                       Text="VIN" />
+            <TextBox Grid.Row="0"
+                     Grid.Column="7"
+                     Margin="7"
+                     CharacterCasing="Upper"
+                     Text="{Binding Vin,
+                                    Mode=TwoWay}" />
+
+            <TextBlock Grid.Row="4"
+                       Grid.Column="0"
+                       Margin="7"
+                       VerticalAlignment="Center"
+                       Style="{themeEx:ThemeResource TextTitle3Style}"
+                       Text="Customer Number:" />
+            <TextBox Grid.Row="4"
+                     Grid.Column="1"
+                     Margin="7"
+                     Text="{Binding CustomerNumber,
+                                    Mode=TwoWay,
+                                    UpdateSourceTrigger=PropertyChanged}" />
+
+            <!--<TextBlock Grid.Row="2"
+                       Grid.Column="6"
+                       Margin="7"
+                       VerticalAlignment="Center"
+                       Style="{themeEx:ThemeResource TextTitle3Style}"
+                       Text="Load Number:" />
+            <TextBox Grid.Row="2"
+                     Grid.Column="7"
+                     Margin="7"
+                     Text="{Binding LoadNumber,
+                                    Mode=TwoWay,
+                                    UpdateSourceTrigger=PropertyChanged}" />-->
+
+            <TextBlock Grid.Row="3"
+                       Grid.Column="0"
+                       Margin="7"
+                       VerticalAlignment="Center"
+                       Style="{themeEx:ThemeResource TextTitle3Style}"
+                       Text="Cust. Ident.:" />
+            <TextBox Grid.Row="3"
+                     Grid.Column="1"
+                     Margin="7"
+                     Text="{Binding CustIndent,
+                                    Mode=TwoWay}" />
+            <TextBlock Grid.Row="1"
+                       Grid.Column="3"
+                       Margin="7"
+                       VerticalAlignment="Center"
+                       Style="{themeEx:ThemeResource TextTitle3Style}"
+                       Text="Created Between:" />
+            <Grid Grid.Row="1"
+                  Grid.RowSpan="3"
+                  Grid.Column="4"
+                  Grid.ColumnSpan="4">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <telerik:RadDatePicker Grid.Row="0"
+                                       Grid.Column="0"
+                                       Margin="7"
+                                       Culture="English (United States)"
+                                       SelectedDate="{Binding CreatedBetwDtFrm,
+                                                              Mode=TwoWay}"
+                                       Validation.ErrorTemplate="{x:Null}" />
+                <TextBlock Grid.Row="0"
+                           Grid.Column="1"
+                           Margin="10 0 8 0"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                           Text="And" />
+                <telerik:RadDatePicker Grid.Row="0"
+                                       Grid.Column="2"
+                                       Margin="7"
+                                       HorizontalAlignment="Stretch"
+                                       Culture="English (United States)"
+                                       SelectedDate="{Binding CreatedBetwDtTo,
+                                                              Mode=TwoWay}"
+                                       Validation.ErrorTemplate="{x:Null}" />
+
+                <telerik:RadDatePicker Grid.Row="1"
+                                       Grid.Column="0"
+                                       Margin="7"
+                                       Culture="English (United States)"
+                                       SelectedDate="{Binding DtInvBetwDtFrm,
+                                                              Mode=TwoWay}"
+                                       Validation.ErrorTemplate="{x:Null}" />
+
+                <TextBlock Grid.Row="1"
+                           Grid.Column="1"
+                           Margin="10 0 8 0"
+                           VerticalAlignment="Center"
+                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                           Text="And" />
+                <telerik:RadDatePicker Grid.Row="1"
+                                       Grid.Column="2"
+                                       Margin="7"
+                                       Culture="English (United States)"
+                                       SelectedDate="{Binding DtInvBetwDtTo,
+                                                              Mode=TwoWay}"
+                                       Validation.ErrorTemplate="{x:Null}" />
+
+                <telerik:RadDatePicker Grid.Row="2"
+                                       Grid.Column="0"
+                                       Margin="7"
+                                       Culture="English (United States)"
+                                       SelectedDate="{Binding DtPaidBetwDtFrm,
+                                                              Mode=TwoWay}"
+                                       Validation.ErrorTemplate="{x:Null}" />
+
+                <TextBlock Grid.Row="2"
+                           Grid.Column="1"
+                           Margin="10 0 8 0"
+                           VerticalAlignment="Center"
+                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                           Text="And" />
+                <telerik:RadDatePicker Grid.Row="2"
+                                       Grid.Column="2"
+                                       Margin="7"
+                                       Culture="English (United States)"
+                                       SelectedDate="{Binding DtPaidBetwDtTo,
+                                                              Mode=TwoWay}"
+                                       Validation.ErrorTemplate="{x:Null}" />
+
+            </Grid>
+
+            <!--<TextBlock Grid.Row="4"
+                       Grid.Column="0"
+                       Margin="7"
+                       VerticalAlignment="Center"
+                       Style="{themeEx:ThemeResource TextTitle3Style}"
+                       Text="Driver" />
+            <telerik:RadComboBox Grid.Row="4"
+                                 Grid.Column="1"
+                                 Margin="7"
+                                 IsSynchronizedWithCurrentItem="True"
+                                 ItemsSource="{Binding DriverList,
+                                                       Mode=TwoWay,
+                                                       UpdateSourceTrigger=PropertyChanged}"
+                                 SelectedItem="{Binding SelectedDriverList}" />-->
+
+            <TextBlock Grid.Row="2"
+                       Grid.Column="3"
+                       Margin="7"
+                       VerticalAlignment="Center"
+                       Style="{themeEx:ThemeResource TextTitle3Style}"
+                       Text="Inv. Date Between:" />
+
+            <!--<TextBlock Grid.Row="5"
+                       Grid.Column="0"
+                       Margin="7"
+                       VerticalAlignment="Center"
+                       Style="{themeEx:ThemeResource TextTitle3Style}"
+                       Text="Outside Carrier:" />
+            <telerik:RadComboBox Grid.Row="5"
+                                 Grid.Column="1"
+                                 Margin="7"
+                                 SelectedItem="{Binding OutsideCarrier,
+                                                        Mode=TwoWay}" />-->
+
+            <TextBlock Grid.Row="3"
+                       Grid.Column="3"
+                       Margin="7"
+                       VerticalAlignment="Center"
+                       Style="{themeEx:ThemeResource TextTitle3Style}"
+                       Text="Paid Between:" />
+        </Grid>
+
+        <StackPanel Margin="7 5 7 0"
+                    HorizontalAlignment="Right"
+                    DockPanel.Dock="Top"
+                    Orientation="Horizontal">
+            <Button Width="100"
+                    Margin="7"
+                    Command="{Binding Path=btnSubmit_Click}"
+                    Content="SEARCH"
+                    Padding="5" />
+            <Button Width="100"
+                    Margin="7"
+                    Command="{Binding BtnClearValue_Click}"
+                    Content="CLEAR"
+                    Padding="5" />
+            <Button Width="100"
+                    Margin="7"
+                    Command="{Binding BtnExport_Click}"
+                    Content="EXPORT"
+                    Padding="5" />
+        </StackPanel>
+
+        <StackPanel Margin="7 0 7 10"
+                    HorizontalAlignment="Left"
+                    DockPanel.Dock="Bottom"
+                    Orientation="Horizontal">
+            <StackPanel>
+                <WrapPanel Margin="7 0 0 0">
+                    <Label Content="Records:" />
+                    <Label Content="{Binding Count, Mode=TwoWay}" />
+                </WrapPanel>
+                <WrapPanel>
+                    <Button Width="100"
+                            Height="28"
+                            Margin="7"
+                            Command="{Binding BtnContinue_Click}"
+                            Content="CONTINUE"
+                            Padding="5" />
+                    <Button Width="100"
+                            Height="28"
+                            Margin="7"
+                            Click="Button_Click"
+                            Command="{Binding CancelCommand}"
+                            Content="CANCEL"
+                            Padding="7" />
+                </WrapPanel>
+            </StackPanel>
+        </StackPanel>
+        <telerik:RadGridView Name="grdBillingList"
+                             Width="Auto"
+                             Height="Auto"
+                             Margin="14"
+                             AutoGenerateColumns="False"
+                             IsReadOnly="True"
+                             ItemsSource="{Binding BillingList,
+                                                   Mode=TwoWay,
+                                                   UpdateSourceTrigger=PropertyChanged}"
+                             MouseDoubleClick="grdBillingList_MouseDoubleClick"
+                             RowIndicatorVisibility="Collapsed"
+                             SelectedItem="{Binding SelectedDisRecipientGridItem,
+                                                    Mode=TwoWay,
+                                                    Source={StaticResource BillingFindVM}}"
+                             SelectionMode="Extended"
+                             SelectionUnit="FullRow"
+                             ShowGroupPanel="False"
+                             Validation.ErrorTemplate="{x:Null}">
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewSelectColumn />
+                <telerik:GridViewDataColumn Width="Auto"
+                                            DataMemberBinding="{Binding InvoiceNumber}"
+                                            Header="Invoice #">
+                    <telerik:GridViewDataColumn.CellStyle>
+                        <Style TargetType="telerik:GridViewCell">
+                            <Setter Property="HorizontalContentAlignment" Value="Left" />
+                        </Style>
+                    </telerik:GridViewDataColumn.CellStyle>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Width="Auto"
+                                            DataMemberBinding="{Binding CustomerName}"
+                                            Header="Customer Name">
+                    <telerik:GridViewDataColumn.CellStyle>
+                        <Style TargetType="telerik:GridViewCell">
+                            <Setter Property="HorizontalContentAlignment" Value="Left" />
+                        </Style>
+                    </telerik:GridViewDataColumn.CellStyle>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Width="Auto"
+                                            DataMemberBinding="{Binding InvoiceType}"
+                                            Header="Invoice Type">
+                    <telerik:GridViewDataColumn.CellStyle>
+                        <Style TargetType="telerik:GridViewCell">
+                            <Setter Property="HorizontalContentAlignment" Value="Left" />
+                        </Style>
+                    </telerik:GridViewDataColumn.CellStyle>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Width="Auto"
+                                            DataMemberBinding="{Binding InvoiceDate,
+                                                                        StringFormat={}{0:d}}"
+                                            Header="Invoice Date">
+                    <telerik:GridViewDataColumn.CellStyle>
+                        <Style TargetType="telerik:GridViewCell">
+                            <Setter Property="HorizontalContentAlignment" Value="Left" />
+                        </Style>
+                    </telerik:GridViewDataColumn.CellStyle>
+                </telerik:GridViewDataColumn>
+                <!--<telerik:GridViewDataColumn Width="Auto"
+                                            DataMemberBinding="{Binding LoadNumber}"
+                                            Header="Load Number">
+                    <telerik:GridViewDataColumn.CellStyle>
+                        <Style TargetType="telerik:GridViewCell">
+                            <Setter Property="HorizontalContentAlignment" Value="Left" />
+                        </Style>
+                    </telerik:GridViewDataColumn.CellStyle>
+                </telerik:GridViewDataColumn>-->
+                <!--<telerik:GridViewDataColumn Width="Auto"
+                                            DataMemberBinding="{Binding Driver}"
+                                            Header="Driver">
+                    <telerik:GridViewDataColumn.CellStyle>
+                        <Style TargetType="telerik:GridViewCell">
+                            <Setter Property="HorizontalContentAlignment" Value="Left" />
+                        </Style>
+                    </telerik:GridViewDataColumn.CellStyle>
+                </telerik:GridViewDataColumn>-->
+                <telerik:GridViewDataColumn Width="Auto"
+                                            DataMemberBinding="{Binding InvoiceStatus}"
+                                            Header="Status">
+                    <telerik:GridViewDataColumn.CellStyle>
+                        <Style TargetType="telerik:GridViewCell">
+                            <Setter Property="HorizontalContentAlignment" Value="Left" />
+                        </Style>
+                    </telerik:GridViewDataColumn.CellStyle>
+                </telerik:GridViewDataColumn>
+            </telerik:RadGridView.Columns>
+            <i:Interaction.Behaviors>
+                <localMultiSelect:BillingFindMultiSelect />
+
+                <rex:EmptyDataTemplateBehavior>
+                    <rex:EmptyDataTemplateBehavior.EmptyDataTemplate>
+                        <DataTemplate>
+                            <TextBlock HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Foreground="Red"
+                                       Text="No records found!"
+                                       Visibility="{Binding MessageVisibility}" />
+                        </DataTemplate>
+                    </rex:EmptyDataTemplateBehavior.EmptyDataTemplate>
+                </rex:EmptyDataTemplateBehavior>
+
+            </i:Interaction.Behaviors>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding BtnFillData_Click}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </telerik:RadGridView>
+    </DockPanel>
+</Window>

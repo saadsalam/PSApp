@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:brushes="clr-namespace:AppWorks.UI.Controls.Themes">
+    <Style TargetType="ToolTip">
+        <Setter Property="Background" Value="{DynamicResource {x:Static brushes:BrushSet.AccentBackgroundBrushKey}}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static brushes:BrushSet.AlternativeAccentBorderBrushKey}}" />
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static brushes:BrushSet.ForegroundBrushKey}}" />
+    </Style>
+</ResourceDictionary>

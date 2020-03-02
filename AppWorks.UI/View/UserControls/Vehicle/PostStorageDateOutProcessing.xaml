@@ -1,0 +1,255 @@
+﻿<UserControl x:Class="AppWorks.UI.View.UserControls.Vehicle.PostStorageDateOutProcessing"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:brushes="clr-namespace:AppWorks.UI.Controls.Themes;assembly=AppWorks.UI.Controls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:themeEx="clr-namespace:AppWorks.UI.Controls.Extensions;assembly=AppWorks.UI.Controls"
+             d:DesignHeight="600"
+             d:DesignWidth="1024"
+             mc:Ignorable="d">
+    <Grid x:Name="LayoutRoot" Margin="7 5 5 5">
+        <DockPanel>
+            <Grid Margin="-5 0 -5 10" DockPanel.Dock="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="0.2*" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="0.1*" />
+                    <ColumnDefinition Width="120" />
+                </Grid.ColumnDefinitions>
+                <Grid.InputBindings>
+                    <KeyBinding Key="Enter" Command="{Binding BtnSubmit_Click}" />
+                </Grid.InputBindings>
+
+                <GroupBox Grid.Row="0"
+                          Grid.Column="0"
+                          Grid.ColumnSpan="9"
+                          Margin="5 0 0 0"
+                          VerticalAlignment="Center"
+                          Header="Enter Vehicle Information"
+                          Style="{StaticResource GroupBoxLeftHeaderStyle}" />
+
+                <StackPanel Grid.Row="1" Grid.Column="0">
+                    <TextBlock Grid.Row="1"
+                               Grid.Column="0"
+                               Margin="5 5 0 0"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Style="{themeEx:ThemeResource TextTitle3Style}"
+                               Text="Date Out" />
+                    <!--<DatePicker Name="txtRequestDate"  Grid.Row="1" Grid.Column="2" Text="{Binding DtRequestDate ,StringFormat='{}{0:MM/dd/yyyy a\\t h:mm tt}', Mode=TwoWay}" ></DatePicker>-->
+                    <TextBox Name="txtDateOut"
+                             Grid.Row="1"
+                             Grid.Column="1"
+                             Margin="5"
+                             KeyDown="txtDateOut_KeyDown"
+                             LostFocus="txtDateOut_LostFocus"
+                             Text="{Binding DtDateOut,
+                                            Mode=TwoWay,
+                                            StringFormat='{}{0:MM/dd/yyyy hh:mm tt}'}" />
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Grid.Column="2">
+                    <TextBlock Grid.Row="1"
+                               Grid.Column="3"
+                               Margin="5 5 0 0"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Style="{themeEx:ThemeResource TextTitle3Style}"
+                               Text="Enter/Scan VIN" />
+                    <TextBox Name="txtVin"
+                             Grid.Row="1"
+                             Grid.Column="4"
+                             Margin="5"
+                             CharacterCasing="Upper"
+                             MaxLength="17"
+                             TextChanged="txtVin_TextChanged"                             
+                             Text="{Binding Vin, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Grid.Column="4">
+                    <TextBlock Grid.Row="1"
+                               Grid.Column="6"
+                               Margin="5 5 0 0"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Style="{themeEx:ThemeResource TextTitle3Style}"
+                               Text="Note" />
+                    <TextBox Grid.Row="1"
+                             Grid.Column="7"
+                             Margin="5"
+                             Text="{Binding Note,
+                                            Mode=TwoWay}" />
+                </StackPanel>
+
+                <Button Grid.Row="1"
+                        Grid.Column="8"
+                        Width="100"
+                        Margin="5 5 0 5"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Bottom"
+                        Content="ADD"
+                        Padding="5"
+                        />
+
+            </Grid>
+            <!-- Command="{Binding BtnSubmit_Click}-->
+            <!--  /TOP SEARC FIELD PANEL END  -->
+            <DockPanel Margin="0 10 0 0" DockPanel.Dock="Bottom">
+                <Rectangle Height="1"
+                           DockPanel.Dock="Top"
+                           Fill="{DynamicResource {x:Static brushes:BrushSet.BorderBrushKey}}" />
+                <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                    <StackPanel>
+                        <WrapPanel>
+                            <Label Content="Records:" />
+                            <Label Content="{Binding Path=RequestProcessingList.Count}" />
+                        </WrapPanel>
+                        <WrapPanel>
+                            <Button Width="100"
+                                Margin="0 7 7 7"
+                                HorizontalAlignment="Left"
+                                Command="{Binding Path=BtnProcessBatch_Click}"
+                                Content="PROCESS"
+                                Padding="5" />
+                            <Button Width="100"
+                                Margin="0 7 7 7"
+                                HorizontalAlignment="Left"
+                                Command="{Binding Path=BtnClearFinished_Click}"
+                                Content="Clear Finished"
+                                Padding="5" />
+
+
+                            <Button Width="100"
+                                Margin="0 7 7 7"
+                                HorizontalAlignment="Left"
+                                Command="{Binding Path=BtnViewSelected_Click}"
+                                Content="View Selected"
+                                Padding="5" />
+                            <Button Width="90"
+                                Margin="0 7 7 7"
+                                HorizontalAlignment="Left"
+                                Command="{Binding Path=BtnCancel_Click}"
+                                Content="Clear"
+                                Padding="5" Visibility="Hidden"/>
+                            <TextBox Name="chkScrolled" Text="{Binding Scrolled,Mode=TwoWay}" Visibility="Hidden" ></TextBox>
+
+                            <!--<Button Width="100"
+                                Margin="0 7 7 7"
+                                HorizontalAlignment="Left"
+                                Command="{Binding Path=BtnClearFinished_Click}"
+                                Content="Clear Finished"
+                                Padding="5" Visibility="Hidden"/>-->
+                        </WrapPanel>
+                    </StackPanel>
+                </StackPanel>
+            </DockPanel>
+            <DockPanel>
+                <!--<telerik:RadDataPager x:Name="grdUserListPage"
+                                          AllowDrop="True"
+                                          AutoEllipsisMode="Both"
+                                          BorderBrush="AliceBlue"
+                                          DisplayMode="All"
+                                          DockPanel.Dock="Bottom"
+                                          Focusable="True"
+                                          IsTotalItemCountFixed="True"
+                                          Source="{Binding Items, ElementName=grdUserList}" />-->
+
+                <telerik:RadGridView Name="grdUserList"                                     
+                                     AutoGenerateColumns="False"
+                                     IsReadOnly="True"                                     
+                                     RowLoaded="grdUserList_RowLoaded"                                           
+                                     ItemsSource="{Binding Path=RequestProcessingList}"
+                                     ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                     ShowGroupPanel="False">
+
+                    <telerik:RadGridView.Columns>
+                        <!--<telerik:GridViewSelectColumn ></telerik:GridViewSelectColumn>-->
+                        <telerik:GridViewDataColumn Width="auto"
+                                                    DataMemberBinding="{Binding Vin,
+                                                                                Mode=TwoWay}"
+                                                    Header="VIN">
+                            <telerik:GridViewDataColumn.CellStyle>
+                                <Style TargetType="telerik:GridViewCell">
+                                    <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                </Style>
+                            </telerik:GridViewDataColumn.CellStyle>
+                        </telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Width="auto"
+                                                    DataMemberBinding="{Binding Name,
+                                                                                Mode=TwoWay}"
+                                                    Header="Customer Name">
+                            <telerik:GridViewDataColumn.CellStyle>
+                                <Style TargetType="telerik:GridViewCell">
+                                    <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                </Style>
+                            </telerik:GridViewDataColumn.CellStyle>
+                        </telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Width="*"
+                                                    DataMemberBinding="{Binding DateIn,
+                                                                                Mode=TwoWay}"
+                                                    Header="Date In">
+                            <telerik:GridViewDataColumn.CellStyle>
+                                <Style TargetType="telerik:GridViewCell">
+                                    <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                </Style>
+                            </telerik:GridViewDataColumn.CellStyle>
+                        </telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Width="*"
+                                                    DataMemberBinding="{Binding DateOut,
+                                                                                Mode=TwoWay}"
+                                                    Header="Date Out">
+                            <telerik:GridViewDataColumn.CellStyle>
+                                <Style TargetType="telerik:GridViewCell">
+                                    <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                </Style>
+                            </telerik:GridViewDataColumn.CellStyle>
+                        </telerik:GridViewDataColumn>
+
+                        <telerik:GridViewDataColumn Width="*"
+                                                    DataMemberBinding="{Binding MakeModel,
+                                                                                Mode=TwoWay}"
+                                                    Header="Model">
+                            <telerik:GridViewDataColumn.CellStyle>
+                                <Style TargetType="telerik:GridViewCell">
+                                    <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                </Style>
+                            </telerik:GridViewDataColumn.CellStyle>
+                        </telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Width="*"
+                                                    DataMemberBinding="{Binding BayLocation,
+                                                                                Mode=TwoWay}"
+                                                    Header="Location">
+                            <telerik:GridViewDataColumn.CellStyle>
+                                <Style TargetType="telerik:GridViewCell">
+                                    <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                </Style>
+                            </telerik:GridViewDataColumn.CellStyle>
+                        </telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Width="200"
+                                                    DataMemberBinding="{Binding VehicleStatus,
+                                                                                Mode=TwoWay}"
+                                                    Header="Status">
+                            <telerik:GridViewDataColumn.CellStyle>
+                                <Style TargetType="telerik:GridViewCell">
+                                    <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                </Style>
+                            </telerik:GridViewDataColumn.CellStyle>
+                        </telerik:GridViewDataColumn>
+                    </telerik:RadGridView.Columns>
+
+                </telerik:RadGridView>
+            </DockPanel>
+        </DockPanel>
+    </Grid>
+</UserControl>

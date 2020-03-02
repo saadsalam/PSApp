@@ -1,0 +1,30 @@
+﻿<Window x:Class="AppWorks.UI.View.PortStorageInvoices.PrintInvoiceErrorReportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:telerikReportViewer="clr-namespace:Telerik.ReportViewer.Wpf;assembly=Telerik.ReportViewer.Wpf"
+        xmlns:telerikReporting="clr-namespace:Telerik.Reporting;assembly=Telerik.Reporting"
+        xmlns:themeEx="clr-namespace:AppWorks.UI.Controls.Extensions;assembly=AppWorks.UI.Controls"
+        Title="Print Invoice Error Report"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+
+
+        <Border Margin="0,40,0,46"
+                VerticalAlignment="Bottom"
+                Background="#fff"
+                Style="{themeEx:ThemeResource BorderPanelStyle}">
+            <StackPanel>
+                <!--<telerik:ReportViewer  Width="1050"  Name="ReportViewerPrintRequest"  HorizontalAlignment="Center"  Height="550" ReportSource="{Binding MyReportSource}"/>-->
+                <telerikReportViewer:ReportViewer Name="ReportViewerPrintRequest"
+                                                  Width="1000"
+                                                  Height="550"
+                                                  HorizontalAlignment="Center"
+                                                  ReportSource="{Binding MyReportSource}" />
+
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

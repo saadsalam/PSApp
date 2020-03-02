@@ -1,0 +1,27 @@
+﻿<Window x:Class="AppWorks.UI.View.Reports.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:tr="http://schemas.telerik.com/wpf" 
+        Title="Window1" Height="361.805" Width="664.286"
+          xmlns:telerik="clr-namespace:Telerik.ReportViewer.Wpf;assembly=Telerik.ReportViewer.Wpf" 
+    xmlns:telerikReporting="clr-namespace:Telerik.Reporting;assembly=Telerik.Reporting">
+    <Grid>
+        
+
+        <!--<telerik:ReportViewer Name="ReportViewer1"  HorizontalAlignment="Left" Height="294" Margin="52,27,0,0"  VerticalAlignment="Top" Width="540"/>-->
+        
+
+
+        <!--<telerik:ReportViewer  Margin="10" ReportSource="{Binding Report}">
+
+            <telerik:ReportViewer.ReportSource>
+                <telerikReporting:TypeReportSource TypeName="Appworks.Reports.Report3, AppWorks.Reports" />
+            </telerik:ReportViewer.ReportSource>
+        
+        </telerik:ReportViewer>-->
+       
+
+    </Grid>
+</Window>

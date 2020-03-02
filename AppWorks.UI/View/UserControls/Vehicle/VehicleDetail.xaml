@@ -1,0 +1,1005 @@
+﻿<UserControl x:Class="AppWorks.UI.View.UserControls.Vehicle.VehicleDetail"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:brushes="clr-namespace:AppWorks.UI.Controls.Themes;assembly=AppWorks.UI.Controls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:local="clr-namespace:AppWorks.UI.Common"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:my="clr-namespace:AppWorks.UI.ViewModel.Vehicle"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:themeEx="clr-namespace:AppWorks.UI.Controls.Extensions;assembly=AppWorks.UI.Controls"
+             d:DesignWidth="1000"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="brushWatermarkBackground" Color="White" />
+        <SolidColorBrush x:Key="brushWatermarkBorder" Color="Indigo" />
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    <DockPanel Margin="0 0 0 5">
+        <StackPanel DockPanel.Dock="Bottom">
+            <StackPanel HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        DockPanel.Dock="Bottom"
+                        Orientation="Horizontal">
+                <Button Width="100"
+                        Margin="7"
+                        HorizontalAlignment="Left"
+                        Command="{Binding BtnNew_Click}"
+                        Content="NEW"
+                        IsEnabled="{Binding EnabledNewUser,
+                                            Mode=TwoWay,
+                                            UpdateSourceTrigger=PropertyChanged}"
+                        Padding="5" />
+                <Button Width="100"
+                        Margin="7"
+                        HorizontalAlignment="Left"
+                        Command="{Binding BtnModify_Click}"
+                        Content="MODIFY"
+                        IsEnabled="{Binding EnabledModifyDelete,
+                                            Mode=TwoWay,
+                                            UpdateSourceTrigger=PropertyChanged}"
+                        Padding="5" />
+                <Button Width="100"
+                        Margin="7"
+                        HorizontalAlignment="Left"
+                        Command="{Binding BtnDelete_Click}"
+                        Content="DELETE"
+                        IsEnabled="{Binding EnabledModifyDelete,
+                                            Mode=TwoWay,
+                                            UpdateSourceTrigger=PropertyChanged}"
+                        Padding="5" />
+                <Button Width="100"
+                        Margin="7"
+                        HorizontalAlignment="Left"
+                        Command="{Binding BtnPri_Click}"
+                        Content="PREVIOUS"
+                        IsEnabled="{Binding EnabledPrevNext,
+                                            Mode=TwoWay,
+                                            UpdateSourceTrigger=PropertyChanged}"
+                        Padding="5" />
+                <Button Width="100"
+                        Margin="7"
+                        HorizontalAlignment="Left"
+                        Command="{Binding BtnNext_Click}"
+                        Content="NEXT"
+                        IsEnabled="{Binding EnabledPrevNext,
+                                            Mode=TwoWay,
+                                            UpdateSourceTrigger=PropertyChanged}"
+                        Padding="5" />
+                <Button Width="100"
+                        Margin="7"
+                        HorizontalAlignment="Left"
+                        Command="{Binding btnFind_Click}"
+                        Content="FIND"
+                        IsEnabled="{Binding EnabledFind,
+                                            Mode=TwoWay,
+                                            UpdateSourceTrigger=PropertyChanged}"
+                        Padding="5" />
+                <Button Width="100"
+                        Margin="7"
+                        HorizontalAlignment="Left"
+                        Command="{Binding BtnPrint_Click}"
+                        Content="PRINT"
+                        IsEnabled="{Binding EnabledModifyDelete,
+                                            Mode=TwoWay,
+                                            UpdateSourceTrigger=PropertyChanged}"
+                        Padding="5" />
+                <Button Width="100"
+                        Margin="7"
+                        HorizontalAlignment="Left"
+                        Command="{Binding BtnOk_Click}"
+                        Content="{Binding Action,
+                                          FallbackValue=OK,
+                                          Mode=TwoWay,
+                                          UpdateSourceTrigger=PropertyChanged}"
+                        IsEnabled="{Binding EnabledSaveUpdate,
+                                            Mode=TwoWay,
+                                            UpdateSourceTrigger=PropertyChanged}"
+                        Padding="5" />
+                <Button Width="100"
+                        Margin="7"
+                        HorizontalAlignment="Left"
+                        Command="{Binding BtnCancel_Click}"
+                        Content="CANCEL"
+                        IsEnabled="{Binding EnabledCancel,
+                                            Mode=TwoWay,
+                                            UpdateSourceTrigger=PropertyChanged}"
+                        Padding="5" />
+            </StackPanel>
+        </StackPanel>
+
+        <DockPanel>
+            <DockPanel.InputBindings>
+                <KeyBinding Key="Enter" Command="{Binding BtnOk_Click}" />
+            </DockPanel.InputBindings>
+
+            <GroupBox Margin="0 0 10 0"
+                      VerticalAlignment="Top"
+                      DockPanel.Dock="Left"
+                      Header="Selected Records"
+                      Style="{StaticResource GroupBoxLeftHeaderStyle}"
+                      Visibility="{Binding IsMultiVehiclesSelected,
+                                           Converter={StaticResource BooleanToVisibilityConverter},
+                                           FallbackValue='Collapsed'}">
+                <telerik:RadListBox x:Name="selectedVehiclesList"
+                                    ItemsSource="{Binding SelectedVehicles,
+                                                          Mode=OneWay}"
+                                    SelectedItem="{Binding SelectedVehicle,
+                                                           Mode=TwoWay}">
+                    <telerik:RadListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <DockPanel LastChildFill="False">
+                                    <Button Command="{Binding RemoveFromSelectedCommand}"
+                                            Content="❌"
+                                            DockPanel.Dock="Right"
+                                            Style="{themeEx:ThemeResource NoChromeButton}" />
+                                    <TextBlock DockPanel.Dock="Left">
+                                        <Run Text="{Binding Make, Mode=OneWay}" />
+                                        <Run Text=" " />
+                                        <Run Text="{Binding Model, Mode=OneWay}" />
+                                    </TextBlock>
+                                </DockPanel>
+                                <TextBlock Text="{Binding CustomerName, Mode=OneWay}" />
+                                <TextBlock Text="{Binding VIN, Mode=OneWay}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </telerik:RadListBox.ItemTemplate>
+                </telerik:RadListBox>
+            </GroupBox>
+
+            <Grid Margin="20 10 25 10"
+                  DockPanel.Dock="Top"
+                  IsEnabled="{Binding IsEditable,
+                                      Mode=TwoWay,
+                                      UpdateSourceTrigger=PropertyChanged}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*"
+                                      MinWidth="148"
+                                      SharedSizeGroup="A" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" SharedSizeGroup="A" />
+                </Grid.ColumnDefinitions>
+                <TextBox Grid.Column="1"
+                         Margin="14 5 5 5"
+                         VerticalAlignment="Center"
+                         IsReadOnly="True"
+                         Text="{Binding CustomerName,
+                                        Mode=TwoWay,
+                                        UpdateSourceTrigger=PropertyChanged}" />
+                <Button Grid.Column="2"
+                        Width="100"
+                        Margin="5"
+                        Command="{Binding BtnChangeCustomer}"
+                        Content="CHANGE"
+                        IsEnabled="{Binding EnabledSaveUpdate,
+                                            Mode=TwoWay,
+                                            UpdateSourceTrigger=PropertyChanged}"
+                        Padding="5" />
+                <TextBlock Grid.Row="0"
+                           Grid.Column="0"
+                           Margin="0 0 5 0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                           Text="Customer" />
+                <TextBlock Grid.Row="0"
+                           Grid.Column="3"
+                           Margin="12 0 5 0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           DockPanel.Dock="Right"
+                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                           Text="Customer Number" />
+
+                <TextBox Grid.Row="0"
+                         Grid.Column="4"
+                         Margin="7 5 3 5"
+                         VerticalAlignment="Center"
+                         IsReadOnly="True"
+                         Text="{Binding CustomerNumber,
+                                        Mode=TwoWay,
+                                        UpdateSourceTrigger=PropertyChanged}"
+                         TextAlignment="Right" />
+                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                    <TextBlock Margin="0 0 5 0"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Style="{themeEx:ThemeResource TextTitle3Style}"
+                               Text="VIN" />
+                    <CheckBox Margin="5 5 0 5"
+                              HorizontalAlignment="Right"
+                              VerticalAlignment="Center"
+                              Command="{Binding VINDecodeCheckBox_Checked}"
+                              IsChecked="{Binding VinDecodedInd}"
+                              Padding="0" />
+                </StackPanel>
+                <TextBox Name="txtVIN"
+                         Grid.Row="1"
+                         Grid.Column="1"
+                         Margin="13 5 5 5"
+                         HorizontalAlignment="Stretch"
+                         CharacterCasing="Upper"
+                         KeyUp="txtVIN_KeyUp"
+                         MaxLength="17"
+                         Text="{Binding Vin,
+                                        Mode=TwoWay,
+                                        UpdateSourceTrigger=PropertyChanged}" />
+                <Button Grid.Row="1"
+                        Grid.Column="2"
+                        Width="100"
+                        Margin="5"
+                        Command="{Binding BtnDecodeVIN}"
+                        Content="DECODE"
+                        Padding="5" />
+
+                <TextBlock Grid.Row="1"
+                           Grid.Column="3"
+                           Margin="12 0 5 0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                           Text="Bay Location" />
+                <TextBox Name="txtBayLocation"
+                         Grid.Row="1"
+                         Grid.Column="4"
+                         Margin="7 5 3 5"
+                         VerticalAlignment="Center"
+                         Text="{Binding BayLocation,
+                                        Mode=TwoWay,
+                                        UpdateSourceTrigger=PropertyChanged}"
+                         TextAlignment="Right" />
+
+            </Grid>
+            <Border Margin="7 10 10 4"
+                    BorderBrush="{Binding ElementName=nestedTabControl,
+                                          Path=HeaderBackground}"
+                    BorderThickness="7">
+                <telerik:RadTabControl x:Name="nestedTabControl">
+                    <telerik:RadTabItem Header="Vehicle Details">
+                        <ScrollViewer x:Name="scroll"
+                                      HorizontalScrollBarVisibility="Disabled"
+                                      VerticalScrollBarVisibility="Disabled">
+                            <DockPanel>
+                                <ContentControl Width="0"
+                                                Margin="0 0 5 0"
+                                                DockPanel.Dock="Right">
+                                    <ContentControl.Style>
+                                        <Style TargetType="ContentControl">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ComputedVerticalScrollBarVisibility, ElementName=scroll}" Value="Visible">
+                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </ContentControl.Style>
+                                </ContentControl>
+                                <Grid Margin="7 0 0 0">
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="1" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1.5*" />
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="1.5*" />
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="1.5*" />
+                                        <ColumnDefinition Width="2*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Row="1"
+                                               Grid.Column="0"
+                                               Margin="0 0 5 0"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               Style="{themeEx:ThemeResource TextTitle3Style}"
+                                               Text="Year" />
+                                    <TextBox Grid.Row="1"
+                                             Grid.Column="1"
+                                             Margin="5"
+                                             IsEnabled="{Binding IsEnabled,
+                                                                 Mode=TwoWay,
+                                                                 UpdateSourceTrigger=PropertyChanged}"
+                                             Text="{Binding Year,
+                                                            Mode=TwoWay,
+                                                            UpdateSourceTrigger=PropertyChanged}"
+                                             TextAlignment="Justify" />
+                                    <TextBlock Grid.Row="1"
+                                               Grid.Column="2"
+                                               Margin="10 0 5 0"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               Style="{themeEx:ThemeResource TextTitle3Style}"
+                                               Text="Make" />
+                                    <TextBox Grid.Row="1"
+                                             Grid.Column="3"
+                                             Margin="5"
+                                             IsEnabled="{Binding IsEnabled,
+                                                                 Mode=TwoWay,
+                                                                 UpdateSourceTrigger=PropertyChanged}"
+                                             Text="{Binding Make,
+                                                            Mode=TwoWay,
+                                                            UpdateSourceTrigger=PropertyChanged}" />
+                                    <TextBlock Grid.Row="1"
+                                               Grid.Column="4"
+                                               Margin="10 0 5 0"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               Style="{themeEx:ThemeResource TextTitle3Style}"
+                                               Text="Creation Date" />
+                                    <TextBox Grid.Row="1"
+                                             Grid.Column="5"
+                                             Margin="5"
+                                             Foreground="Gray"
+                                             IsEnabled="{Binding IsEditable,
+                                                                 Mode=TwoWay,
+                                                                 UpdateSourceTrigger=PropertyChanged}"
+                                             IsReadOnly="True"
+                                             Text="{Binding CreationDate,
+                                                            Mode=TwoWay,
+                                                            UpdateSourceTrigger=PropertyChanged,
+                                                            StringFormat='{}{0:MM/dd/yyyy hh:mm tt}'}"
+                                             TextAlignment="Right" />
+                                    <TextBlock Grid.Row="2"
+                                               Grid.Column="0"
+                                               Margin="0 0 5 0"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               Style="{themeEx:ThemeResource TextTitle3Style}"
+                                               Text="Model" />
+                                    <TextBox Grid.Row="2"
+                                             Grid.Column="1"
+                                             Margin="5"
+                                             IsEnabled="{Binding IsEnabled,
+                                                                 Mode=TwoWay,
+                                                                 UpdateSourceTrigger=PropertyChanged}"
+                                             Text="{Binding Model,
+                                                            Mode=TwoWay,
+                                                            UpdateSourceTrigger=PropertyChanged}" />
+
+                                    <TextBlock Grid.Row="2"
+                                               Grid.Column="2"
+                                               Margin="10 0 5 0"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               Style="{themeEx:ThemeResource TextTitle3Style}"
+                                               Text="Body Style" />
+                                    <TextBox Grid.Row="2"
+                                             Grid.Column="3"
+                                             Margin="5"
+                                             IsEnabled="{Binding IsEnabled,
+                                                                 Mode=TwoWay,
+                                                                 UpdateSourceTrigger=PropertyChanged}"
+                                             Text="{Binding Bodystyle,
+                                                            Mode=TwoWay,
+                                                            UpdateSourceTrigger=PropertyChanged}" />
+                                    <TextBlock Grid.Row="2"
+                                               Grid.Column="4"
+                                               Margin="10 0 5 0"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               Style="{themeEx:ThemeResource TextTitle3Style}"
+                                               Text="Created By" />
+                                    <TextBox Grid.Row="2"
+                                             Grid.Column="5"
+                                             Margin="5"
+                                             Foreground="Gray"
+                                             IsEnabled="{Binding IsEditable,
+                                                                 Mode=TwoWay,
+                                                                 UpdateSourceTrigger=PropertyChanged}"
+                                             IsReadOnly="True"
+                                             Text="{Binding CreatedBy,
+                                                            Mode=TwoWay,
+                                                            UpdateSourceTrigger=PropertyChanged}" />
+                                    <TextBlock Grid.Row="3"
+                                               Grid.Column="0"
+                                               Margin="0 0 5 0"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               Style="{themeEx:ThemeResource TextTitle3Style}"
+                                               Text="Vehicle Status" />
+                                    <!--<ComboBox Grid.Row="2" Grid.Column="5" VerticalContentAlignment="Center" ItemsSource="{Binding VehicalStatus,Mode=TwoWay}" IsSynchronizedWithCurrentItem="True" SelectedItem="{Binding SelectedVehicalStatus}">
+
+                                </ComboBox>-->
+                                    <telerik:RadComboBox Grid.Row="3"
+                                                         Grid.Column="1"
+                                                         Margin="5"
+                                                         VerticalContentAlignment="Center"
+                                                         IsEnabled="{Binding IsEditableStatus,
+                                                                             Mode=TwoWay,
+                                                                             UpdateSourceTrigger=PropertyChanged}"
+                                                         IsSynchronizedWithCurrentItem="True"
+                                                         ItemsSource="{Binding VehicalStatusList,
+                                                                               Mode=TwoWay,
+                                                                               UpdateSourceTrigger=PropertyChanged}"
+                                                         SelectedItem="{Binding SelectedVehicalStatus}" />
+                                    <TextBlock Grid.Row="3"
+                                               Grid.Column="2"
+                                               Margin="10 0 5 0"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               Style="{themeEx:ThemeResource TextTitle3Style}"
+                                               Text="Customer Ident." />
+                                    <TextBox Grid.Row="3"
+                                             Grid.Column="3"
+                                             Margin="5"
+                                             IsEnabled="{Binding IsEditableStatus,
+                                                                 Mode=TwoWay,
+                                                                 UpdateSourceTrigger=PropertyChanged}"
+                                             Text="{Binding CustomerIdentification,
+                                                            Mode=TwoWay,
+                                                            UpdateSourceTrigger=PropertyChanged}" />
+
+                                    <TextBlock Grid.Row="3"
+                                               Grid.Column="4"
+                                               Margin="10 0 5 0"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               Style="{themeEx:ThemeResource TextTitle3Style}"
+                                               Text="Updated Date" />
+                                    <TextBox Grid.Row="3"
+                                             Grid.Column="5"
+                                             Margin="5"
+                                             IsEnabled="{Binding IsEditable,
+                                                                 Mode=TwoWay,
+                                                                 UpdateSourceTrigger=PropertyChanged}"
+                                             IsReadOnly="True"
+                                             Text="{Binding UpdatedDate,
+                                                            Mode=TwoWay,
+                                                            UpdateSourceTrigger=PropertyChanged,
+                                                            StringFormat='{}{0:MM/dd/yyyy hh:mm tt}'}"
+                                             TextAlignment="Right" />
+
+                                    <TextBlock Grid.Row="4"
+                                               Grid.Column="0"
+                                               Margin="0 0 5 0"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               Style="{themeEx:ThemeResource TextTitle3Style}"
+                                               Text="Entry Rate" />
+                                    <DockPanel Grid.Row="4"
+                                               Grid.Column="1"
+                                               Margin="5"
+                                               IsEnabled="{Binding IsEditable,
+                                                                   Mode=TwoWay,
+                                                                   UpdateSourceTrigger=PropertyChanged}">
+                                        <CheckBox Name="ChkEntryRate"
+                                                  HorizontalAlignment="Left"
+                                                  IsEnabled="{Binding IsEnabledOnNewVIN,
+                                                                      Mode=TwoWay,
+                                                                      UpdateSourceTrigger=PropertyChanged}">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Checked">
+                                                    <i:InvokeCommandAction Command="{Binding ChkEntryrateChecked_Click}" CommandParameter="{Binding}" />
+                                                </i:EventTrigger>
+
+                                                <i:EventTrigger EventName="Unchecked">
+                                                    <i:InvokeCommandAction Command="{Binding UnChkEntryrateChecked_Click}" CommandParameter="{Binding}" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </CheckBox>
+                                        <TextBox Margin="0"
+                                                 IsEnabled="{Binding ElementName=ChkEntryRate,
+                                                                     Path=IsChecked}"
+                                                 IsReadOnly="True"
+                                                 Text="{Binding EntryRate,
+                                                                Mode=TwoWay,
+                                                                UpdateSourceTrigger=PropertyChanged}"
+                                                 TextAlignment="Right" />
+                                    </DockPanel>
+
+                                    <TextBlock Grid.Row="4"
+                                               Grid.Column="2"
+                                               Margin="10 0 5 0"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               Style="{themeEx:ThemeResource TextTitle3Style}"
+                                               Text="Date In" />
+                                    <TextBox Name="txtDateIn"
+                                             Grid.Row="4"
+                                             Grid.Column="3"
+                                             Margin="5"                                             
+                                             IsEnabled="{Binding IsEnabledDateIn,
+                                                                 Mode=TwoWay,
+                                                                 UpdateSourceTrigger=PropertyChanged}"
+                                             KeyDown="txtDateIn_KeyDown"
+                                             MaxLength="22"
+                                             Text="{Binding DateIn,
+                                                            StringFormat='{}{0:MM/dd/yyyy hh:mm tt}',
+                                                            Mode=TwoWay}"
+                                             TextAlignment="Right" />
+                                    <TextBlock Grid.Row="4"
+                                               Grid.Column="4"
+                                               Margin="10 0 5 0"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               Style="{themeEx:ThemeResource TextTitle3Style}"
+                                               Text="Updated By" />
+                                    <TextBox Grid.Row="4"
+                                             Grid.Column="5"
+                                             Margin="5"
+                                             IsEnabled="{Binding IsEditable,
+                                                                 Mode=TwoWay,
+                                                                 UpdateSourceTrigger=PropertyChanged}"
+                                             IsReadOnly="True"
+                                             Text="{Binding UpdatedBy,
+                                                            Mode=TwoWay,
+                                                            UpdateSourceTrigger=PropertyChanged}" />
+                                    <TextBlock Grid.Row="5"
+                                               Grid.Column="0"
+                                               Margin="0 0 5 0"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               Style="{themeEx:ThemeResource TextTitle3Style}"
+                                               Text="Per Diem Grace Days" />
+                                    <DockPanel Grid.Row="5"
+                                               Grid.Column="1"
+                                               Margin="5"
+                                               IsEnabled="{Binding IsEditable,
+                                                                   Mode=TwoWay,
+                                                                   UpdateSourceTrigger=PropertyChanged}">
+                                        <CheckBox Name="ChkPerdiem"
+                                                  HorizontalAlignment="Left"
+                                                  VerticalAlignment="Center"
+                                                  IsChecked="{Binding PerDiemGraceDaysOverrideInd,
+                                                                      Mode=TwoWay}">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Checked">
+                                                    <i:InvokeCommandAction Command="{Binding ChkPerDiemChecked_Click}" CommandParameter="{Binding}" />
+                                                </i:EventTrigger>
+
+                                                <i:EventTrigger EventName="Unchecked">
+                                                    <i:InvokeCommandAction Command="{Binding UnchkPerDiemChecked_Click}" CommandParameter="{Binding}" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </CheckBox>
+                                        <TextBox Grid.Row="3"
+                                                 Grid.Column="8"
+                                                 Margin="0"
+                                                 IsEnabled="{Binding ElementName=ChkPerdiem,
+                                                                     Path=IsChecked}"
+                                                 IsReadOnly="True"
+                                                 Text="{Binding PerDiemGraceDays,
+                                                                Mode=TwoWay,
+                                                                UpdateSourceTrigger=PropertyChanged}"
+                                                 TextAlignment="Right" />
+                                    </DockPanel>
+
+                                    <TextBlock Grid.Row="5"
+                                               Grid.Column="2"
+                                               Margin="10 0 5 0"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               Style="{themeEx:ThemeResource TextTitle3Style}"
+                                               Text="Date Requested" />
+                                    <TextBox Name="txtDateRequested"
+                                             Grid.Row="5"
+                                             Grid.Column="3"
+                                             Margin="5"
+                                             IsEnabled="{Binding IsEnabledOnNewVIN,
+                                                                 Mode=TwoWay,
+                                                                 UpdateSourceTrigger=PropertyChanged}"
+                                             KeyDown="txtDateRequested_KeyDown"
+                                             MaxLength="22"
+                                             Text="{Binding DateRequestd,
+                                                            StringFormat='{}{0:MM/dd/yyyy hh:mm tt}',
+                                                            Mode=TwoWay}"
+                                             TextAlignment="Right" />
+
+
+                                    <TextBlock Grid.Row="5"
+                                               Grid.Column="4"
+                                               Margin="10 10 5 0"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Top"
+                                               Style="{themeEx:ThemeResource TextTitle3Style}"
+                                               Text="Note" />
+                                    <TextBox Grid.Row="5"
+                                             Grid.RowSpan="4"
+                                             Grid.Column="5"
+                                             Margin="5"
+                                             VerticalContentAlignment="Stretch"
+                                             IsEnabled="{Binding IsEditable,
+                                                                 Mode=TwoWay,
+                                                                 UpdateSourceTrigger=PropertyChanged}"
+                                             Text="{Binding Note,
+                                                            Mode=TwoWay,
+                                                            UpdateSourceTrigger=PropertyChanged}"
+                                             TextWrapping="Wrap"
+                                             MaxLength="1000"
+                                             VerticalScrollBarVisibility="Auto" />
+                                    <TextBlock Grid.Row="6"
+                                               Grid.Column="0"
+                                               Margin="0 0 5 0"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               Style="{themeEx:ThemeResource TextTitle3Style}"
+                                               Text="Total Charge" />
+                                    <TextBox Grid.Row="6"
+                                             Grid.Column="1"
+                                             Margin="5"
+                                             IsEnabled="{Binding IsEditable,
+                                                                 Mode=TwoWay,
+                                                                 UpdateSourceTrigger=PropertyChanged}"
+                                             IsReadOnly="True"
+                                             Text="{Binding TotalCharge,
+                                                            Mode=TwoWay,
+                                                            UpdateSourceTrigger=PropertyChanged}"
+                                             TextAlignment="Right" />
+
+                                    <TextBlock Grid.Row="6"
+                                               Grid.Column="2"
+                                               Margin="10 0 5 0"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               Style="{themeEx:ThemeResource TextTitle3Style}"
+                                               Text="Requested By" />
+                                    <TextBox Grid.Row="6"
+                                             Grid.Column="3"
+                                             Margin="5"
+                                             IsEnabled="{Binding IsEditable,
+                                                                 Mode=TwoWay,
+                                                                 UpdateSourceTrigger=PropertyChanged}"
+                                             Text="{Binding RequestedBy,
+                                                            Mode=TwoWay,
+                                                            UpdateSourceTrigger=PropertyChanged}" />
+
+                                    <TextBlock Grid.Row="8"
+                                               Grid.Column="0"
+                                               Margin="0 0 5 0"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               Style="{themeEx:ThemeResource TextTitle3Style}"
+                                               Text="Invoice Number" />
+                                    <TextBox Grid.Row="8"
+                                             Grid.Column="1"
+                                             Margin="5"
+                                             IsEnabled="{Binding IsEditable,
+                                                                 Mode=TwoWay,
+                                                                 UpdateSourceTrigger=PropertyChanged}"
+                                             IsReadOnly="True"
+                                             Text="{Binding InvoiceNumber,
+                                                            Mode=TwoWay,
+                                                            UpdateSourceTrigger=PropertyChanged}" />
+                                    <TextBlock Grid.Row="8"
+                                               Grid.Column="2"
+                                               Margin="10 0 5 0"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               Style="{themeEx:ThemeResource TextTitle3Style}"
+                                               Text="Dealer Print Date" />
+                                    <telerik:RadDatePicker Name="txtDealerPrintDate"
+                                                           Grid.Row="8"
+                                                           Grid.Column="3"
+                                                           Margin="5"
+                                                           InputMode="DateTimePicker"
+                                                           IsEnabled="{Binding IsEditable,
+                                                                               Mode=TwoWay,
+                                                                               UpdateSourceTrigger=PropertyChanged}"
+                                                           SelectedValue="{Binding DealerPrintDate,
+                                                                                   Mode=TwoWay}" />
+
+                                    <TextBlock Grid.Row="9"
+                                               Grid.Column="0"
+                                               Margin="0 0 5 0"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               Style="{themeEx:ThemeResource TextTitle3Style}"
+                                               Text="Invoice Date" />
+
+                                    <TextBox Grid.Row="9"
+                                             Grid.Column="1"
+                                             Margin="5"
+                                             IsEnabled="{Binding IsEditable,
+                                                                 Mode=TwoWay,
+                                                                 UpdateSourceTrigger=PropertyChanged}"
+                                             IsReadOnly="True"
+                                             Text="{Binding InvoiceDate,
+                                                            StringFormat='{}{0:MM/dd/yyyy}',
+                                                            Mode=TwoWay,
+                                                            UpdateSourceTrigger=PropertyChanged}" />
+
+                                    <TextBlock Grid.Row="9"
+                                               Grid.Column="2"
+                                               Margin="10 0 5 0"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               Style="{themeEx:ThemeResource TextTitle3Style}"
+                                               Text="Est. Pick Up Date" />
+                                    <telerik:RadDatePicker Name="txtPickUpDate"
+                                                           Grid.Row="9"
+                                                           Grid.Column="3"
+                                                           Margin="5"
+                                                           InputMode="DateTimePicker"
+                                                           IsEnabled="{Binding IsEditable,
+                                                                               Mode=TwoWay,
+                                                                               UpdateSourceTrigger=PropertyChanged}"
+                                                           SelectedValue="{Binding EstimatedPickupDate,
+                                                                                   Mode=TwoWay}" />
+                                    <TextBlock Grid.Row="10"
+                                               Grid.Column="0"
+                                               Margin="0 0 5 0"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               Style="{themeEx:ThemeResource TextTitle3Style}"
+                                               Text="Record Status" />
+                                    <!--<ComboBox Grid.Row="6" Grid.Column="5" VerticalContentAlignment="Center" SelectedItem="{Binding RecordStatus}">
+                                    <ComboBoxItem>Active</ComboBoxItem>
+                                    <ComboBoxItem>InActive</ComboBoxItem>
+                                </ComboBox>-->
+                                    <telerik:RadComboBox Name="cmbRecordStatus"
+                                                         Grid.Row="10"
+                                                         Grid.Column="1"
+                                                         Margin="5"
+                                                         VerticalContentAlignment="Center"
+                                                         IsEnabled="{Binding IsEditableStatus,
+                                                                             Mode=TwoWay,
+                                                                             UpdateSourceTrigger=PropertyChanged}"
+                                                         SelectedIndex="0"
+                                                         Text="{Binding RecordStatus,
+                                                                        Mode=TwoWay}">
+                                        <telerik:RadComboBoxItem Content="Active" />
+                                        <telerik:RadComboBoxItem Content="Inactive" />
+                                    </telerik:RadComboBox>
+                                    <TextBlock Grid.Row="10"
+                                               Grid.Column="2"
+                                               Margin="10 0 5 0"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               Style="{themeEx:ThemeResource TextTitle3Style}"
+                                               Text="Date Out" />
+                                    <TextBox Name="txtDateOut"
+                                             Grid.Row="10"
+                                             Grid.Column="3"
+                                             Margin="5"
+                                             IsEnabled="{Binding IsEnabledOnNewVIN,
+                                                                 Mode=TwoWay,
+                                                                 UpdateSourceTrigger=PropertyChanged}"
+                                             KeyDown="txtDateOut_KeyDown"
+                                             MaxLength="22"
+                                             Text="{Binding DateOut,
+                                                            StringFormat='{}{0:MM/dd/yyyy hh:mm tt}',
+                                                            Mode=TwoWay}"
+                                             TextAlignment="Right" />
+
+                                    <TextBlock Grid.Row="11"
+                                               Grid.Column="0"
+                                               Margin="0 0 5 0"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               Style="{themeEx:ThemeResource TextTitle3Style}"
+                                               Text="Last Physical Date" />
+                                    <telerik:RadDatePicker Name="txtPhycalDate"
+                                                           Grid.Row="11"
+                                                           Grid.Column="1"
+                                                           Margin="5"
+                                                           InputMode="DateTimePicker"
+                                                           IsEnabled="{Binding IsEditable,
+                                                                               Mode=TwoWay,
+                                                                               UpdateSourceTrigger=PropertyChanged}"
+                                                           SelectedValue="{Binding LastPhysicalDate,
+                                                                                   Mode=TwoWay}" />
+
+                                    <TextBlock Grid.Row="11"
+                                               Grid.Column="2"
+                                               Margin="10 0 5 0"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               Style="{themeEx:ThemeResource TextTitle3Style}"
+                                               Text="Color" />
+                                    <TextBox Grid.Row="11"
+                                             Grid.Column="3"
+                                             Margin="5"
+                                             VerticalAlignment="Center"
+                                             IsEnabled="{Binding IsEditable,
+                                                                 Mode=TwoWay,
+                                                                 UpdateSourceTrigger=PropertyChanged}"
+                                             Text="{Binding Color,
+                                                            Mode=TwoWay,
+                                                            UpdateSourceTrigger=PropertyChanged}" />
+                                </Grid>
+                            </DockPanel>
+                        </ScrollViewer>
+
+                    </telerik:RadTabItem>
+
+                    <!--<TabItem Header="Per Diem Charges">
+                        <ScrollViewer ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                            <Grid  >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="15*"/>
+                                    <ColumnDefinition Width="1054*"/>
+                                    <ColumnDefinition Width="25*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="45"/>
+                                    <RowDefinition Height="10"/>
+                                    <RowDefinition Height="265"/>
+                                    <RowDefinition Height="5"/>
+                                    <RowDefinition Height="40*"/>
+                                </Grid.RowDefinitions>
+                                <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">
+                                    <TextBlock Text="Per Diem Charges" FontFamily="Arial" FontSize="18"></TextBlock>
+                                </StackPanel>
+                                <telerik:RadGridView Grid.Row="2" Grid.Column="1" telerik:StyleManager.Theme="Windows8" AutoGenerateColumns="False" ItemsSource="{Binding PerDiemInfoList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" DataContext="{Binding}" HorizontalAlignment="Left" Width="400">
+                                    <telerik:RadGridView.Columns>
+                                        <telerik:GridViewDataColumn Width="100" Header="Date" DataMemberBinding="{Binding PerDiemDateInfo,Mode=TwoWay}" DataFormatString=" {0:MM/dd/yyyy}"></telerik:GridViewDataColumn>
+                                        <telerik:GridViewDataColumn Width="200" Header="Per Diem" DataMemberBinding="{Binding PerDiemValInfo,Mode=TwoWay}" ></telerik:GridViewDataColumn>
+                                        <telerik:GridViewDataColumn Width="*"></telerik:GridViewDataColumn>
+
+                                    </telerik:RadGridView.Columns>
+
+                                </telerik:RadGridView>
+                                <StackPanel Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,15,0,0">
+                                    <Button  Width="150" Command="{Binding BtnEditPerDiem_Click}" HorizontalAlignment="Left" Content="Edit Per Diem" />
+                                </StackPanel>
+                            </Grid>
+                        </ScrollViewer>
+                    </TabItem>-->
+
+                    <telerik:RadTabItem Header="Inspections and Damage">
+                        <Grid Margin="10 5 5 5" IsEnabled="{Binding IsEditable, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+
+                            <GroupBox Margin="0 0 0 5"
+                                      Header="Inspections And Damage"
+                                      Style="{StaticResource GroupBoxLeftHeaderStyle}" />
+                            <GroupBox Grid.Column="2"
+                                      Margin="0 0 5 5"
+                                      Header="Location History"
+                                      Style="{StaticResource GroupBoxLeftHeaderStyle}" />
+
+                            <telerik:RadGridView Grid.Row="1"
+                                                 Margin="0 0 0 5"
+                                                 AutoGenerateColumns="False"
+                                                 DataContext="{Binding}"
+                                                 IsReadOnly="True"
+                                                 ItemsSource="{Binding DamageInfoList,
+                                                                       Mode=TwoWay,
+                                                                       UpdateSourceTrigger=PropertyChanged}"
+                                                 ShowGroupPanel="False">
+                                <telerik:RadGridView.Columns>
+                                    <telerik:GridViewDataColumn Width="*"
+                                                                DataFormatString="MM/dd/yyyy"
+                                                                DataMemberBinding="{Binding InsPDate}"
+                                                                Header="Insp.Date">
+                                        <telerik:GridViewDataColumn.CellStyle>
+                                            <Style TargetType="telerik:GridViewCell">
+                                                <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                            </Style>
+                                        </telerik:GridViewDataColumn.CellStyle>
+                                    </telerik:GridViewDataColumn>
+                                    <telerik:GridViewDataColumn Width="*"
+                                                                DataMemberBinding="{Binding InsPType}"
+                                                                Header="Insp.Type">
+                                        <telerik:GridViewDataColumn.CellStyle>
+                                            <Style TargetType="telerik:GridViewCell">
+                                                <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                            </Style>
+                                        </telerik:GridViewDataColumn.CellStyle>
+                                    </telerik:GridViewDataColumn>
+                                    <telerik:GridViewDataColumn Width="*"
+                                                                DataMemberBinding="{Binding InsPBy}"
+                                                                Header="Insp.By">
+                                        <telerik:GridViewDataColumn.CellStyle>
+                                            <Style TargetType="telerik:GridViewCell">
+                                                <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                            </Style>
+                                        </telerik:GridViewDataColumn.CellStyle>
+                                    </telerik:GridViewDataColumn>
+                                    <!--<telerik:GridViewDataColumn Width="*"
+                                                            DataMemberBinding="{Binding Attened}"
+                                                            Header="Attended" />
+                                <telerik:GridViewDataColumn Width="*"
+                                                            DataMemberBinding="{Binding STI}"
+                                                            Header="STI" />
+                                <telerik:GridViewDataColumn Width="*"
+                                                            DataMemberBinding="{Binding CleanVehicleId}"
+                                                            Header="Clean" />-->
+
+                                    <telerik:GridViewDataColumn Width="*"
+                                                                DataMemberBinding="{Binding DamageCode}"
+                                                                Header="Damage Code">
+                                        <telerik:GridViewDataColumn.CellStyle>
+                                            <Style TargetType="telerik:GridViewCell">
+                                                <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                            </Style>
+                                        </telerik:GridViewDataColumn.CellStyle>
+                                    </telerik:GridViewDataColumn>
+                                    <telerik:GridViewColumn Width="70" Header="Edit">
+                                        <telerik:GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <telerik:RadButton Width="60"
+                                                                   Height="25"
+                                                                   HorizontalAlignment="Center"
+                                                                   Background="#FF25A0DA"
+                                                                   Command="{Binding RelativeSource={RelativeSource FindAncestor,
+                                                                                                                    AncestorType={x:Type telerik:GridViewDataControl}},
+                                                                                     Path=DataContext.BtnEditDamageCode}"
+                                                                   CommandParameter="{Binding}"
+                                                                   Content="Edit"
+                                                                   Foreground="White" />
+                                            </DataTemplate>
+                                        </telerik:GridViewColumn.CellTemplate>
+                                    </telerik:GridViewColumn>
+                                </telerik:RadGridView.Columns>
+                            </telerik:RadGridView>
+
+                            <telerik:RadGridView Grid.Row="1"
+                                                 Grid.Column="2"
+                                                 Margin="0 0 5 5"
+                                                 AutoGenerateColumns="False"
+                                                 DataContext="{Binding}"
+                                                 IsReadOnly="True"
+                                                 ItemsSource="{Binding VehicalHistoryList,
+                                                                       Mode=TwoWay,
+                                                                       UpdateSourceTrigger=PropertyChanged}"
+                                                 ShowGroupPanel="False">
+                                <telerik:RadGridView.Columns>
+                                    <telerik:GridViewDataColumn Width="150"
+                                                                DataMemberBinding="{Binding BayLocationInfo}"
+                                                                Header="Location" />
+                                    <telerik:GridViewDataColumn Width="100"
+                                                                DataFormatString="MM/dd/yyyy"
+                                                                DataMemberBinding="{Binding LocationDateInfo}"
+                                                                Header="Date" />
+                                    <telerik:GridViewDataColumn Width="200"
+                                                                DataMemberBinding="{Binding UpdatedbyInfo}"
+                                                                Header="Updated By" />
+                                    <telerik:GridViewDataColumn Width="*" />
+                                </telerik:RadGridView.Columns>
+                            </telerik:RadGridView>
+
+                            <StackPanel Grid.Row="2">
+                                <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <!--<Button  Width="150" HorizontalAlignment="Left" Content="Edit Damage Code" Command="{Binding Path=BtnEditDamageCode}" />-->
+                                    <Button Width="100"
+                                            Margin="0 7 7 7"
+                                            HorizontalAlignment="Left"
+                                            Command="{Binding Path=BtnAddDamageCode}"
+                                            Content="ADD" />
+                                </StackPanel>
+
+
+                            </StackPanel>
+
+                        </Grid>
+                    </telerik:RadTabItem>
+
+                </telerik:RadTabControl>
+            </Border>
+        </DockPanel>
+
+
+    </DockPanel>
+</UserControl>

@@ -1,0 +1,45 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:brushes="clr-namespace:AppWorks.UI.Controls.Themes">
+
+    <ControlTemplate x:Key="ValidationErrorTemplate">
+        <Grid>
+            <AdornedElementPlaceholder x:Name="adorner"
+                                       HorizontalAlignment="Stretch"
+                                       VerticalAlignment="Stretch" />
+
+            <Border x:Name="border"
+                    Margin="0,0,0,1"
+                    BorderBrush="{DynamicResource {x:Static brushes:BrushSet.InvalidBrushKey}}"
+                    BorderThickness="1">
+                <Path Width="6"
+                      Height="6"
+                      HorizontalAlignment="Right"
+                      VerticalAlignment="Top"
+                      Data="M0,0 L 6,0 L 6,6 Z"
+                      Fill="{DynamicResource {x:Static brushes:BrushSet.InvalidBrushKey}}" />
+            </Border>
+
+            <Popup Name="errorPopup"
+                   AllowsTransparency="True"
+                   IsOpen="{Binding ElementName=border,
+                                    Path=IsMouseOver,
+                                    Mode=OneWay}"
+                   Placement="Right"
+                   StaysOpen="False">
+                <Border x:Name="errorBorder"
+                        Background="{DynamicResource {x:Static brushes:BrushSet.InvalidBrushKey}}"
+                        CornerRadius="1.5">
+                    <TextBlock Margin="2"
+                               VerticalAlignment="Center"
+                               IsHitTestVisible="False"
+                               Padding="5"
+                               Text="{Binding ElementName=adorner,
+                                              Path=AdornedElement.(Validation.Errors).CurrentItem.ErrorContent}"
+                               TextWrapping="Wrap" />
+                </Border>
+            </Popup>
+        </Grid>
+    </ControlTemplate>
+
+</ResourceDictionary>

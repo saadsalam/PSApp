@@ -1,0 +1,1804 @@
+﻿<UserControl x:Class="AppWorks.UI.View.UserControls.CustomerAdmin.CustomerAdmin"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:Uc="clr-namespace:AppWorks.UI.View.UserControls.Location"
+             xmlns:brushes="clr-namespace:AppWorks.UI.Controls.Themes;assembly=AppWorks.UI.Controls"
+             xmlns:converter="clr-namespace:AppWorks.UI.Controls.Converters;assembly=AppWorks.UI.Controls"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:themeEx="clr-namespace:AppWorks.UI.Controls.Extensions;assembly=AppWorks.UI.Controls"
+             d:DesignWidth="980"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <converter:BooleanInversionConverter x:Key="boolInversionConverter" />
+    </UserControl.Resources>
+
+    <Grid Margin="7">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="15" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <!--<TextBlock Grid.Row="1" Grid.Column="1" Text="Port Storage Vehicle Details" Style="{StaticResource TextTitleStyle}" />-->
+
+        <!--  TOP SEARC FIELD PANEL START  -->
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120*" />
+                <ColumnDefinition Width="20*" />
+                <ColumnDefinition Width="200*" />
+                <ColumnDefinition Width="20*" />
+                <ColumnDefinition Width="120*" />
+                <ColumnDefinition Width="20*" />
+                <ColumnDefinition Width="120*" />
+                <ColumnDefinition Width="20*" />
+                <ColumnDefinition Width="150*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       Style="{StaticResource TextTitle3Style}"
+                       Text="Customer Code" />
+
+            <TextBlock Grid.Row="0"
+                       Grid.Column="2"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       Style="{StaticResource TextTitle3Style}"
+                       Text="Customer Name" />
+
+            <TextBlock Grid.Row="0"
+                       Grid.Column="4"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       Style="{StaticResource TextTitle3Style}"
+                       Text="Short Name" />
+
+            <TextBlock Grid.Row="0"
+                       Grid.Column="6"
+                       VerticalAlignment="Center"
+                       Style="{StaticResource TextTitle3Style}"
+                       Text="DBA Name" />
+
+            <TextBlock Grid.Row="0"
+                       Grid.Column="8"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       Style="{StaticResource TextTitle3Style}"
+                       Text="Customer Type" />
+
+            <TextBlock Grid.Row="0"
+                       Grid.Column="10"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       Text="Parent Company"
+                       Visibility="Hidden" />
+            <TextBox Grid.Row="1"
+                     Margin="0 5 5 5"
+                     IsEnabled="{Binding IsReadOnlyCustomerCode,
+                                         Mode=TwoWay,
+                                         UpdateSourceTrigger=PropertyChanged}"
+                     Text="{Binding CustomerNumber,
+                                    Mode=TwoWay,
+                                    UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Grid.Row="1"
+                     Grid.Column="2"
+                     Margin="0 5 5 5"
+                     IsEnabled="{Binding IsReadOnlyCustomer,
+                                         Mode=TwoWay,
+                                         UpdateSourceTrigger=PropertyChanged}"
+                     MaxLength="100"
+                     Text="{Binding CustomerName,
+                                    Mode=TwoWay,
+                                    UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Grid.Row="1"
+                     Grid.Column="4"
+                     Margin="0 5 5 5"
+                     IsEnabled="{Binding IsReadOnlyCustomer,
+                                         Mode=TwoWay,
+                                         UpdateSourceTrigger=PropertyChanged}"
+                     Text="{Binding ShortName,
+                                    Mode=TwoWay,
+                                    UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Grid.Row="1"
+                     Grid.Column="6"
+                     Margin="0 5 5 5"
+                     IsEnabled="{Binding IsReadOnlyCustomer,
+                                         Mode=TwoWay,
+                                         UpdateSourceTrigger=PropertyChanged}"
+                     MaxLength="17"
+                     Text="{Binding DBAName,
+                                    Mode=TwoWay,
+                                    UpdateSourceTrigger=PropertyChanged}" />
+
+            <telerik:RadComboBox Grid.Row="1"
+                                 Grid.Column="8"
+                                 Height="30"
+                                 VerticalContentAlignment="Center"
+                                 DisplayMemberPath="Description"
+                                 IsEnabled="{Binding IsReadOnlyCustomer,
+                                                     Mode=TwoWay,
+                                                     UpdateSourceTrigger=PropertyChanged}"
+                                 ItemsSource="{Binding ListCustomerType,
+                                                       Mode=TwoWay,
+                                                       UpdateSourceTrigger=PropertyChanged}"
+                                 SelectedValue="{Binding CustomerType}"
+                                 SelectedValuePath="Code1" />
+            <ComboBox Grid.Row="1"
+                      Grid.Column="10"
+                      Height="30"
+                      VerticalContentAlignment="Center"
+                      DisplayMemberPath="Description"
+                      IsReadOnly="{Binding IsReadOnlyCustomer,
+                                           Mode=TwoWay,
+                                           UpdateSourceTrigger=PropertyChanged}"
+                      IsSynchronizedWithCurrentItem="True"
+                      ItemsSource="{Binding LstParentCompanyType,
+                                            Mode=TwoWay,
+                                            UpdateSourceTrigger=PropertyChanged}"
+                      SelectedValue="{Binding CustomerOf}"
+                      SelectedValuePath="Code1"
+                      Visibility="Hidden" />
+
+        </Grid>
+        <!--  /TOP SEARC FIELD PANEL END  -->
+
+        <Rectangle Grid.Row="1"
+                   Height="1"
+                   Margin="-5 7 -10 0"
+                   HorizontalAlignment="Stretch"
+                   VerticalAlignment="Center"
+                   Fill="{DynamicResource {x:Static brushes:BrushSet.BorderBrushKey}}" />
+
+        <telerik:RadTabControl x:Name="tabControl"
+                               Grid.Row="2"
+                               Grid.Column="1"
+                               Grid.ColumnSpan="2"
+                               HorizontalAlignment="Stretch"
+                               SelectedIndex="0">
+
+            <!--  ======USER DETAIL TAB START=======  -->
+            <telerik:RadTabItem Header="Billing Address" IsSelected="True">
+                <ScrollViewer CanContentScroll="True" VerticalScrollBarVisibility="Auto">
+                    <Grid Margin="5 0" IsEnabled="False">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="37" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="0.4*" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <GroupBox Grid.Row="1"
+                                  Grid.Column="0"
+                                  Margin="15 0 0 0"
+                                  DataContext="{Binding BillingAddressViewModel}"
+                                  Header="Billing Address"
+                                  Style="{StaticResource GroupBoxLeftHeaderStyle}">
+                            <Grid IsEnabled="{Binding IsReadOnlyText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="20" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Row="0"
+                                           Grid.Column="1"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Address Line 1" />
+                                <TextBox Grid.Row="0"
+                                         Grid.Column="3"
+                                         Margin="5"
+                                         Text="{Binding AddressLine1,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock Grid.Row="1"
+                                           Grid.Column="1"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Address Line 2" />
+                                <TextBox Grid.Row="1"
+                                         Grid.Column="3"
+                                         Margin="5"
+                                         IsReadOnly="{Binding IsReadOnlyText}"
+                                         Text="{Binding AddressLine2,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock Grid.Row="2"
+                                           Grid.Column="1"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="City" />
+                                <TextBox Grid.Row="2"
+                                         Grid.Column="3"
+                                         Margin="5"
+                                         IsReadOnly="{Binding IsReadOnlyText}"
+                                         Text="{Binding City,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock Grid.Row="3"
+                                           Grid.Column="1"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="State" />
+                                <Grid Grid.Row="3" Grid.Column="3">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="0.2*" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="2*" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox Margin="5"
+                                             IsReadOnly="{Binding IsReadOnlyText}"
+                                             Text="{Binding State,
+                                                            Mode=TwoWay,
+                                                            UpdateSourceTrigger=PropertyChanged}" />
+
+                                    <TextBlock Grid.Column="2"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               Style="{themeEx:ThemeResource TextTitle3Style}"
+                                               Text="Zip" />
+                                    <TextBox Grid.Column="3"
+                                             Margin="5"
+                                             IsReadOnly="{Binding IsReadOnlyText}"
+                                             Text="{Binding Zip,
+                                                            Mode=TwoWay,
+                                                            UpdateSourceTrigger=PropertyChanged}" />
+                                </Grid>
+
+                                <TextBlock Grid.Row="5"
+                                           Grid.Column="1"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Country" />
+                                <TextBox Grid.Row="5"
+                                         Grid.Column="3"
+                                         Margin="5"
+                                         IsReadOnly="{Binding IsReadOnlyText}"
+                                         Text="{Binding Country,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock Grid.Row="6"
+                                           Grid.Column="1"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Main Phone" />
+                                <TextBox Grid.Row="6"
+                                         Grid.Column="3"
+                                         Margin="5"
+                                         IsReadOnly="{Binding IsReadOnlyText}"
+                                         Text="{Binding MainPhone,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock Grid.Row="7"
+                                           Grid.Column="1"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Main Fax" />
+                                <TextBox Grid.Row="7"
+                                         Grid.Column="3"
+                                         Margin="5"
+                                         IsReadOnly="{Binding IsReadOnlyText}"
+                                         Text="{Binding FaxNumber,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}" />
+                            </Grid>
+                        </GroupBox>
+
+                        <Rectangle Grid.Row="1"
+                                   Grid.Column="1"
+                                   Width="1"
+                                   Margin="0 10"
+                                   VerticalAlignment="Stretch"
+                                   Fill="{DynamicResource {x:Static brushes:BrushSet.BorderBrushKey}}" />
+
+                        <GroupBox Grid.Row="1"
+                                  Grid.Column="2"
+                                  Margin="0 0 15 0"
+                                  DataContext="{Binding BillingAddressViewModel}"
+                                  Header="Contact Info"
+                                  IsEnabled="{Binding IsReadOnlyText,
+                                                      Mode=TwoWay,
+                                                      UpdateSourceTrigger=PropertyChanged}"
+                                  Style="{StaticResource GroupBoxLeftHeaderStyle}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="20" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Row="0"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Primary Contact" />
+                                <TextBox Grid.Row="0"
+                                         Grid.Column="2"
+                                         Margin="5"
+                                         IsReadOnly="{Binding IsReadOnlyText}"
+                                         Text="{Binding PrimaryContactFirstName,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock Grid.Row="1"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Phone" />
+                                <TextBox Grid.Row="1"
+                                         Grid.Column="2"
+                                         Margin="5"
+                                         IsReadOnly="{Binding IsReadOnlyText}"
+                                         Text="{Binding PrimaryContactPhone,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock Grid.Row="2"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Email" />
+                                <TextBox Grid.Row="2"
+                                         Grid.Column="2"
+                                         Margin="5"
+                                         IsReadOnly="{Binding IsReadOnlyText}"
+                                         Text="{Binding PrimaryContactEmail,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock Grid.Row="3"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Alternate Contact" />
+                                <TextBox Grid.Row="3"
+                                         Grid.Column="2"
+                                         Margin="5"
+                                         IsReadOnly="{Binding IsReadOnlyText}"
+                                         Text="{Binding AlternateContactFirstName,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock Grid.Row="4"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Phone" />
+                                <TextBox Grid.Row="4"
+                                         Grid.Column="2"
+                                         Margin="5"
+                                         IsReadOnly="{Binding IsReadOnlyText}"
+                                         Text="{Binding AlternateContactPhone,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock Grid.Row="5"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Email" />
+                                <TextBox Grid.Row="5"
+                                         Grid.Column="2"
+                                         Margin="5"
+                                         IsReadOnly="{Binding IsReadOnlyText}"
+                                         Text="{Binding AlternateContactEmail,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock Grid.Row="6"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Other Phone Descr." />
+                                <TextBox Grid.Row="6"
+                                         Grid.Column="2"
+                                         Margin="5"
+                                         IsReadOnly="{Binding IsReadOnlyText}"
+                                         Text="{Binding OtherPhone1Description,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock Grid.Row="7"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Other Phone" />
+                                <TextBox Grid.Row="7"
+                                         Grid.Column="2"
+                                         Margin="5"
+                                         IsReadOnly="{Binding IsReadOnlyText}"
+                                         Text="{Binding OtherPhone1,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}" />
+                            </Grid>
+                        </GroupBox>
+
+                    </Grid>
+                </ScrollViewer>
+            </telerik:RadTabItem>
+
+            <telerik:RadTabItem Header="Street Address">
+                <ScrollViewer CanContentScroll="True" VerticalScrollBarVisibility="Auto">
+                    <Grid Margin="5 0" IsEnabled="False">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="37" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="0.4*" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <CheckBox Grid.Row="0"
+                                  Grid.Column="0"
+                                  Margin="15 5 5 5"
+                                  VerticalContentAlignment="Center"
+                                  Focusable="False"
+                                  IsChecked="{Binding IsStreetAddressSameAsBilling}">
+                            <TextBlock Margin="7,0"
+                                       Style="{themeEx:ThemeResource TextTitle3Style}"
+                                       Text="Same as Billing Address" />
+                        </CheckBox>
+
+                        <GroupBox Grid.Row="1"
+                                  Grid.Column="0"
+                                  Margin="15 0 0 0"
+                                  Header="Street Address"
+                                  IsEnabled="{Binding IsStreetAddressSameAsBilling,
+                                                      Converter={StaticResource boolInversionConverter},
+                                                      Mode=OneWay}"
+                                  Style="{StaticResource GroupBoxLeftHeaderStyle}">
+                            <Grid DataContext="{Binding StreetAddressViewModel}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="20" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Row="0"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Address Line 1" />
+                                <TextBox Grid.Row="0"
+                                         Grid.Column="3"
+                                         Margin="5"
+                                         IsReadOnly="{Binding IsReadOnlyText}"
+                                         Text="{Binding AddressLine1,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock Grid.Row="1"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Address Line 2" />
+                                <TextBox Grid.Row="1"
+                                         Grid.Column="3"
+                                         Margin="5"
+                                         IsReadOnly="{Binding IsReadOnlyText}"
+                                         Text="{Binding AddressLine2,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock Grid.Row="2"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="City" />
+                                <TextBox Grid.Row="2"
+                                         Grid.Column="3"
+                                         Margin="5"
+                                         IsReadOnly="{Binding IsReadOnlyText}"
+                                         Text="{Binding City,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock Grid.Row="3"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="State" />
+                                <Grid Grid.Row="3" Grid.Column="3">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="0.2*" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="2*" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox Margin="5"
+                                             IsReadOnly="{Binding IsReadOnlyText}"
+                                             Text="{Binding State,
+                                                            Mode=TwoWay,
+                                                            UpdateSourceTrigger=PropertyChanged}" />
+
+                                    <TextBlock Grid.Column="2"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               Style="{themeEx:ThemeResource TextTitle3Style}"
+                                               Text="Zip" />
+                                    <TextBox Grid.Column="3"
+                                             Margin="5"
+                                             IsReadOnly="{Binding IsReadOnlyText}"
+                                             Text="{Binding Zip,
+                                                            Mode=TwoWay,
+                                                            UpdateSourceTrigger=PropertyChanged}" />
+                                </Grid>
+
+                                <TextBlock Grid.Row="5"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Country" />
+                                <TextBox Grid.Row="5"
+                                         Grid.Column="3"
+                                         Margin="5"
+                                         IsReadOnly="{Binding IsReadOnlyText}"
+                                         Text="{Binding Country,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock Grid.Row="6"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Main Phone" />
+                                <TextBox Grid.Row="6"
+                                         Grid.Column="3"
+                                         Margin="5"
+                                         IsReadOnly="{Binding IsReadOnlyText}"
+                                         Text="{Binding MainPhone,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock Grid.Row="7"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Main Fax" />
+                                <TextBox Grid.Row="7"
+                                         Grid.Column="3"
+                                         Margin="5"
+                                         IsReadOnly="{Binding IsReadOnlyText}"
+                                         Text="{Binding FaxNumber,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}" />
+                            </Grid>
+                        </GroupBox>
+
+                        <Rectangle Grid.Row="1"
+                                   Grid.Column="1"
+                                   Width="1"
+                                   Margin="0 10"
+                                   VerticalAlignment="Stretch"
+                                   Fill="{DynamicResource {x:Static brushes:BrushSet.BorderBrushKey}}" />
+
+                        <GroupBox Grid.Row="1"
+                                  Grid.Column="2"
+                                  Margin="0 0 15 0"
+                                  Header="Contact Info"
+                                  IsEnabled="{Binding IsStreetAddressSameAsBilling,
+                                                      Converter={StaticResource boolInversionConverter},
+                                                      Mode=OneWay}"
+                                  Style="{StaticResource GroupBoxLeftHeaderStyle}">
+                            <Grid DataContext="{Binding StreetAddressViewModel}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="20" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Row="0"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Primary Contact" />
+                                <TextBox Grid.Row="0"
+                                         Grid.Column="2"
+                                         Margin="5"
+                                         IsReadOnly="{Binding IsReadOnlyText}"
+                                         Text="{Binding PrimaryContactFirstName,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock Grid.Row="1"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Phone" />
+                                <TextBox Grid.Row="1"
+                                         Grid.Column="2"
+                                         Margin="5"
+                                         IsReadOnly="{Binding IsReadOnlyText}"
+                                         Text="{Binding PrimaryContactPhone,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock Grid.Row="2"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Email" />
+                                <TextBox Grid.Row="2"
+                                         Grid.Column="2"
+                                         Margin="5"
+                                         IsReadOnly="{Binding IsReadOnlyText}"
+                                         Text="{Binding PrimaryContactEmail,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock Grid.Row="3"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Alternate Contact" />
+                                <TextBox Grid.Row="3"
+                                         Grid.Column="2"
+                                         Margin="5"
+                                         IsReadOnly="{Binding IsReadOnlyText}"
+                                         Text="{Binding AlternateContactFirstName,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock Grid.Row="4"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Phone" />
+                                <TextBox Grid.Row="4"
+                                         Grid.Column="2"
+                                         Margin="5"
+                                         IsReadOnly="{Binding IsReadOnlyText}"
+                                         Text="{Binding AlternateContactPhone,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock Grid.Row="5"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Email" />
+                                <TextBox Grid.Row="5"
+                                         Grid.Column="2"
+                                         Margin="5"
+                                         IsReadOnly="{Binding IsReadOnlyText}"
+                                         Text="{Binding AlternateContactEmail,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock Grid.Row="6"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Other Phone Descr." />
+                                <TextBox Grid.Row="6"
+                                         Grid.Column="2"
+                                         Margin="5"
+                                         IsReadOnly="{Binding IsReadOnlyText}"
+                                         Text="{Binding OtherPhone1Description,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock Grid.Row="7"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Other Phone" />
+                                <TextBox Grid.Row="7"
+                                         Grid.Column="2"
+                                         Margin="5"
+                                         IsReadOnly="{Binding IsReadOnlyText}"
+                                         Text="{Binding OtherPhone1,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}" />
+                            </Grid>
+                        </GroupBox>
+                    </Grid>
+                </ScrollViewer>
+            </telerik:RadTabItem>
+
+            <telerik:RadTabItem Header="Other Information">
+
+                <ScrollViewer CanContentScroll="True" VerticalScrollBarVisibility="Visible">
+                    <Grid Margin="5 15 5 0"
+                          VerticalAlignment="Stretch"
+                          IsEnabled="{Binding IsReadOnlyCustomer,
+                                              Mode=TwoWay,
+                                              UpdateSourceTrigger=PropertyChanged}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="350*" />
+                            <ColumnDefinition Width="55*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="55*" />
+                            <ColumnDefinition Width="350*" />
+                            <ColumnDefinition Width="20" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Name="grpboxOtherInformation" Grid.Column="1">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="20*" />
+                                    <ColumnDefinition Width="190*" />
+                                    <ColumnDefinition Width="0" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Row="0"
+                                           Grid.Column="1"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Vendor Number" />
+                                <TextBox Grid.Row="0"
+                                         Grid.Column="3"
+                                         Margin="5"
+                                         IsReadOnly="{Binding IsReadOnlyText,
+                                                              Mode=TwoWay,
+                                                              UpdateSourceTrigger=PropertyChanged}"
+                                         Text="{Binding VendorNumber,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock Grid.Row="1"
+                                           Grid.Column="1"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Default Payment Method" />
+                                <telerik:RadComboBox Grid.Row="1"
+                                                     Grid.Column="3"
+                                                     Margin="5"
+                                                     VerticalAlignment="Center"
+                                                     DisplayMemberPath="Description"
+                                                     IsEnabled="{Binding IsReadOnly,
+                                                                         Mode=TwoWay,
+                                                                         UpdateSourceTrigger=PropertyChanged}"
+                                                     IsSynchronizedWithCurrentItem="True"
+                                                     ItemsSource="{Binding LstPaymentMethod,
+                                                                           Mode=TwoWay,
+                                                                           UpdateSourceTrigger=PropertyChanged}"
+                                                     SelectedValue="{Binding DefaultBillingMethod}"
+                                                     SelectedValuePath="Code1" />
+                                <TextBlock Grid.Row="2"
+                                           Grid.Column="1"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Record Status" />
+                                <telerik:RadComboBox Grid.Row="2"
+                                                     Grid.Column="3"
+                                                     Margin="5"
+                                                     VerticalAlignment="Center"
+                                                     DisplayMemberPath="Description"
+                                                     IsEnabled="{Binding IsReadOnly,
+                                                                         Mode=TwoWay,
+                                                                         UpdateSourceTrigger=PropertyChanged}"
+                                                     IsSynchronizedWithCurrentItem="True"
+                                                     ItemsSource="{Binding LstRecordStatus,
+                                                                           Mode=TwoWay,
+                                                                           UpdateSourceTrigger=PropertyChanged}"
+                                                     SelectedValue="{Binding RecordStatus}"
+                                                     SelectedValuePath="Code1" />
+                                <TextBlock Grid.Row="3"
+                                           Grid.Column="1"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Sort Order" />
+                                <TextBox Grid.Row="3"
+                                         Grid.Column="3"
+                                         Margin="5"
+                                         IsReadOnly="{Binding IsReadOnlyText,
+                                                              Mode=TwoWay,
+                                                              UpdateSourceTrigger=PropertyChanged}"
+                                         Text="{Binding SortOrder,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}" />
+
+                                <TextBlock Grid.Row="4"
+                                           Grid.Column="1"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Fuel Sc Pct" />
+                                <DockPanel Grid.Row="4" Grid.Column="3">
+                                    <CheckBox Margin="7 7 0 7"
+                                              VerticalAlignment="Center"
+                                              IsChecked="{Binding Path=ApplyFuelSurchargeInd,
+                                                                  Mode=TwoWay,
+                                                                  UpdateSourceTrigger=PropertyChanged}"
+                                              IsEnabled="{Binding IsReadOnly,
+                                                                  Mode=TwoWay,
+                                                                  UpdateSourceTrigger=PropertyChanged}"
+                                              Padding="0" />
+                                    <TextBox Margin="5"
+                                             IsReadOnly="{Binding IsReadOnlyText,
+                                                                  Mode=TwoWay,
+                                                                  UpdateSourceTrigger=PropertyChanged}"
+                                             Text="{Binding FuelSurchargePercent,
+                                                            Mode=TwoWay,
+                                                            UpdateSourceTrigger=PropertyChanged}" />
+                                </DockPanel>
+
+                                <TextBlock Grid.Row="5"
+                                           Grid.Column="1"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Load No. Prefix" />
+                                <TextBox Grid.Row="5"
+                                         Grid.Column="3"
+                                         Margin="5"
+                                         IsReadOnly="{Binding IsReadOnlyText,
+                                                              Mode=TwoWay,
+                                                              UpdateSourceTrigger=PropertyChanged}"
+                                         Text="{Binding LoadNumberPrefix,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock Grid.Row="6"
+                                           Grid.Column="1"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Load No. Length" />
+                                <TextBox Grid.Row="6"
+                                         Grid.Column="3"
+                                         Margin="5"
+                                         IsReadOnly="{Binding IsReadOnlyText,
+                                                              Mode=TwoWay,
+                                                              UpdateSourceTrigger=PropertyChanged}"
+                                         Text="{Binding LoadNumberLength,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}" />
+
+                                <TextBlock Grid.Row="7"
+                                           Grid.Column="1"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Next Load No" />
+                                <TextBox Grid.Row="7"
+                                         Grid.Column="3"
+                                         Margin="5"
+                                         IsReadOnly="{Binding IsReadOnlyText,
+                                                              Mode=TwoWay,
+                                                              UpdateSourceTrigger=PropertyChanged}"
+                                         Text="{Binding NextLoadNUmber,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}" />
+
+                                <TextBlock Grid.Row="8"
+                                           Grid.Column="1"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Booking # Prefix" />
+                                <TextBox Grid.Row="8"
+                                         Grid.Column="3"
+                                         Margin="5"
+                                         IsReadOnly="{Binding IsReadOnlyText,
+                                                              Mode=TwoWay,
+                                                              UpdateSourceTrigger=PropertyChanged}"
+                                         Text="{Binding BookingNumberPrefix,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock Grid.Row="9"
+                                           Grid.Column="1"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Export Handheld Cust. Indent" />
+                                <TextBox Grid.Row="9"
+                                         Grid.Column="3"
+                                         Margin="5"
+                                         IsReadOnly="{Binding IsReadOnlyText,
+                                                              Mode=TwoWay,
+                                                              UpdateSourceTrigger=PropertyChanged}"
+                                         Text="{Binding HandHeldScannerCustomerCode,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}" />
+
+
+                                <GroupBox Grid.Row="10"
+                                          Grid.Column="0"
+                                          Grid.ColumnSpan="4"
+                                          Margin="5 30 0 0"
+                                          Header="Update History"
+                                          Style="{StaticResource GroupBoxLeftHeaderStyle}">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Orientation="Horizontal">
+
+                                            <TextBlock Grid.Row="0"
+                                                       Grid.Column="0"
+                                                       HorizontalAlignment="Left"
+                                                       VerticalAlignment="Center"
+                                                       Style="{themeEx:ThemeResource TextTitle3Style}"
+                                                       Text="Creation Date:" />
+                                            <TextBlock Grid.Row="0"
+                                                       Grid.Column="1"
+                                                       Margin="5"
+                                                       IsEnabled="False"
+                                                       Text="{Binding CreatedDate,
+                                                                      Mode=OneWay,
+                                                                      StringFormat={}{0:d}}" />
+                                        </StackPanel>
+
+
+                                        <StackPanel Grid.Row="0"
+                                                    Grid.Column="2"
+                                                    Orientation="Horizontal">
+                                            <TextBlock Grid.Row="0"
+                                                       Grid.Column="3"
+                                                       HorizontalAlignment="Left"
+                                                       VerticalAlignment="Center"
+                                                       Style="{themeEx:ThemeResource TextTitle3Style}"
+                                                       Text="Created By:" />
+
+                                            <TextBlock Grid.Row="0"
+                                                       Grid.Column="4"
+                                                       MinWidth="50"
+                                                       Margin="5"
+                                                       IsEnabled="False"
+                                                       Text="{Binding CreatedBy,
+                                                                      Mode=OneWay}" />
+                                        </StackPanel>
+
+                                        <StackPanel Grid.Row="1"
+                                                    Grid.Column="0"
+                                                    Orientation="Horizontal">
+                                            <TextBlock Grid.Row="1"
+                                                       Grid.Column="0"
+                                                       HorizontalAlignment="Left"
+                                                       VerticalAlignment="Center"
+                                                       Style="{themeEx:ThemeResource TextTitle3Style}"
+                                                       Text="Updated Date:" />
+                                            <TextBlock Grid.Row="1"
+                                                       Grid.Column="1"
+                                                       Margin="5"
+                                                       IsEnabled="False"
+                                                       Text="{Binding UpdatedDate,
+                                                                      Mode=OneWay,
+                                                                      StringFormat={}{0:d}}" />
+                                        </StackPanel>
+
+                                        <StackPanel Grid.Row="1"
+                                                    Grid.Column="2"
+                                                    Orientation="Horizontal">
+                                            <TextBlock Grid.Row="1"
+                                                       Grid.Column="3"
+                                                       HorizontalAlignment="Left"
+                                                       VerticalAlignment="Center"
+                                                       Style="{themeEx:ThemeResource TextTitle3Style}"
+                                                       Text="Updated By:" />
+
+                                            <TextBlock Grid.Row="1"
+                                                       Grid.Column="4"
+                                                       MinWidth="50"
+                                                       Margin="5"
+                                                       IsEnabled="False"
+                                                       Text="{Binding UpdatedBy,
+                                                                      Mode=OneWay}" />
+                                        </StackPanel>
+
+                                        <StackPanel Grid.Row="2"
+                                                    Grid.Column="0"
+                                                    Orientation="Horizontal">
+                                            <TextBlock Grid.Row="3"
+                                                       Grid.Column="0"
+                                                       HorizontalAlignment="Left"
+                                                       VerticalAlignment="Center"
+                                                       Style="{themeEx:ThemeResource TextTitle3Style}"
+                                                       Text="Internal ID:" />
+                                            <TextBlock Grid.Row="3"
+                                                       Grid.Column="1"
+                                                       Margin="5"
+                                                       IsEnabled="False"
+                                                       Text="{Binding CustomerID,
+                                                                      Mode=OneWay}" />
+                                        </StackPanel>
+
+                                    </Grid>
+                                </GroupBox>
+                            </Grid>
+                        </StackPanel>
+
+                        <Rectangle Grid.Column="3"
+                                   Width="1"
+                                   Margin="0 10"
+                                   VerticalAlignment="Stretch"
+                                   Fill="{DynamicResource {x:Static brushes:BrushSet.BorderBrushKey}}" />
+
+                        <StackPanel Grid.Column="5">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="10" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Row="0"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Eligible For Automatic Load Configuration" />
+
+                                <telerik:RadToggleButton Grid.Row="0"
+                                                         Grid.Column="2"
+                                                         Margin="0 5"
+                                                         HorizontalAlignment="Left"
+                                                         VerticalAlignment="Center"
+                                                         IsChecked="{Binding Path=EligibleForAutoLoad,
+                                                                             Mode=TwoWay,
+                                                                             UpdateSourceTrigger=PropertyChanged}"
+                                                         IsEnabled="{Binding IsReadOnly,
+                                                                             Mode=TwoWay,
+                                                                             UpdateSourceTrigger=PropertyChanged}"
+                                                         Style="{themeEx:ThemeResource RadToggleButtonSwitchStyle}" />
+
+
+                                <!--<GroupBox Grid.Row="5"
+								          Grid.RowSpan="5"
+								          Grid.Column="0"
+								          Grid.ColumnSpan="5">
+									<GroupBox.Header>
+										<TextBlock FontWeight="Bold"
+										           Foreground="#333"
+										           Text="Internal Comment:" />
+									</GroupBox.Header>
+									<TextBox Height="auto"
+									         Margin="0,3,0,2"
+									         IsReadOnly="{Binding IsReadOnlyText,
+									                              Mode=TwoWay,
+									                              UpdateSourceTrigger=PropertyChanged}"
+									         Text="{Binding InternalComment,
+									                        Mode=TwoWay,
+									                        UpdateSourceTrigger=PropertyChanged}" />
+
+								</GroupBox>-->
+                                <TextBlock Grid.Row="1"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Always Show in Work in Process (OEM Only)" />
+
+                                <telerik:RadToggleButton Grid.Row="1"
+                                                         Grid.Column="2"
+                                                         Margin="0 5"
+                                                         HorizontalAlignment="Left"
+                                                         VerticalAlignment="Center"
+                                                         IsChecked="{Binding Path=ALwaysVVIPInd,
+                                                                             Mode=TwoWay,
+                                                                             UpdateSourceTrigger=PropertyChanged}"
+                                                         IsEnabled="{Binding IsReadOnly,
+                                                                             Mode=TwoWay,
+                                                                             UpdateSourceTrigger=PropertyChanged}"
+                                                         Style="{themeEx:ThemeResource RadToggleButtonSwitchStyle}" />
+
+                                <TextBlock Grid.Row="2"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Collection Issue" />
+                                <telerik:RadToggleButton Grid.Row="2"
+                                                         Grid.Column="2"
+                                                         Margin="0 5"
+                                                         HorizontalAlignment="Left"
+                                                         VerticalAlignment="Center"
+                                                         IsChecked="{Binding Path=CollectionIssueInd,
+                                                                             Mode=TwoWay,
+                                                                             UpdateSourceTrigger=PropertyChanged}"
+                                                         IsEnabled="{Binding IsReadOnly,
+                                                                             Mode=TwoWay,
+                                                                             UpdateSourceTrigger=PropertyChanged}"
+                                                         Style="{themeEx:ThemeResource RadToggleButtonSwitchStyle}" />
+
+                                <TextBlock Grid.Row="3"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Assigned to External Collection" />
+
+                                <telerik:RadToggleButton Grid.Row="3"
+                                                         Grid.Column="2"
+                                                         Margin="0 5"
+                                                         HorizontalAlignment="Left"
+                                                         VerticalAlignment="Center"
+                                                         IsChecked="{Binding Path=AssignedToExternalCollectionsInd,
+                                                                             Mode=TwoWay,
+                                                                             UpdateSourceTrigger=PropertyChanged}"
+                                                         IsEnabled="{Binding IsReadOnly,
+                                                                             Mode=TwoWay,
+                                                                             UpdateSourceTrigger=PropertyChanged}"
+                                                         Style="{themeEx:ThemeResource RadToggleButtonSwitchStyle}" />
+
+                                <TextBlock Grid.Row="4"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Use Bulk Billing (OEM Only)" />
+
+                                <telerik:RadToggleButton Grid.Row="4"
+                                                         Grid.Column="2"
+                                                         Margin="0 5"
+                                                         HorizontalAlignment="Left"
+                                                         VerticalAlignment="Center"
+                                                         IsChecked="{Binding Path=BulkBillingInd,
+                                                                             Mode=TwoWay,
+                                                                             UpdateSourceTrigger=PropertyChanged}"
+                                                         IsEnabled="{Binding IsReadOnly,
+                                                                             Mode=TwoWay,
+                                                                             UpdateSourceTrigger=PropertyChanged}"
+                                                         Style="{themeEx:ThemeResource RadToggleButtonSwitchStyle}" />
+
+                                <TextBlock Grid.Row="5"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Do Not Print Invoice" />
+                                <telerik:RadToggleButton Grid.Row="5"
+                                                         Grid.Column="2"
+                                                         Margin="0 5"
+                                                         HorizontalAlignment="Left"
+                                                         VerticalAlignment="Center"
+                                                         IsChecked="{Binding Path=DoNotPrintInvoiceInd,
+                                                                             Mode=TwoWay,
+                                                                             UpdateSourceTrigger=PropertyChanged}"
+                                                         IsEnabled="{Binding IsReadOnly,
+                                                                             Mode=TwoWay,
+                                                                             UpdateSourceTrigger=PropertyChanged}"
+                                                         Style="{themeEx:ThemeResource RadToggleButtonSwitchStyle}" />
+
+                                <!--<GroupBox Grid.Row="10"
+								          Grid.RowSpan="5"
+								          Grid.Column="0"
+								          Grid.ColumnSpan="5">
+									<GroupBox.Header>
+										<TextBlock FontWeight="Bold"
+										           Foreground="#333"
+										           Text="Driver Comment:" />
+									</GroupBox.Header>
+									<TextBox Height="auto"
+									         Margin="0,3,0,2"
+									         IsReadOnly="{Binding IsReadOnlyText,
+									                              Mode=TwoWay,
+									                              UpdateSourceTrigger=PropertyChanged}"
+									         Text="{Binding DriverComment,
+									                        Mode=TwoWay,
+									                        UpdateSourceTrigger=PropertyChanged}" />
+
+								</GroupBox>-->
+
+                                <TextBlock Grid.Row="6"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Do Not Export Invoice Info" />
+                                <telerik:RadToggleButton Grid.Row="6"
+                                                         Grid.Column="2"
+                                                         Margin="0 5"
+                                                         HorizontalAlignment="Left"
+                                                         VerticalAlignment="Center"
+                                                         IsChecked="{Binding Path=DoNotExportInvoiceInd,
+                                                                             Mode=TwoWay,
+                                                                             UpdateSourceTrigger=PropertyChanged}"
+                                                         IsEnabled="{Binding IsReadOnly,
+                                                                             Mode=TwoWay,
+                                                                             UpdateSourceTrigger=PropertyChanged}"
+                                                         Style="{themeEx:ThemeResource RadToggleButtonSwitchStyle}" />
+
+                                <TextBlock Grid.Row="7"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Hide New Freight From Borkers" />
+                                <telerik:RadToggleButton Grid.Row="7"
+                                                         Grid.Column="2"
+                                                         Margin="0 5"
+                                                         HorizontalAlignment="Left"
+                                                         VerticalAlignment="Center"
+                                                         IsChecked="{Binding Path=HideNewFreightFromBrokerInd,
+                                                                             Mode=TwoWay,
+                                                                             UpdateSourceTrigger=PropertyChanged}"
+                                                         IsEnabled="{Binding IsReadOnly,
+                                                                             Mode=TwoWay,
+                                                                             UpdateSourceTrigger=PropertyChanged}"
+                                                         Style="{themeEx:ThemeResource RadToggleButtonSwitchStyle}" />
+
+                                <TextBlock Grid.Row="8"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Port Storage Customer" />
+
+                                <telerik:RadToggleButton Grid.Row="8"
+                                                         Grid.Column="2"
+                                                         Margin="0 5"
+                                                         HorizontalAlignment="Left"
+                                                         VerticalAlignment="Center"
+                                                         IsChecked="{Binding Path=PortStorageCustomerInd,
+                                                                             Mode=TwoWay,
+                                                                             UpdateSourceTrigger=PropertyChanged}"
+                                                         IsEnabled="{Binding IsReadOnly,
+                                                                             Mode=TwoWay,
+                                                                             UpdateSourceTrigger=PropertyChanged}"
+                                                         Style="{themeEx:ThemeResource RadToggleButtonSwitchStyle}" />
+
+                                <TextBlock Grid.Row="9"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Auto Export Customer" />
+                                <telerik:RadToggleButton Grid.Row="9"
+                                                         Grid.Column="2"
+                                                         Margin="0 5"
+                                                         HorizontalAlignment="Left"
+                                                         VerticalAlignment="Center"
+                                                         IsChecked="{Binding Path=AutoPortExportCustomerInd,
+                                                                             Mode=TwoWay,
+                                                                             UpdateSourceTrigger=PropertyChanged}"
+                                                         IsEnabled="{Binding IsReadOnly,
+                                                                             Mode=TwoWay,
+                                                                             UpdateSourceTrigger=PropertyChanged}"
+                                                         Style="{themeEx:ThemeResource RadToggleButtonSwitchStyle}" />
+
+                                <TextBlock Grid.Row="10"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Requires P.O. Number" />
+                                <telerik:RadToggleButton Grid.Row="10"
+                                                         Grid.Column="2"
+                                                         Margin="0 5"
+                                                         HorizontalAlignment="Left"
+                                                         VerticalAlignment="Center"
+                                                         IsChecked="{Binding Path=RequiresPONumberInd,
+                                                                             Mode=TwoWay,
+                                                                             UpdateSourceTrigger=PropertyChanged}"
+                                                         IsEnabled="{Binding IsReadOnly,
+                                                                             Mode=TwoWay,
+                                                                             UpdateSourceTrigger=PropertyChanged}"
+                                                         Style="{themeEx:ThemeResource RadToggleButtonSwitchStyle}" />
+
+
+
+                                <TextBlock Grid.Row="11"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Send Email Confirmations" />
+                                <telerik:RadToggleButton Grid.Row="11"
+                                                         Grid.Column="2"
+                                                         Margin="0 5"
+                                                         HorizontalAlignment="Left"
+                                                         VerticalAlignment="Center"
+                                                         IsChecked="{Binding Path=SendEmailConfirmationsInd,
+                                                                             Mode=TwoWay,
+                                                                             UpdateSourceTrigger=PropertyChanged}"
+                                                         IsEnabled="{Binding IsReadOnly,
+                                                                             Mode=TwoWay,
+                                                                             UpdateSourceTrigger=PropertyChanged}"
+                                                         Style="{themeEx:ThemeResource RadToggleButtonSwitchStyle}" />
+
+                                <TextBlock Grid.Row="12"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="STI Followups Required" />
+                                <telerik:RadToggleButton Grid.Row="12"
+                                                         Grid.Column="2"
+                                                         Margin="0 5"
+                                                         HorizontalAlignment="Left"
+                                                         VerticalAlignment="Center"
+                                                         IsChecked="{Binding Path=STIFollowupRequiredInd,
+                                                                             Mode=TwoWay,
+                                                                             UpdateSourceTrigger=PropertyChanged}"
+                                                         IsEnabled="{Binding IsReadOnly,
+                                                                             Mode=TwoWay,
+                                                                             UpdateSourceTrigger=PropertyChanged}"
+                                                         Style="{themeEx:ThemeResource RadToggleButtonSwitchStyle}" />
+
+                                <TextBlock Grid.Row="13"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Damage Photos Required" />
+                                <telerik:RadToggleButton Grid.Row="13"
+                                                         Grid.Column="2"
+                                                         Margin="0 5"
+                                                         HorizontalAlignment="Left"
+                                                         VerticalAlignment="Center"
+                                                         IsChecked="{Binding Path=DamagePhotoRequiredInd,
+                                                                             Mode=TwoWay,
+                                                                             UpdateSourceTrigger=PropertyChanged}"
+                                                         Style="{themeEx:ThemeResource RadToggleButtonSwitchStyle}" />
+
+                                <TextBlock Grid.Row="14"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{themeEx:ThemeResource TextTitle3Style}"
+                                           Text="Apply Fuel Surcharge" />
+
+                                <telerik:RadToggleButton Grid.Row="14"
+                                                         Grid.Column="2"
+                                                         Margin="0 5"
+                                                         HorizontalAlignment="Left"
+                                                         VerticalAlignment="Center"
+                                                         IsChecked="{Binding Path=ApplyFuelSurchargeInd,
+                                                                             Mode=TwoWay,
+                                                                             UpdateSourceTrigger=PropertyChanged}"
+                                                         IsEnabled="{Binding IsReadOnly,
+                                                                             Mode=TwoWay,
+                                                                             UpdateSourceTrigger=PropertyChanged}"
+                                                         Style="{themeEx:ThemeResource RadToggleButtonSwitchStyle}" />
+
+                            </Grid>
+                        </StackPanel>
+
+                    </Grid>
+                    <!--  GRID END  -->
+                </ScrollViewer>
+
+            </telerik:RadTabItem>
+
+            <telerik:RadTabItem Header="Port Storage Rates" >
+                <DockPanel Margin="5 0">
+                    <DockPanel DockPanel.Dock="Top" >
+                        <TextBlock Margin="0 7 7 7"
+                                   Padding="5"
+                                   Style="{themeEx:ThemeResource TextTitle3Style}"
+                                   Text="Effected Date Beetween" />
+                        <telerik:RadDatePicker Margin="5" Width="180"
+                                               Culture="English (United States)"
+                                               Padding="5" 
+                                               InputMode="DateTimePicker"
+                                                           IsEnabled="{Binding IsRateDateEditable,
+                                                                               Mode=TwoWay,
+                                                                               UpdateSourceTrigger=PropertyChanged}"
+                                                           SelectedValue="{Binding RateStartDate,
+                                                                                   Mode=TwoWay}" 
+                                               
+                                               />
+                        <telerik:RadDatePicker Margin="5"
+                                               Culture="English (United States)"
+                                               Width="180"
+                                               InputMode="DateTimePicker"
+                                                           IsEnabled="{Binding IsRateDateEditable,
+                                                                               Mode=TwoWay,
+                                                                               UpdateSourceTrigger=PropertyChanged}"
+                                                           SelectedValue="{Binding RateEndDate,
+                                                                                   Mode=TwoWay}" 
+                                               Padding="5" />
+                        <Button Width="80"
+                            Margin="0 7"
+                            HorizontalAlignment="Right"
+                            Content="Reload List"
+                            DockPanel.Dock="Top"
+                            Padding="5"
+                            Command="{Binding Path=BtnReloadRate_Click}" />
+                    </DockPanel>
+                    <WrapPanel DockPanel.Dock="Bottom">
+                    <Button Width="80"
+                            Margin="2 7"
+                            HorizontalAlignment="Left"
+                            Content="Add Rate"
+                            IsEnabled="{Binding IsAddRateEnabled,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                            Command="{Binding Path=BtnAddRate_Click}"
+                            Padding="5" />
+                       
+                        <Button Width="80"
+                            Margin="2 7"
+                            HorizontalAlignment="Left"
+                            Content="Modify/View Selected"
+                            IsEnabled="{Binding EnableModifyDeleteRate , Mode=TwoWay ,UpdateSourceTrigger=PropertyChanged}"
+                            Command="{Binding Path=BtnModifyRate_Click}"
+                            Padding="5" />
+                    <Button Width="80"
+                            Margin="2 7"
+                            HorizontalAlignment="Left"
+                            Content="Delete Rate"
+                            IsEnabled="{Binding EnableModifyDeleteRate, Mode=TwoWay ,UpdateSourceTrigger=PropertyChanged}"
+                            Command="{Binding Path=BtnDeleteRate_Click}"
+                            Padding="5" />
+                    </WrapPanel>
+                    <telerik:RadGridView Name="grdPortStorageRatesList"
+                        Margin="0 10 0 10"
+                                         AutoGenerateColumns="False"
+                                         IsReadOnly="True"
+                                         SelectedItem="{Binding SelectedRateItem}"
+                                         ItemsSource="{Binding PortStorageRates,
+                                         Mode=TwoWay,
+                                         UpdateSourceTrigger=PropertyChanged}"
+                                         ShowGroupPanel="False"
+                                         >
+                        <!--ScrollMode="RealTime"
+                                         ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                         ScrollViewer.VerticalScrollBarVisibility="Auto"-->
+                        <telerik:RadGridView.Columns>
+                            <!--<telerik:GridViewSelectColumn />-->
+                            <telerik:GridViewDataColumn Width="*" 
+                                                        Header="Entry Fee" 
+                                                        DataMemberBinding="{Binding EntryFee}">
+                                <telerik:GridViewDataColumn.CellStyle>
+                                    <Style TargetType="telerik:GridViewCell">
+                                        <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                    </Style>
+                                </telerik:GridViewDataColumn.CellStyle>
+                            </telerik:GridViewDataColumn>
+                            <telerik:GridViewDataColumn Width="*" 
+                                                        Header="Per Diem"
+                                                        DataMemberBinding="{Binding PerDiem}">
+                                <telerik:GridViewDataColumn.CellStyle>
+                                    <Style TargetType="telerik:GridViewCell">
+                                        <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                    </Style>
+                                </telerik:GridViewDataColumn.CellStyle>
+                            </telerik:GridViewDataColumn>
+                            <telerik:GridViewDataColumn Width="1.2*" 
+                                                        Header="Per Diem Grace Days"
+                                                        DataMemberBinding="{Binding PerDiemGraceDays}">
+                                <telerik:GridViewDataColumn.CellStyle>
+                                    <Style TargetType="telerik:GridViewCell">
+                                        <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                    </Style>
+                                </telerik:GridViewDataColumn.CellStyle>
+                            </telerik:GridViewDataColumn>
+                            <telerik:GridViewDataColumn Width="*" 
+                                                        Header="Start Date"
+                                                        DataMemberBinding="{Binding StartDate, StringFormat={}{0:d}}">
+                                <telerik:GridViewDataColumn.CellStyle>
+                                    <Style TargetType="telerik:GridViewCell">
+                                        <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                    </Style>
+                                </telerik:GridViewDataColumn.CellStyle>
+                            </telerik:GridViewDataColumn>
+                            <telerik:GridViewDataColumn Width="*" 
+                                                        Header="End Date"
+                                                        DataMemberBinding="{Binding EndDate, StringFormat={}{0:d}}">
+                                <telerik:GridViewDataColumn.CellStyle>
+                                    <Style TargetType="telerik:GridViewCell">
+                                        <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                    </Style>
+                                </telerik:GridViewDataColumn.CellStyle>
+                                
+                            </telerik:GridViewDataColumn>
+                            
+                            <!--<telerik:GridViewColumn Width="Auto" Header="Action">
+                                <telerik:GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Margin="5"
+                                                       Style="{themeEx:ThemeResource IconText}"
+                                                       Text="" />
+                                            <TextBlock Margin="0 7"
+                                                       Style="{themeEx:ThemeResource IconText}"
+                                                       Text="" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </telerik:GridViewColumn.CellTemplate>
+                            </telerik:GridViewColumn>-->
+                        </telerik:RadGridView.Columns>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding FillRateAdmin}" CommandParameter="{Binding Path=SelectedItem, ElementName=storageRateList}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </telerik:RadGridView>
+
+                </DockPanel>
+            </telerik:RadTabItem>
+
+
+            <telerik:RadTabItem Header="Location">
+                <Uc:Location x:Name="CustomerLocation" Margin="20 0" />
+            </telerik:RadTabItem>
+            <telerik:RadTabItem Header="Notes" Visibility="Collapsed">
+                <ScrollViewer CanContentScroll="True" VerticalScrollBarVisibility="Visible">
+                    <Grid Margin="5 0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Row="0"
+                                       Grid.Column="1"
+                                       Height="30"
+                                       Margin="0,0,5,0"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"
+                                       Style="{themeEx:ThemeResource TextTitle3Style}"
+                                       Text="Entered From" />
+                            <TextBox Name="txtStartDate"
+                                     Grid.Row="0"
+                                     Grid.Column="2"
+                                     Height="30"
+                                     Text="{Binding StartDate,
+                                                    Mode=TwoWay}" />
+                            <TextBlock Grid.Row="0"
+                                       Grid.Column="3"
+                                       Height="30"
+                                       Margin="0,0,5,0"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"
+                                       Style="{themeEx:ThemeResource TextTitle3Style}"
+                                       Text="To" />
+                            <TextBox Name="txtEndDate"
+                                     Grid.Row="0"
+                                     Grid.Column="4"
+                                     Height="30"
+                                     Text="{Binding EndDate,
+                                                    Mode=TwoWay}" />
+                            <Button Grid.Row="0"
+                                    Grid.Column="6"
+                                    Width="100"
+                                    HorizontalAlignment="Left"
+                                    Command="{Binding BtnReload_Click}"
+                                    Content="RELOAD" />
+                            <telerik:RadGridView Name="grdUserList"
+                                                 Grid.Row="1"
+                                                 Grid.Column="1"
+                                                 Grid.ColumnSpan="6"
+                                                 Width="auto"
+                                                 Height="250"
+                                                 AutoGenerateColumns="False"
+                                                 DataContext="{Binding}"
+                                                 ItemsSource="{Binding ListNotesList,
+                                                                       Mode=TwoWay,
+                                                                       UpdateSourceTrigger=PropertyChanged}">
+                                <telerik:RadGridView.Columns>
+                                    <telerik:GridViewDataColumn Width="595"
+                                                                DataMemberBinding="{Binding Note,
+                                                                                            Mode=TwoWay}"
+                                                                Header="Note" />
+                                    <telerik:GridViewDataColumn Width="auto"
+                                                                DataMemberBinding="{Binding CreationDate,
+                                                                                            Mode=TwoWay}"
+                                                                Header="Added Date" />
+                                    <telerik:GridViewDataColumn Width="auto"
+                                                                DataMemberBinding="{Binding CreatedBy,
+                                                                                            Mode=TwoWay}"
+                                                                Header="Added By" />
+                                </telerik:RadGridView.Columns>
+                            </telerik:RadGridView>
+                            <StackPanel Grid.Row="2"
+                                        Grid.Column="1"
+                                        Grid.ColumnSpan="5"
+                                        Orientation="Horizontal">
+                                <Button Width="100"
+                                        Margin="5"
+                                        HorizontalAlignment="Left"
+                                        Command="{Binding BtnAddNoteClick}"
+                                        Content="ADD" />
+                                <Button Width="100"
+                                        Margin="5"
+                                        HorizontalAlignment="Left"
+                                        Command="{Binding BtnSubmit_Click}"
+                                        Content="MODIFY" />
+                                <Button Width="100"
+                                        Margin="5"
+                                        HorizontalAlignment="Left"
+                                        Command="{Binding BtnSubmit_Click}"
+                                        Content="DELETE" />
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </ScrollViewer>
+            </telerik:RadTabItem>
+
+
+        </telerik:RadTabControl>
+        <!--  =====/Tab Content End====  -->
+
+        <DockPanel Grid.Row="3" Margin="0 0 0 -2">
+            <StackPanel Margin="0 10 0 0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Orientation="Horizontal">
+                <Button Width="100"
+                        Margin="0 7 7 7"
+                        HorizontalAlignment="Left"
+                        Command="{Binding BtnNew_Click}"
+                        Content="NEW"
+                        IsEnabled="{Binding EnabledNew,
+                                            Mode=TwoWay,
+                                            UpdateSourceTrigger=PropertyChanged}"
+                        Padding="5" />
+                <Button Width="100"
+                        Margin="7"
+                        HorizontalAlignment="Left"
+                        Command="{Binding BtnModify_Click}"
+                        Content="MODIFY"
+                        IsEnabled="{Binding EnabledModify,
+                                            Mode=TwoWay,
+                                            UpdateSourceTrigger=PropertyChanged}"
+                        Padding="5" />
+                <Button Width="100"
+                        Margin="7"
+                        HorizontalAlignment="Left"
+                        Command="{Binding BtnFind_Click}"
+                        IsEnabled="{Binding EnabledFind,
+                                            Mode=TwoWay,
+                                            UpdateSourceTrigger=PropertyChanged}"
+                        Padding="5">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="0,0,7,0"
+                                   VerticalAlignment="Center"
+                                   Style="{StaticResource IconText}"
+                                   Text="{StaticResource SearchTextIcon}" />
+                        <TextBlock Text="FIND" />
+                    </StackPanel>
+                </Button>
+                <Button Width="100"
+                        Margin="7"
+                        HorizontalAlignment="Left"
+                        Command="{Binding BtnOK_Click}"
+                        Content="{Binding Text,
+                                          Mode=TwoWay,
+                                          UpdateSourceTrigger=PropertyChanged}"
+                        IsEnabled="{Binding EnabledSaveUpdate,
+                                            Mode=TwoWay,
+                                            UpdateSourceTrigger=PropertyChanged}"
+                        Padding="5" />
+                <Button Width="100"
+                        Margin="7"
+                        HorizontalAlignment="Left"
+                        Command="{Binding BtnCancel_Click}"
+                        Content="CANCEL"
+                        IsEnabled="{Binding EnabledCancel,
+                                            Mode=TwoWay,
+                                            UpdateSourceTrigger=PropertyChanged}"
+                        Padding="5" />
+            </StackPanel>
+        </DockPanel>
+
+        <!--  =====/Main Content END====  -->
+    </Grid>
+</UserControl>

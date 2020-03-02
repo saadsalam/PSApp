@@ -1,0 +1,198 @@
+﻿<UserControl x:Class="AppWorks.UI.View.WebPortal.WebPortalUsersView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:local="clr-namespace:AppWorks.UI.ViewModel.Vehicle"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             d:DesignHeight="600"
+             d:DesignWidth="800"
+             mc:Ignorable="d">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Name="lblUsers"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   Margin="7"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Style="{StaticResource TextTitle2Style}"
+                   Text="Users" />
+
+        <Button Grid.Row="0"
+                Grid.Column="0"
+                Width="100"
+                Margin="7"
+                HorizontalAlignment="Right"
+                Command="{Binding Path=BtnNewClick}"
+                Content="NEW"
+                Padding="5" />
+
+        <telerik:RadGridView Name="UserGridView"
+                             Grid.Row="1"
+                             Grid.Column="0"
+                             Margin="7,7,7,30"
+                             AutoGenerateColumns="False"
+                             ColumnWidth="auto"
+                             DataContext="{Binding}"
+                             Focusable="True"
+                             IsReadOnly="True"
+                             IsSynchronizedWithCurrentItem="True"
+                             ItemsSource="{Binding ListUser,
+                                                   Mode=TwoWay,
+                                                   UpdateSourceTrigger=PropertyChanged}"
+                             PreviewMouseDown="UserGridView_PreviewMouseDown"
+                             ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                             ScrollViewer.VerticalScrollBarVisibility="Auto"
+                             SelectedItem="{Binding Path=SelectedUser}"
+                             SelectionMode="Extended"
+                             SelectionUnit="FullRow"
+                             ShowGroupPanel="False">
+
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewDataColumn Width="100"
+                                            DataMemberBinding="{Binding username}"
+                                            Header="User Name">
+                    <telerik:GridViewDataColumn.CellStyle>
+                        <Style TargetType="telerik:GridViewCell">
+                            <Setter Property="HorizontalContentAlignment" Value="Left" />
+                        </Style>
+                    </telerik:GridViewDataColumn.CellStyle>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Width="100"
+                                            DataMemberBinding="{Binding firstname}"
+                                            Header="First Name">
+                    <telerik:GridViewDataColumn.CellStyle>
+                        <Style TargetType="telerik:GridViewCell">
+                            <Setter Property="HorizontalContentAlignment" Value="Left" />
+                        </Style>
+                    </telerik:GridViewDataColumn.CellStyle>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Width="100"
+                                            DataMemberBinding="{Binding lastname}"
+                                            Header="Last Name">
+                    <telerik:GridViewDataColumn.CellStyle>
+                        <Style TargetType="telerik:GridViewCell">
+                            <Setter Property="HorizontalContentAlignment" Value="Left" />
+                        </Style>
+                    </telerik:GridViewDataColumn.CellStyle>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding email}" Header="Email">
+                    <telerik:GridViewDataColumn.CellStyle>
+                        <Style TargetType="telerik:GridViewCell">
+                            <Setter Property="HorizontalContentAlignment" Value="Left" />
+                        </Style>
+                    </telerik:GridViewDataColumn.CellStyle>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn DataFormatString="MM/dd/yyyy hh:mm tt"
+                                            DataMemberBinding="{Binding lastLogin}"
+                                            Header="Last Login">
+                    <telerik:GridViewDataColumn.CellStyle>
+                        <Style TargetType="telerik:GridViewCell">
+                            <Setter Property="HorizontalContentAlignment" Value="Left" />
+                        </Style>
+                    </telerik:GridViewDataColumn.CellStyle>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding password}"
+                                            Header="Password"
+                                            IsVisible="False">
+                    <telerik:GridViewDataColumn.CellStyle>
+                        <Style TargetType="telerik:GridViewCell">
+                            <Setter Property="HorizontalContentAlignment" Value="Left" />
+                        </Style>
+                    </telerik:GridViewDataColumn.CellStyle>
+                </telerik:GridViewDataColumn>
+                <!--<telerik:GridViewColumn Header="View" Width="50">
+                                <telerik:GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                    <telerik:RadButton Content="View" IsEnabled="{Binding IsModify,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Command="{Binding  Path=BtnViewClick DataContext.SelectItem}" DataContext="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType=telerik:RadGridView}}" CommandParameter="{Binding}"  Background="#FF25A0DA" HorizontalAlignment="Right" Foreground="White" Height="25" Width="45"/>
+                                    </DataTemplate>
+                                </telerik:GridViewColumn.CellTemplate>
+                            </telerik:GridViewColumn>-->
+                <telerik:GridViewColumn Width="90" Header="Edit">
+                    <telerik:GridViewColumn.CellTemplate>
+
+                        <DataTemplate>
+                            <telerik:RadButton Height="25"
+                                               Content="Edit"
+                                               DataContext="{Binding DataContext,
+                                                                     RelativeSource={RelativeSource FindAncestor,
+                                                                                                    AncestorType=telerik:RadGridView}}"
+                                               Focusable="True"
+                                               IsEnabled="{Binding IsModify}" />
+                        </DataTemplate>
+                    </telerik:GridViewColumn.CellTemplate>
+                </telerik:GridViewColumn>
+                <telerik:GridViewColumn Width="90" Header="Delete">
+                    <telerik:GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <telerik:RadButton Height="25"
+                                               Content="Delete"
+                                               DataContext="{Binding DataContext,
+                                                                     RelativeSource={RelativeSource FindAncestor,
+                                                                                                    AncestorType=telerik:RadGridView}}"
+                                               IsEnabled="{Binding IsModify,
+                                                                   Mode=TwoWay,
+                                                                   UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </telerik:GridViewColumn.CellTemplate>
+                </telerik:GridViewColumn>
+            </telerik:RadGridView.Columns>
+            <telerik:RadGridView.Resources>
+                <Style TargetType="telerik:GridViewRow">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="White" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </telerik:RadGridView.Resources>
+            <!--<telerik:RadGridView.ItemContainerStyle>
+                <Style TargetType="telerik:GridViewRow">
+                    <Style.Resources>
+                        <Storyboard x:Key="OnGotKeyboardFocus1">
+                            <BooleanAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="{x:Null}" Storyboard.TargetProperty="(Selector.IsSelected)">
+                                <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="True"/>
+                            </BooleanAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </Style.Resources>
+                    <Style.Triggers>
+                        <EventTrigger RoutedEvent="Keyboard.GotKeyboardFocus">
+                            <BeginStoryboard Storyboard="{StaticResource OnGotKeyboardFocus1}"/>
+                        </EventTrigger>
+                    </Style.Triggers>
+                </Style>
+            </telerik:RadGridView.ItemContainerStyle>-->
+            <i:Interaction.Behaviors>
+                <local:EmptyDataTemplateBehavior>
+                    <local:EmptyDataTemplateBehavior.EmptyDataTemplate>
+                        <DataTemplate>
+                            <TextBlock HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Foreground="Red"
+                                       Text="No records found!"
+                                       Visibility="{Binding MessageVisibility}" />
+                        </DataTemplate>
+                    </local:EmptyDataTemplateBehavior.EmptyDataTemplate>
+                </local:EmptyDataTemplateBehavior>
+            </i:Interaction.Behaviors>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding Path=BtnViewClick}" CommandParameter="{Binding}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </telerik:RadGridView>
+        <WrapPanel Grid.Row="2"
+                   Margin="7"
+                   VerticalAlignment="Bottom">
+            <Label Content="Records:" />
+            <Label Content="{Binding Count, Mode=TwoWay}" />
+        </WrapPanel>
+    </Grid>
+</UserControl>

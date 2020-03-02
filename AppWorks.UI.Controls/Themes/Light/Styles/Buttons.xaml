@@ -1,0 +1,277 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:brushes="clr-namespace:AppWorks.UI.Controls.Themes"
+                    xmlns:localization="clr-namespace:AppWorks.UI.Controls.Properties"
+                    xmlns:theme="clr-namespace:AppWorks.UI.Controls.Extensions">
+
+    <Style x:Key="ImageButton" TargetType="Button">
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static brushes:BrushSet.ForegroundBrushKey}}" />
+        <Setter Property="FontFamily" Value="Arial" />
+        <Setter Property="FontSize" Value="15px" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+
+        <Setter Property="Background" Value="Transparent" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="Transparent"
+                            BorderThickness="0"
+                            CornerRadius="0">
+                        <ContentPresenter x:Name="PART_Content"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          TextElement.Foreground="{TemplateBinding Foreground}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="Control.IsMouseOver" Value="true">
+                <Setter Property="Control.Opacity" Value="1" />
+                <Setter Property="Control.Foreground" Value="{DynamicResource {x:Static brushes:BrushSet.ForegroundBrushKey}}" />
+                <Setter Property="Control.Cursor" Value="Hand" />
+
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Opacity" Value="0.7" />
+
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Background="{TemplateBinding Background}"
+                                    BorderBrush="Transparent"
+                                    BorderThickness="0"
+                                    CornerRadius="0">
+                                <ContentPresenter x:Name="PART_Content"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                  TextElement.Foreground="{TemplateBinding Foreground}" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="SystemButton" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static brushes:BrushSet.ForegroundBrushKey}}" />
+        <Setter Property="BorderBrush" Value="{x:Null}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Focusable" Value="False" />
+    </Style>
+
+    <Style x:Key="NoChromeButton" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static brushes:BrushSet.ForegroundBrushKey}}" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid x:Name="Chrome"
+                          Background="{TemplateBinding Background}"
+                          SnapsToDevicePixels="true">
+                        <ContentPresenter Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          RecognizesAccessKey="True"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="{DynamicResource {x:Static brushes:BrushSet.AlternativeForegroundBrushKey}}" />
+                            <Setter TargetName="Chrome" Property="Opacity" Value="0.5" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CloseButtonStyle"
+           BasedOn="{StaticResource SystemButton}"
+           TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="Border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Path x:Name="Crosslines"
+                              Width="10"
+                              Height="8"
+                              Margin="{TemplateBinding Padding}"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              Data="F1M0,0L2,0 5,3 8,0 10,0 6,4 10,8 8,8 5,5 2,8 0,8 4,4 0,0z"
+                              Fill="{TemplateBinding Foreground}"
+                              SnapsToDevicePixels="True"
+                              Stretch="None" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource {x:Static brushes:BrushSet.AlternativeAccentBackgroundBrushKey}}" />
+                            <Setter TargetName="Crosslines" Property="Fill" Value="{DynamicResource {x:Static brushes:BrushSet.ForegroundBrushKey}}" />
+                        </Trigger>
+                        
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource {x:Static brushes:BrushSet.ForegroundBrushKey}}" />
+                            <Setter TargetName="Crosslines" Property="Fill" Value="{DynamicResource {x:Static brushes:BrushSet.MarkBrushKey}}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers />
+    </Style>
+
+    <Style x:Key="MaximizeButtonStyle" TargetType="{x:Type ToggleButton}">
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static brushes:BrushSet.ForegroundBrushKey}}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="{x:Null}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Border x:Name="Border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Path x:Name="State"
+                              Width="9"
+                              Height="9"
+                              Margin="{TemplateBinding Padding}"
+                              Fill="{TemplateBinding Foreground}"
+                              SnapsToDevicePixels="True"
+                              Stretch="None" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="State" Property="Data" Value="F1 M0,10 L0,3 3,3 3,0 10,0 10,2 4,2 4,3 7,3 7,6 6,6 6,5 1,5 1,10z M1,10 L7,10 7,7 10,7 10,2 9,2 9,6 6,6 6,9 1,9z" />
+                            <Setter TargetName="State" Property="Height" Value="10" />
+                            <Setter TargetName="State" Property="Width" Value="10" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter TargetName="State" Property="Data" Value="F1 M0,0 L0,9 9,9 9,0 0,0 M0,3 8,3 8,8 1,8 1,3z" />
+                            <Setter TargetName="State" Property="Height" Value="9" />
+                            <Setter TargetName="State" Property="Width" Value="9" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource {x:Static brushes:BrushSet.AlternativeAccentBackgroundBrushKey}}" />
+                            <Setter TargetName="State" Property="Fill" Value="{DynamicResource {x:Static brushes:BrushSet.ForegroundBrushKey}}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource {x:Static brushes:BrushSet.ForegroundBrushKey}}" />
+                            <Setter TargetName="State" Property="Fill" Value="{DynamicResource {x:Static brushes:BrushSet.MarkBrushKey}}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style x:Key="MinimizeButtonStyle"
+           BasedOn="{StaticResource SystemButton}"
+           TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="Border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Rectangle x:Name="MinimizeRectangle"
+                                   Width="9"
+                                   Height="3"
+                                   Margin="0,5,0,0"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Fill="{TemplateBinding Foreground}"
+                                   SnapsToDevicePixels="True" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource {x:Static brushes:BrushSet.AlternativeAccentBackgroundBrushKey}}" />
+                            <Setter TargetName="MinimizeRectangle" Property="Fill" Value="{DynamicResource {x:Static brushes:BrushSet.ForegroundBrushKey}}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource {x:Static brushes:BrushSet.ForegroundBrushKey}}" />
+                            <Setter TargetName="MinimizeRectangle" Property="Fill" Value="{DynamicResource {x:Static brushes:BrushSet.MarkBrushKey}}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ButtonStyle"
+           BasedOn="{theme:ThemeResource {x:Type Button}}"
+           TargetType="{x:Type Button}">
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBlock Style="{theme:ThemeResource ResourceKey=IconText}" Text="{Binding}" />
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="AddButtonStyle"
+           BasedOn="{StaticResource ButtonStyle}"
+           TargetType="{x:Type Button}">
+        <Setter Property="Content" Value="{theme:ThemeResource AddTextIcon}" />
+        <Setter Property="ToolTip" Value="{x:Static localization:Resources.Add}" />
+    </Style>
+
+    <Style x:Key="DeleteButtonStyle"
+           BasedOn="{StaticResource ButtonStyle}"
+           TargetType="{x:Type Button}">
+        <Setter Property="Content" Value="{theme:ThemeResource DeleteTextIcon}" />
+        <Setter Property="ToolTip" Value="{x:Static localization:Resources.Delete}" />
+    </Style>
+
+    <Style x:Key="EditButtonStyle"
+           BasedOn="{StaticResource ButtonStyle}"
+           TargetType="{x:Type Button}">
+        <Setter Property="Content" Value="{theme:ThemeResource EditTextIcon}" />
+        <Setter Property="ToolTip" Value="{x:Static localization:Resources.Edit}" />
+    </Style>
+
+    <Style x:Key="CopyButtonStyle"
+           BasedOn="{StaticResource ButtonStyle}"
+           TargetType="{x:Type Button}">
+        <Setter Property="Content" Value="{theme:ThemeResource CopyTextIcon}" />
+        <Setter Property="ToolTip" Value="{x:Static localization:Resources.Copy}" />
+    </Style>
+
+    <Style x:Key="PinButtonStyle"
+           BasedOn="{StaticResource ButtonStyle}"
+           TargetType="{x:Type Button}">
+        <Setter Property="Content" Value="{theme:ThemeResource PinTextIcon}" />
+        <Setter Property="ToolTip" Value="{x:Static localization:Resources.Pin}" />
+    </Style>
+
+    <Style x:Key="RefreshButtonStyle"
+           BasedOn="{StaticResource ButtonStyle}"
+           TargetType="{x:Type Button}">
+        <Setter Property="Content" Value="{theme:ThemeResource RefreshTextIcon}" />
+        <Setter Property="ToolTip" Value="{x:Static localization:Resources.Refresh}" />
+    </Style>
+
+    <Style x:Key="SettingButtonStyle"
+           BasedOn="{StaticResource ButtonStyle}"
+           TargetType="{x:Type Button}">
+        <Setter Property="Content" Value="{theme:ThemeResource SettingsIcon}" />
+        <Setter Property="ToolTip" Value="{x:Static localization:Resources.Setting}" />
+    </Style>
+
+</ResourceDictionary>

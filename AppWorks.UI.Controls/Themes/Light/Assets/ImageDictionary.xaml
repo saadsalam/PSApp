@@ -1,0 +1,44 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!--  Button Icons  -->
+    <sys:String x:Key="AddTextIcon"></sys:String>
+    <sys:String x:Key="EditTextIcon"></sys:String>
+    <sys:String x:Key="DeleteTextIcon"></sys:String>
+    <sys:String x:Key="PinTextIcon"></sys:String>
+    <sys:String x:Key="CopyTextIcon"></sys:String>
+    <sys:String x:Key="NextTextIcon"></sys:String>
+    <sys:String x:Key="PreviousTextIcon"></sys:String>
+    <sys:String x:Key="SearchTextIcon"></sys:String>
+    <sys:String x:Key="RefreshTextIcon"></sys:String>
+    <sys:String x:Key="LeftArrowIcon">⬅</sys:String>
+    <sys:String x:Key="SettingsIcon"></sys:String>
+    <sys:String x:Key="InfoIcon">�</sys:String>
+    <sys:String x:Key="BasketSymbolIcon">܀</sys:String>
+
+    <BitmapImage x:Key="DeleteIcon" UriSource="/AppWorks.UI.Controls;component/Themes/Light/Assets/Images/delete-icon.png" />
+    <BitmapImage x:Key="ModifyIcon" UriSource="/AppWorks.UI.Controls;component/Themes/Light/Assets/Images/modify-icon.png" />
+    <BitmapImage x:Key="DuplicateIcon" UriSource="/AppWorks.UI.Controls;component/Themes/Light/Assets/Images/duplicate-icon.png" />
+    <BitmapImage x:Key="InvoiceSummaryIcon" UriSource="/AppWorks.UI.Controls;component/Themes/Light/Assets/Images/invoicesummary.png" />
+    <BitmapImage x:Key="LaneSummaryIcon" UriSource="/AppWorks.UI.Controls;component/Themes/Light/Assets/Images/LANE-SUMMARY.png" />
+    <BitmapImage x:Key="LeftIcon" UriSource="/AppWorks.UI.Controls;component/Themes/Light/Assets/Images/left-arrow.png" />
+    <BitmapImage x:Key="TopLogoIcon" UriSource="/AppWorks.UI.Controls;component/Themes/Light/Assets/Images/topLogo.png" />
+    <BitmapImage x:Key="LogoIcon" UriSource="/AppWorks.UI.Controls;component/Themes/Light/Assets/Images/logo.png" />
+    <BitmapImage x:Key="LogoLarge" UriSource="/AppWorks.UI.Controls;component/Themes/Light/Assets/Images/logoLarge.png" />
+    <BitmapImage x:Key="UserIcon" UriSource="/AppWorks.UI.Controls;component/Themes/Light/Assets/Images/user.png" />
+    <BitmapImage x:Key="LockIcon" UriSource="/AppWorks.UI.Controls;component/Themes/Light/Assets/Images/lock.png" />
+    <BitmapImage x:Key="UserProfileIcon" UriSource="/AppWorks.UI.Controls;component/Themes/Light/Assets/Images/userIcon.png" />
+    <BitmapImage x:Key="LogoutItemIcon" UriSource="/AppWorks.UI.Controls;component/Themes/Light/Assets/Images/logout-item.png" />
+    <BitmapImage x:Key="NavIcon" UriSource="/AppWorks.UI.Controls;component/Themes/Light/Assets/Images/nav-icon.png" />
+    <BitmapImage x:Key="NewIcon" UriSource="/AppWorks.UI.Controls;component/Themes/Light/Assets/Images/new-icon.png" />
+    <BitmapImage x:Key="PortStorageInboundIcon" UriSource="/AppWorks.UI.Controls;component/Themes/Light/Assets/Images/port-storage-inbound.png" />
+    <BitmapImage x:Key="ProfileIcon" UriSource="/AppWorks.UI.Controls;component/Themes/Light/Assets/Images/profile-pic.png" />
+    <BitmapImage x:Key="RightIcon" UriSource="/AppWorks.UI.Controls;component/Themes/Light/Assets/Images/right-arrow.png" />
+    <BitmapImage x:Key="SearchIcon" UriSource="/AppWorks.UI.Controls;component/Themes/Light/Assets/Images/search-icon.png" />
+    <BitmapImage x:Key="VehicleComparisionIcon" UriSource="/AppWorks.UI.Controls;component/Themes/Light/Assets/Images/vehicle-comparision.png" />
+    <BitmapImage x:Key="VehicleListingIcon" UriSource="/AppWorks.UI.Controls;component/Themes/Light/Assets/Images/vehicle-listing.png" />
+    <BitmapImage x:Key="VehicleRequestIcon" UriSource="/AppWorks.UI.Controls;component/Themes/Light/Assets/Images/vehicle-request.png" />
+    <BitmapImage x:Key="VehicleSummaryIcon" UriSource="/AppWorks.UI.Controls;component/Themes/Light/Assets/Images/vehicle-summary.png" />
+
+</ResourceDictionary>

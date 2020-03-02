@@ -1,0 +1,23 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:brushes="clr-namespace:AppWorks.UI.Controls.Themes"
+                    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../Styles/RadGridView.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style TargetType="{x:Type telerik:RadGridView}">
+        <Setter Property="RowHeight" Value="30" />
+        <Setter Property="Foreground" Value="LightGray" />
+        <Setter Property="IsFilteringAllowed" Value="False" />
+        <Setter Property="GroupPanelStyle" Value="{StaticResource GridViewGroupPanelStyle}" />
+        <Setter Property="GroupPanelItemStyle" Value="{StaticResource GridViewGroupPanelItemStyle}" />
+        <Setter Property="GroupRowStyle" Value="{StaticResource GridViewGroupRowStyle}" />
+        <Setter Property="HeaderRowStyle" Value="{StaticResource GridViewHeaderRowStyle}" />
+        <Setter Property="RowStyle" Value="{StaticResource UnselectedGridViewRowStyle}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="VerticalGridLinesBrush" Value="{DynamicResource {x:Static brushes:BrushSet.AccentBackgroundBrushKey}}" />
+    </Style>
+
+</ResourceDictionary>

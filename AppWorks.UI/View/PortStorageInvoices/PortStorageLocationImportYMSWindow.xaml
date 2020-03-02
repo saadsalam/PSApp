@@ -1,0 +1,105 @@
+﻿<Window x:Class="AppWorks.UI.View.PortStorageInvoices.PortStorageLocationImportYMSWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:AppWorks.UI.View.PortStorageInvoices"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        Title="Port Storage Location Import - YMS"
+        Width="700"
+        Height="480"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d">
+    <Grid Margin="7">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <GroupBox Header="Batch Detail" Style="{StaticResource GroupBoxInPanelStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+
+                <telerik:RadGridView>
+                    <telerik:RadGridView.Columns>
+                        <telerik:GridViewDataColumn Header="VIN" />
+                        <!--<telerik:GridViewDataColumn Header="Date In" />
+                        <telerik:GridViewDataColumn Header="Dealer" />
+                        <telerik:GridViewDataColumn Header="Model Year" />
+                        <telerik:GridViewDataColumn Header="Model Name" />
+                        <telerik:GridViewDataColumn Header="Color" />-->
+                        <telerik:GridViewDataColumn Header="Location" />
+                        <telerik:GridViewDataColumn Header="Record Status" />
+                    </telerik:RadGridView.Columns>
+                </telerik:RadGridView>
+
+                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                    <TextBlock Margin="7"
+                               HorizontalAlignment="Left"
+                               Text="{Binding VehiclesCount,
+                                              FallbackValue=0}" />
+                    <TextBlock Margin="0,7,7,7"
+                               HorizontalAlignment="Left"
+                               Text="Vehicles" />
+                </StackPanel>
+
+            </Grid>
+        </GroupBox>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0"
+                    Margin="0,7,7,7"
+                    Command="{Binding ImportAndProcessFileCommand}"
+                    Content="Import And Process File"
+                    Padding="10,3" />
+
+            <Button Grid.Column="1"
+                    Margin="7"
+                    Command="{Binding ImportFileCommand}"
+                    Content="Import File"
+                    Padding="10,3" />
+
+            <Button Grid.Column="2"
+                    Margin="7"
+                    Command="{Binding ProcessFileCommand}"
+                    Content="Process File"
+                    Padding="10,3" />
+
+            <Button Grid.Column="3"
+                    Margin="7"
+                    Command="{Binding ClearFinishedCommand}"
+                    Content="Clear Finished"
+                    Padding="10,3" />
+
+            <Button Grid.Column="4"
+                    Margin="7"
+                    Command="{Binding LoadBatchCommand}"
+                    Content="Load Batch"
+                    Padding="10,3" />
+
+            <TextBlock Grid.Column="6"
+                       VerticalAlignment="Center"
+                       Text="BatchId:" />
+            <TextBlock Grid.Column="7"
+                       Margin="7"
+                       VerticalAlignment="Center"
+                       Text="{Binding BatchId,
+                                      FallbackValue=0}" />
+        </Grid>
+    </Grid>
+</Window>
+

@@ -1,0 +1,903 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7DEB6BD9-760F-44FD-BA58-1259E8DDCC2A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AppWorks.UI</RootNamespace>
+    <AssemblyName>AppWorks.UI</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\packages\Dot_Net_Generic_Recommended_Code_Analysis_RulesetUpdated.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>AppWorks.UI.App</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FontAwesome.WPF, Version=4.5.0.37524, Culture=neutral, PublicKeyToken=0758b07a11a4f466, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.WPF.4.5.0.8\lib\net40\FontAwesome.WPF.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Telerik.Reporting">
+      <HintPath>..\References\Teleriks\Telerik.Reporting.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.ReportViewer.Wpf">
+      <HintPath>..\References\Teleriks\Telerik.ReportViewer.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls">
+      <HintPath>..\References\Teleriks\Telerik.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Data">
+      <HintPath>..\References\Teleriks\Telerik.Windows.Controls.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Docking, Version=2016.2.613.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Teleriks\Telerik.Windows.Controls.Docking.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.GridView">
+      <HintPath>..\References\Teleriks\Telerik.Windows.Controls.GridView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Input">
+      <HintPath>..\References\Teleriks\Telerik.Windows.Controls.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Navigation">
+      <HintPath>..\References\Teleriks\Telerik.Windows.Controls.Navigation.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Data">
+      <HintPath>..\References\Teleriks\Telerik.Windows.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Common\AutoLogOffHelper.cs" />
+    <Compile Include="Common\Enums.cs" />
+    <Compile Include="Common\Extensions.cs" />
+    <Compile Include="Common\LogHelper.cs" />
+    <Compile Include="Common\PrintHelper.cs" />
+    <Compile Include="Common\ValidateEmail.cs" />
+    <Compile Include="Common\WCFSingletonService.cs" />
+    <Compile Include="Infrastructure\AsyncObservableCollection.cs" />
+    <Compile Include="Infrastructure\Converters\BooleanToHidenVisibilityConverter.cs" />
+    <Compile Include="Infrastructure\Converters\MultipleBoolToCollapsedConverter.cs" />
+    <Compile Include="Infrastructure\Converters\OrganizeNodeConverter.cs" />
+    <Compile Include="Infrastructure\Converters\PanelBarNodeHeaderConverter.cs" />
+    <Compile Include="Infrastructure\DataTemplateSelectors\PanelBarHeaderTemplateSelector.cs" />
+    <Compile Include="Infrastructure\DataTemplateSelectors\PanelBarItemTemplateSelector.cs" />
+    <Compile Include="Infrastructure\NavigationNode.cs" />
+    <Compile Include="MessageBox.xaml.cs">
+      <DependentUpon>MessageBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\AppWorxCommand.cs" />
+    <Compile Include="Common\CommonSettings.cs" />
+    <Compile Include="HomeWindow.xaml.cs">
+      <DependentUpon>HomeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LogoutView.xaml.cs">
+      <DependentUpon>LogoutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LogoutWindow.xaml.cs">
+      <DependentUpon>LogoutWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\BillingLineItemsModel.cs" />
+    <Compile Include="Model\BillingModel.cs" />
+    <Compile Include="Model\DateoutProcessingModel.cs" />
+    <Compile Include="Model\GenerateInvoiceModel.cs" />
+    <Compile Include="Model\LocationModel.cs" />
+    <Compile Include="Model\LoginModel.cs" />
+    <Compile Include="Model\PortStorageVehiclePrintModel.cs" />
+    <Compile Include="Model\PrintInvoiceErrorModel.cs" />
+    <Compile Include="Model\PrintInvoiceModel.cs" />
+    <Compile Include="Model\RequestProcessingPrintModel.cs" />
+    <Compile Include="Model\SelectableModel.cs" />
+    <Compile Include="Model\VehicleModel.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\AppService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\AdminUser\AdminUserViewModel.cs" />
+    <Compile Include="ViewModel\AdminUser\FindUserDeligate.cs" />
+    <Compile Include="ViewModel\AdminUser\FindUserMultiSelect.cs" />
+    <Compile Include="ViewModel\AdminUser\FindUserViewModel.cs" />
+    <Compile Include="ViewModel\AdminUser\ManageUser.cs" />
+    <Compile Include="ViewModel\Billing\AddEditBillingVM.cs" />
+    <Compile Include="ViewModel\Billing\AddEditInvoiceRecordsViewModel.cs" />
+    <Compile Include="ViewModel\Billing\BillingExportVM.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModel\Billing\BillingFindVM.cs" />
+    <Compile Include="ViewModel\Billing\BillingPeriodAdminVM.cs" />
+    <Compile Include="ViewModel\Billing\BillingPeriodFindVM.cs" />
+    <Compile Include="ViewModel\Billing\DelegateEventBillingPeriod.cs" />
+    <Compile Include="ViewModel\Billing\InvoiceRecordFindViewModel.cs" />
+    <Compile Include="ViewModel\ChangeTrackingViewModel.cs" />
+    <Compile Include="ViewModel\CodeAdmin\CodeFindVM.cs" />
+    <Compile Include="ViewModel\CodeAdmin\CodesTableAdminVM.cs" />
+    <Compile Include="ViewModel\CodeAdmin\DelegateEventCodeAdmin.cs" />
+    <Compile Include="ViewModel\CustomerAdmin\AddressViewModel.cs" />
+    <Compile Include="ViewModel\CustomerAdmin\CustomerAdminDeligate.cs" />
+    <Compile Include="ViewModel\CustomerAdmin\CustomerAdminVM.cs" />
+    <Compile Include="ViewModel\CustomerAdmin\PortStorageRateAdminVM.cs" />
+    <Compile Include="ViewModel\CustomerAdmin\RateAdminDelegate.cs" />
+    <Compile Include="ViewModel\HomeWindowVM.cs" />
+    <Compile Include="ViewModel\Location\AddLocationVM.cs" />
+    <Compile Include="ViewModel\Location\LocationDeligate.cs" />
+    <Compile Include="ViewModel\Location\LocationMultiSelect.cs" />
+    <Compile Include="ViewModel\Location\LocationVM.cs" />
+    <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\LogoutViewModel.cs" />
+    <Compile Include="ViewModel\PortStorageImportExport\DelegateEventVehicleImport.cs" />
+    <Compile Include="ViewModel\PortStorageImportExport\PortStorageImportExportDashBoardVM.cs" />
+    <Compile Include="ViewModel\PortStorageImportExport\PortStorageLocationImportYMSLoadBatchVM.cs" />
+    <Compile Include="ViewModel\PortStorageImportExport\PortStorageLocationImportYMSWindowVM.cs" />
+    <Compile Include="ViewModel\PortStorageImportExport\PortStorageVehicleImportYMSLoadBatchVM.cs" />
+    <Compile Include="ViewModel\PortStorageImportExport\PortStorageVehicleImportYMSWindowVM.cs" />
+    <Compile Include="ViewModel\PortStorageInvoices\DelegateEventPortStorageInvoices.cs" />
+    <Compile Include="ViewModel\PortStorageInvoices\GeneratePortStorageInvoicesVM.cs" />
+    <Compile Include="ViewModel\PortStorageInvoices\PrintInvoiceVM.cs" />
+    <Compile Include="ViewModel\Print\PrintVM.cs" />
+    <Compile Include="ViewModel\Report\InventoryComparisionReportVM.cs" />
+    <Compile Include="ViewModel\Report\InvoiceSummaryReportVM.cs" />
+    <Compile Include="ViewModel\Report\LaneSummaryReportVM.cs" />
+    <Compile Include="ViewModel\Report\PortStorageInBoundReportVM.cs" />
+    <Compile Include="ViewModel\Report\ReportDashboardVM.cs" />
+    <Compile Include="ViewModel\Report\VehicleListingReportVM.cs" />
+    <Compile Include="ViewModel\Report\VehicleRequestReportVM.cs" />
+    <Compile Include="ViewModel\Report\VehicleSummaryReportVM.cs" />
+    <Compile Include="ViewModel\SystemSettingsAdminVM.cs" />
+    <Compile Include="ViewModel\SystemSettingsVM.cs" />
+    <Compile Include="ViewModel\Vehicle\CustomerMultiSelect.cs" />
+    <Compile Include="ViewModel\Vehicle\CustomerVM.cs" />
+    <Compile Include="ViewModel\Vehicle\DamageCodeVM.cs" />
+    <Compile Include="ViewModel\Vehicle\DelegateEventCustomer.cs" />
+    <Compile Include="ViewModel\Vehicle\DelegateEventDateOutProcessing.cs" />
+    <Compile Include="ViewModel\Vehicle\DelegateEventRequestProcessing.cs" />
+    <Compile Include="ViewModel\Vehicle\DelegateEventVehicle.cs" />
+    <Compile Include="ViewModel\Vehicle\EditDamageCodeVM.cs" />
+    <Compile Include="ViewModel\Vehicle\EmptyDataTemplateBehavior.cs" />
+    <Compile Include="ViewModel\Vehicle\MultiVinVM.cs" />
+    <Compile Include="ViewModel\Vehicle\GridMultiSelect.cs" />
+    <Compile Include="ViewModel\Vehicle\PostStorageDateOutProcessingVM.cs" />
+    <Compile Include="ViewModel\Vehicle\PostStorageRequestProcessingVM.cs" />
+    <Compile Include="ViewModel\Vehicle\PrintRequestReportVM.cs" />
+    <Compile Include="ViewModel\Vehicle\StorageVehicleOutgateViewModel.cs" />
+    <Compile Include="ViewModel\Vehicle\VehicleDetailsVM.cs" />
+    <Compile Include="ViewModel\Vehicle\VehicleInfoViewModel.cs" />
+    <Compile Include="ViewModel\Vehicle\VehicleListVM.cs" />
+    <Compile Include="ViewModel\Vehicle\VehicleLocatorVM.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="ViewModel\WebPortal\VehicleInventoryVM.cs" />
+    <Compile Include="ViewModel\WebPortal\WebPortalDelegate.cs" />
+    <Compile Include="ViewModel\WebPortal\WebPortalVM.cs" />
+    <Compile Include="View\Billing\AddEditInvoiceRecords.xaml.cs">
+      <DependentUpon>AddEditInvoiceRecords.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Billing\BillingInvoiceReportWindow.xaml.cs">
+      <DependentUpon>BillingInvoiceReportWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Billing\BillingPeriodAdmin.xaml.cs">
+      <DependentUpon>BillingPeriodAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Billing\BillingPeriodFind.xaml.cs">
+      <DependentUpon>BillingPeriodFind.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Billing\BillingRecordExport.xaml.cs">
+      <DependentUpon>BillingRecordExport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Billing\InvoiceRecordFind.xaml.cs">
+      <DependentUpon>InvoiceRecordFind.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CompanyInformation.xaml.cs">
+      <DependentUpon>CompanyInformation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MultiSelectComboBox.xaml.cs">
+      <DependentUpon>MultiSelectComboBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\NotImplementedUserControl.xaml.cs">
+      <DependentUpon>NotImplementedUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PortStorageImportExport\PortStorageImportExportDashBoard.xaml.cs">
+      <DependentUpon>PortStorageImportExportDashBoard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PortStorageImportExport\PortStorageLocationImportYMSLoadBatchWindow.xaml.cs">
+      <DependentUpon>PortStorageLocationImportYMSLoadBatchWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PortStorageImportExport\PortStorageLocationImportYMSWindow.xaml.cs">
+      <DependentUpon>PortStorageLocationImportYMSWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PortStorageImportExport\PortStorageVehicleImportYMSLoadBatchWindow.xaml.cs">
+      <DependentUpon>PortStorageVehicleImportYMSLoadBatchWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PortStorageImportExport\PortStorageVehicleImportYMSWindow.xaml.cs">
+      <DependentUpon>PortStorageVehicleImportYMSWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PortStorageInvoices\GeneratePortStorageInvoices.xaml.cs">
+      <DependentUpon>GeneratePortStorageInvoices.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PortStorageInvoices\PrintInvoiceErrorReportWindow.xaml.cs">
+      <DependentUpon>PrintInvoiceErrorReportWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PortStorageInvoices\PrintInvoiceReport.xaml.cs">
+      <DependentUpon>PrintInvoiceReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PortStorageInvoices\PrintInvoiceReportWindow.xaml.cs">
+      <DependentUpon>PrintInvoiceReportWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PortStorageInvoices\PrintInvoiceWindow.xaml.cs">
+      <DependentUpon>PrintInvoiceWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Print\PrintWindow.xaml.cs">
+      <DependentUpon>PrintWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\InventoryComparisionReport.xaml.cs">
+      <DependentUpon>InventoryComparisionReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\InvoiceSummaryReport.xaml.cs">
+      <DependentUpon>InvoiceSummaryReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\LaneSummaryReport.xaml.cs">
+      <DependentUpon>LaneSummaryReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\PortStorageInBoundReport.xaml.cs">
+      <DependentUpon>PortStorageInBoundReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\Report.xaml.cs">
+      <DependentUpon>Report.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\VehicleListingReport.xaml.cs">
+      <DependentUpon>VehicleListingReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\VehicleRequestReport.xaml.cs">
+      <DependentUpon>VehicleRequestReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\VehicleSummaryReport.xaml.cs">
+      <DependentUpon>VehicleSummaryReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SystemSettings.xaml.cs">
+      <DependentUpon>SystemSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SystemsSettingsAdmin.xaml.cs">
+      <DependentUpon>SystemsSettingsAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControls\clsValidationPopUp.cs" />
+    <Compile Include="View\UserControls\CodeAdmin\CodeFind.xaml.cs">
+      <DependentUpon>CodeFind.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControls\CodeAdmin\CodesTableAdmin.xaml.cs">
+      <DependentUpon>CodesTableAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControls\CustomerAdmin\CustomerAdmin.xaml.cs">
+      <DependentUpon>CustomerAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControls\CustomerAdmin\CustomerNotes.xaml.cs">
+      <DependentUpon>CustomerNotes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControls\CustomerAdmin\PortStorageRateAdmin.xaml.cs">
+      <DependentUpon>PortStorageRateAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControls\Location\AddLocation.xaml.cs">
+      <DependentUpon>AddLocation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControls\Location\Location.xaml.cs">
+      <DependentUpon>Location.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControls\ManageUser\FindUser.xaml.cs">
+      <DependentUpon>FindUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControls\UserAdmin\AddAdminUser.xaml.cs">
+      <DependentUpon>AddAdminUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControls\UserAdmin\ModifyUser.xaml.cs">
+      <DependentUpon>ModifyUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControls\Vehicle\CustomerLocator.xaml.cs">
+      <DependentUpon>CustomerLocator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControls\Vehicle\DamageCode.xaml.cs">
+      <DependentUpon>DamageCode.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControls\Vehicle\EditDamageCode.xaml.cs">
+      <DependentUpon>EditDamageCode.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControls\Vehicle\MultiVIN.xaml.cs">
+      <DependentUpon>MultiVIN.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControls\Vehicle\PortStorageVehicalLocator.xaml.cs">
+      <DependentUpon>PortStorageVehicalLocator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControls\Vehicle\PostStorageDateOutProcessing.xaml.cs">
+      <DependentUpon>PostStorageDateOutProcessing.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControls\Vehicle\PostStorageRequestProcessing.xaml.cs">
+      <DependentUpon>PostStorageRequestProcessing.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControls\Vehicle\PrintRequestReportWindow.xaml.cs">
+      <DependentUpon>PrintRequestReportWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControls\Vehicle\PrintRequestVehicleReportWindow.xaml.cs">
+      <DependentUpon>PrintRequestVehicleReportWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControls\Vehicle\StorageVehicleOutgate.xaml.cs">
+      <DependentUpon>StorageVehicleOutgate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControls\Vehicle\VehicleDetail.xaml.cs">
+      <DependentUpon>VehicleDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControls\Vehicle\VehicleLocator.xaml.cs">
+      <DependentUpon>VehicleLocator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WebPortal\PortStorageVehicleInventoryDetails.xaml.cs">
+      <DependentUpon>PortStorageVehicleInventoryDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WebPortal\WebPortalAdministration.xaml.cs">
+      <DependentUpon>WebPortalAdministration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WebPortal\WebPortalUserDetailsView.xaml.cs">
+      <DependentUpon>WebPortalUserDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WebPortal\WebPortalUsersView.xaml.cs">
+      <DependentUpon>WebPortalUsersView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="HomeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LogoutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LogoutWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="MessageBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Billing\AddEditInvoiceRecords.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Billing\BillingInvoiceReportWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Billing\BillingPeriodAdmin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Billing\BillingPeriodFind.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Billing\BillingRecordExport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Billing\InvoiceRecordFind.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CompanyInformation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\MultiSelectComboBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\NotImplementedUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PortStorageImportExport\PortStorageImportExportDashBoard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PortStorageImportExport\PortStorageLocationImportYMSLoadBatchWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PortStorageImportExport\PortStorageLocationImportYMSWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PortStorageImportExport\PortStorageVehicleImportYMSLoadBatchWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PortStorageImportExport\PortStorageVehicleImportYMSWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PortStorageInvoices\GeneratePortStorageInvoices.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PortStorageInvoices\PortStorageLocationImportYMSWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PortStorageInvoices\PortStorageVehicleImportYMS.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PortStorageInvoices\PortStorageVehicleImportYMSLoadBatchWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PortStorageInvoices\PrintInvoiceErrorReportWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PortStorageInvoices\PrintInvoiceReport.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PortStorageInvoices\PrintInvoiceReportWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PortStorageInvoices\PrintInvoiceWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Print\PrintWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Reports\InventoryComparisionReport.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Reports\InvoiceSummaryReport.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Reports\LaneSummaryReport.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Reports\PortStorageInBoundReport.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Reports\Report.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Reports\VehicleListingReport.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Reports\VehicleRequestReport.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Reports\VehicleSummaryReport.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\SystemSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\SystemsSettingsAdmin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\UserControls\CodeAdmin\CodeFind.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\UserControls\CodeAdmin\CodesTableAdmin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\UserControls\CustomerAdmin\CustomerAdmin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\UserControls\CustomerAdmin\CustomerNotes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserControls\CustomerAdmin\PortStorageRateAdmin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\UserControls\Location\AddLocation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\UserControls\Location\Location.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\UserControls\ManageUser\FindUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserControls\UserAdmin\AddAdminUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserControls\UserAdmin\ModifyUser.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\UserControls\Vehicle\CustomerLocator.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\UserControls\Vehicle\DamageCode.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\UserControls\Vehicle\EditDamageCode.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\UserControls\Vehicle\MultiVIN.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\UserControls\Vehicle\PortStorageVehicalLocator.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\UserControls\Vehicle\PostStorageDateOutProcessing.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\UserControls\Vehicle\PostStorageRequestProcessing.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\UserControls\Vehicle\PrintRequestReportWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\UserControls\Vehicle\PrintRequestVehicleReportWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\UserControls\Vehicle\StorageVehicleOutgate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserControls\Vehicle\VehicleDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserControls\Vehicle\VehicleLocator.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\WebPortal\PortStorageVehicleInventoryDetails.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\WebPortal\WebPortalAdministration.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\WebPortal\WebPortalUserDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WebPortal\WebPortalUsersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\PasswordHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="AppWorksService.Properties.AdminUserDeatils1.datasource" />
+    <None Include="AppWorksService.Properties.AdminUserProp.datasource" />
+    <None Include="AppWorksService.Properties.AutoExportRateList.datasource" />
+    <None Include="AppWorksService.Properties.BillingInvoiceDetailsProp.datasource" />
+    <None Include="AppWorksService.Properties.BillingLineItemsProp.datasource" />
+    <None Include="AppWorksService.Properties.BillingListProp.datasource" />
+    <None Include="AppWorksService.Properties.BillingPeriodprop.datasource" />
+    <None Include="AppWorksService.Properties.BillingProp.datasource" />
+    <None Include="AppWorksService.Properties.BillingProp1.datasource" />
+    <None Include="AppWorksService.Properties.BillingProp2.datasource" />
+    <None Include="AppWorksService.Properties.BillingProp3.datasource" />
+    <None Include="AppWorksService.Properties.BillingProp4.datasource" />
+    <None Include="AppWorksService.Properties.BillingProp5.datasource" />
+    <None Include="AppWorksService.Properties.BillingProp6.datasource" />
+    <None Include="AppWorksService.Properties.BillingProp7.datasource" />
+    <None Include="AppWorksService.Properties.BillingProp8.datasource" />
+    <None Include="AppWorksService.Properties.BillingProp9.datasource" />
+    <None Include="AppWorksService.Properties.CodeList.datasource" />
+    <None Include="AppWorksService.Properties.CodeProp.datasource" />
+    <None Include="AppWorksService.Properties.CustomerNoteList.datasource" />
+    <None Include="AppWorksService.Properties.CustomerSearchProp1.datasource" />
+    <None Include="AppWorksService.Properties.FindUserDetails1.datasource" />
+    <None Include="AppWorksService.Properties.GroupList.datasource" />
+    <None Include="AppWorksService.Properties.InvoiceListProp.datasource" />
+    <None Include="AppWorksService.Properties.LoadInfoList.datasource" />
+    <None Include="AppWorksService.Properties.LocationList.datasource" />
+    <None Include="AppWorksService.Properties.LoginProperties.datasource" />
+    <None Include="AppWorksService.Properties.LoginResult.datasource" />
+    <None Include="AppWorksService.Properties.ModuleList.datasource" />
+    <None Include="AppWorksService.Properties.OrderHistoryList.datasource" />
+    <None Include="AppWorksService.Properties.PerDiemProp1.datasource" />
+    <None Include="AppWorksService.Properties.PortStorageDamageDetailsProp.datasource" />
+    <None Include="AppWorksService.Properties.PortStorageInventoryList.datasource" />
+    <None Include="AppWorksService.Properties.PortStorageInvoicesProp.datasource" />
+    <None Include="AppWorksService.Properties.PortStorageLocationHistoryProp.datasource" />
+    <None Include="AppWorksService.Properties.PortStoragePrintErrorProp2.datasource" />
+    <None Include="AppWorksService.Properties.PortStoragePrintInvoiceProp1.datasource" />
+    <None Include="AppWorksService.Properties.PortStorageRateList.datasource" />
+    <None Include="AppWorksService.Properties.PortStorageRequestsReportProp.datasource" />
+    <None Include="AppWorksService.Properties.PortStorageVehicleImportProp.datasource" />
+    <None Include="AppWorksService.Properties.PortStorageVehicleProp.datasource" />
+    <None Include="AppWorksService.Properties.PSRatesInvoiceProp.datasource" />
+    <None Include="AppWorksService.Properties.RoleList.datasource" />
+    <None Include="AppWorksService.Properties.StorageVehicleOutgateProp.datasource" />
+    <None Include="AppWorksService.Properties.UserApplicationConstantsProp.datasource" />
+    <None Include="AppWorksService.Properties.UserCustomerList.datasource" />
+    <None Include="AppWorksService.Properties.VehicleLegCountProp.datasource" />
+    <None Include="AppWorksService.Properties.VehicleListingReportProp.datasource" />
+    <None Include="AppWorksService.Properties.VehicleProp1.datasource" />
+    <None Include="AppWorksService.Properties.VINDecodeList.datasource" />
+    <None Include="AppWorksService.Properties.WebPortalUserList.datasource" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="packages.config" />
+    <None Include="Service References\AppService\AppWorksService1.wsdl" />
+    <None Include="Service References\AppService\AppWorksService11.wsdl" />
+    <None Include="Service References\AppService\AppWorksServices4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AppService\AppWorksServices41.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AppService\AppWorksServices42.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AppService\AppWorksServices43.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Resource Include="fonts\fontawesome-webfont.ttf" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Appworks.Reports\Appworks.Reports.csproj">
+      <Project>{4dfcac60-fc66-497a-80ef-d5c8fd99c12c}</Project>
+      <Name>Appworks.Reports</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AppWorks.UI.Controls\AppWorks.UI.Controls.csproj">
+      <Project>{d281fab2-0e70-46b1-8bd2-e8bf2ccf5562}</Project>
+      <Name>AppWorks.UI.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AppWorks.Utilities\AppWorks.Utilities.csproj">
+      <Project>{29205f19-d6b1-46a8-822f-c5a427c40258}</Project>
+      <Name>AppWorks.Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AppWorks.WCFAuthentication.Lib\AppWorks.WCFAuthentication.Lib.csproj">
+      <Project>{0b623995-7348-4184-8f4d-a4408edfdcec}</Project>
+      <Name>AppWorks.WCFAuthentication.Lib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AppWorksService.BAL\AppWorksService.BAL.csproj">
+      <Project>{b0a554c2-2947-4e7c-ade6-42f79e8797b3}</Project>
+      <Name>AppWorksService.BAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AppWorksService.DAL\AppWorksService.DAL.csproj">
+      <Project>{677af0b1-53be-4da4-bac4-33b932ac8a6d}</Project>
+      <Name>AppWorksService.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AppWorksService.Properties\AppWorksService.Properties.csproj">
+      <Project>{a708eb9c-2acf-42f6-bf94-401b9098c2d3}</Project>
+      <Name>AppWorksService.Properties</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AppWorksService\AppWorksService.csproj">
+      <Project>{fc98b743-3b24-4ff1-85d6-5491f4529e54}</Project>
+      <Name>AppWorksService</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\AppService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AppService\AppWorksServices44.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AppService\AppWorksServices45.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AppService\AppWorksServices46.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AppService\AppWorksServices47.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AppService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AppService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AppService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AppService\AppWorksServices1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AppService\AppWorksServices.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icon1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AppService\AppWorksServices11.disco" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

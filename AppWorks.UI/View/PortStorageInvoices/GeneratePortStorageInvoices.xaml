@@ -1,0 +1,250 @@
+﻿<UserControl x:Class="AppWorks.UI.View.PortStorageInvoices.GeneratePortStorageInvoices"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:brushes="clr-namespace:AppWorks.UI.Controls.Themes;assembly=AppWorks.UI.Controls"
+             xmlns:converters="clr-namespace:AppWorks.UI.Infrastructure.Converters"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:local="clr-namespace:AppWorks.UI.ViewModel.PortStorageInvoices"
+             xmlns:localMultiSelect="clr-namespace:AppWorks.UI.ViewModel.PortStorageInvoices"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:themeEx="clr-namespace:AppWorks.UI.Controls.Extensions;assembly=AppWorks.UI.Controls"
+             HorizontalAlignment="Center"
+             d:DesignWidth="800"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:BooleanToHidenVisibilityConverter x:Key="SelectInvoicesToReprintPanelVisibilityConverter" />
+        <system:Boolean x:Key="InverseValueForConverter">True</system:Boolean>
+        <localMultiSelect:GeneratePortStorageInvoicesVM x:Key="GeneratePortStorageInvoicesVM" />
+    </UserControl.Resources>
+    <Grid Margin="7 5 5 5" DataContext="{StaticResource GeneratePortStorageInvoicesVM}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="15" />
+            <RowDefinition />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".65*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".4*"
+                                      MinWidth="150"
+                                      MaxWidth="250" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="1"
+                           Margin="7,7,7,0"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Bottom"
+                           Visibility="Collapsed">
+                    <Hyperlink Command="{Binding SelectInvoicesToReprintCommand}">Select Invoices to Reprint</Hyperlink>
+                </TextBlock>
+
+                <TextBlock Grid.Row="0"
+                           Grid.Column="0"
+                           Margin="0,7,7,0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Style="{StaticResource TextTitle2Style}"
+                           Text="Cutoff Date" />
+                <telerik:RadDatePicker Name="txtCutOffDate"
+                                       Grid.Row="1"
+                                       Grid.Column="0"
+                                       Margin="0,7,7,7"
+                                       Culture="English (United States)"
+                                       IsInputRestrictedToSelectableDates="True"
+                                       SelectableDateEnd="{Binding SelectableCutoffDateEnd}"
+                                       SelectableDateStart="{Binding SelectableCutoffDateStart}"
+                                       SelectedValue="{Binding CutoffDate,
+                                                               Mode=TwoWay}"
+                                       SelectionChanged="txtCutOffDate_SelectionChanged" />
+            </Grid>
+
+            <Grid Grid.Column="1" Visibility="{Binding IsSelectInvoicesToReprintPanelVisible, Converter={StaticResource SelectInvoicesToReprintPanelVisibilityConverter}}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".35*"
+                                      MinWidth="100"
+                                      MaxWidth="220" />
+                    <ColumnDefinition Width=".35*"
+                                      MinWidth="100"
+                                      MaxWidth="220" />
+                    <ColumnDefinition Width=".35*"
+                                      MinWidth="100"
+                                      MaxWidth="220" />
+                    <ColumnDefinition Width=".35*"
+                                      MinWidth="100"
+                                      MaxWidth="220" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0"
+                           Margin="7,7,7,0"
+                           Style="{StaticResource TextTitle2Style}"
+                           Text="Reprint by" />
+
+                <TextBlock Grid.Column="1"
+                           Margin="7,7,7,0"
+                           Style="{StaticResource TextTitle2Style}"
+                           Text="Select Date" />
+
+                <TextBlock Grid.Column="3"
+                           Margin="7,7,0,0"
+                           Style="{StaticResource TextTitle2Style}"
+                           Text="Copies to Print" />
+
+                <telerik:RadComboBox Grid.Row="1"
+                                     Grid.Column="0"
+                                     Margin="7"
+                                     SelectedIndex="0">
+                    <telerik:RadComboBoxItem Content="Date" />
+                    <telerik:RadComboBoxItem Content="Invoice Date" />
+                    <telerik:RadComboBoxItem Content="Number" />
+                </telerik:RadComboBox>
+                <telerik:RadDatePicker Grid.Row="1"
+                                       Grid.Column="1"
+                                       Margin="7"
+                                       Culture="English (United States)"
+                                       DateTimeWatermarkContent="Start Date" />
+
+                <telerik:RadDatePicker Grid.Row="1"
+                                       Grid.Column="2"
+                                       Margin="7"
+                                       Culture="English (United States)"
+                                       DateTimeWatermarkContent="End Date" />
+                <telerik:RadComboBox Grid.Row="1"
+                                     Grid.Column="3"
+                                     Margin="7,7,0,7"
+                                     SelectedIndex="0">
+                    <telerik:RadComboBoxItem Content="Requested" />
+                    <telerik:RadComboBoxItem Content="Both Copies" />
+                    <telerik:RadComboBoxItem Content="Customer Copy" />
+                    <telerik:RadComboBoxItem Content="Diversified Copy" />
+                </telerik:RadComboBox>
+            </Grid>
+        </Grid>
+
+        <telerik:RadGridView Grid.Row="2"
+                             HorizontalAlignment="Stretch"
+                             AutoGenerateColumns="False"
+                             IsReadOnly="True"
+                             ItemsSource="{Binding PortStorageInvoicesList,
+                                                   Mode=TwoWay,
+                                                   Source={StaticResource GeneratePortStorageInvoicesVM}}"
+                             RowIndicatorVisibility="Collapsed"
+                             SelectedItem="{Binding SelectedDisRecipientGridItem,
+                                                    Mode=TwoWay,
+                                                    Source={StaticResource GeneratePortStorageInvoicesVM}}"
+                             SelectionMode="Extended"
+                             ShowGroupPanel="False">
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewSelectColumn />
+                <telerik:GridViewDataColumn Width="*"
+                                            DataMemberBinding="{Binding CustName,
+                                                                        Mode=TwoWay}"
+                                            Header="Customer Name">
+                    <telerik:GridViewDataColumn.CellStyle>
+                        <Style TargetType="telerik:GridViewCell">
+                            <Setter Property="HorizontalContentAlignment" Value="Left" />
+                        </Style>
+                    </telerik:GridViewDataColumn.CellStyle>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Width="auto"
+                                            DataMemberBinding="{Binding Unit,
+                                                                        Mode=TwoWay}"
+                                            Header="Unit">
+                    <telerik:GridViewDataColumn.CellStyle>
+                        <Style TargetType="telerik:GridViewCell">
+                            <Setter Property="HorizontalContentAlignment" Value="Right" />
+                        </Style>
+                    </telerik:GridViewDataColumn.CellStyle>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Width="auto"
+                                            DataMemberBinding="{Binding Status,
+                                                                        Mode=TwoWay}"
+                                            Header="Record Status">
+                    <telerik:GridViewDataColumn.CellStyle>
+                        <Style TargetType="telerik:GridViewCell">
+                            <Setter Property="HorizontalContentAlignment" Value="Left" />
+                        </Style>
+                    </telerik:GridViewDataColumn.CellStyle>
+                </telerik:GridViewDataColumn>
+            </telerik:RadGridView.Columns>
+            <i:Interaction.Behaviors>
+                <localMultiSelect:PortStorageInvoicesMultiSelect />
+            </i:Interaction.Behaviors>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <i:InvokeCommandAction Command="{Binding BtnDoubleClick_Click}" CommandParameter="{Binding}" />
+
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </telerik:RadGridView>
+
+        <!--  =====/Tab Content End====  -->
+        <StackPanel Grid.Row="4" DockPanel.Dock="Bottom">
+            <Rectangle Height="1"
+                       DockPanel.Dock="Top"
+                       Fill="{DynamicResource {x:Static brushes:BrushSet.BorderBrushKey}}" />
+            <WrapPanel Grid.Row="2"
+                       Margin="10,0,0,0"
+                       VerticalAlignment="Bottom">
+                <Label Content="Total:" />
+                <Label Content="{Binding Count, Mode=TwoWay}" />
+            </WrapPanel>
+            <DockPanel Grid.Row="4" LastChildFill="False">
+                <Button Grid.Column="0"
+                        Width="100"
+                        Margin="0 7 7 7"
+                        Command="{Binding Path=BtnGenerateInvoices_Click}"
+                        Content="GENERATE"
+                        Padding="5" />
+                <!--<Button Grid.Column="1"
+                        Width="100"
+                        Margin="7"
+                        Command="{Binding Path=BtnApproveInvoices_Click}"
+                        Content="APPROVE"                        
+                        Padding="5" />-->
+                <!--<Button Grid.Column="2"
+                        Width="120"
+                        Margin="7"
+                        Command="{Binding Path=BtnPrintErrors_Click}"
+                        Content="PRINT ERRORS"
+                        IsEnabled="{Binding IsGenerateInvoiceProcessed,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                        Padding="5" />-->
+                <Button Grid.Column="1"
+                        Width="120"
+                        Margin="7"
+                        Command="{Binding Path=BtnPrintInvoice_Click}"
+                        Content="PRINT INVOICES"
+                        IsEnabled="{Binding IsGenerateInvoiceProcessed,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                        Padding="5" />
+
+                <Button Grid.Column="4"
+                        Width="155"
+                        Margin="7"
+                        Command="{Binding Path=BtnClearProcessed_Click}"
+                        Content="CLEAR PROCESSED"
+                        IsEnabled="{Binding IsGenerateInvoiceProcessed,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                        DockPanel.Dock="Right"
+                        Padding="5" />
+            </DockPanel>
+        </StackPanel>
+
+    </Grid>
+</UserControl>

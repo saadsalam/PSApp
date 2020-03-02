@@ -1,0 +1,2701 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:brushes="clr-namespace:AppWorks.UI.Controls.Themes"
+                    xmlns:chromes="clr-namespace:Telerik.Windows.Controls.Chromes;assembly=Telerik.Windows.Controls"
+                    xmlns:converters="clr-namespace:AppWorks.UI.Controls.Converters"
+                    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../Styles/Border.xaml" />
+        <ResourceDictionary Source="../Styles/TextBlock.xaml" />
+        <ResourceDictionary Source="../Themes/ScrollBar.xaml" />
+
+        <ResourceDictionary>
+            <telerik:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <telerik:InvertedBooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" />
+        </ResourceDictionary>
+    </ResourceDictionary.MergedDictionaries>
+
+    <SolidColorBrush x:Key="PanelBackgroundColor" Color="{DynamicResource {x:Static brushes:BrushSet.AccentBackgroundBrushKey}}" />
+    <SolidColorBrush x:Key="BuyerColor" Color="{DynamicResource {x:Static brushes:BrushSet.AccentForegroundBrushKey}}" />
+
+    <Style x:Key="OverridenColumnsStyle" TargetType="{x:Type telerik:GridViewCell}">
+        <Setter Property="Foreground" Value="{Binding AdditionalColour}" />
+    </Style>
+
+    <Style x:Key="RadGridViewScrollBarStyle" TargetType="{x:Type ScrollBar}">
+        <Setter Property="MinWidth" Value="16" />
+        <Setter Property="MinHeight" Value="13" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ScrollBar}">
+                    <Grid x:Name="GridRoot" Width="{TemplateBinding MinWidth}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <RepeatButton x:Name="PART_UpButton"
+                                      MinHeight="{TemplateBinding MinHeight}"
+                                      Margin="3,30,0,0"
+                                      Command="{x:Static ScrollBar.LineUpCommand}"
+                                      Style="{StaticResource ScrollBarButton}">
+                            <Path x:Name="ArrowTop"
+                                  Data="M 0,4 C0,4 0,6 0,6 0,6 3.5,2.5 3.5,2.5 3.5,2.5 7,6                                          7,6 7,6 7,4 7,4 7,4 3.5,0.5 3.5,0.5 3.5,0.5 0,4 0,4 Z"
+                                  Fill="{DynamicResource {x:Static brushes:BrushSet.MarkBrushKey}}"
+                                  Stretch="Uniform" />
+                        </RepeatButton>
+                        <ContentControl x:Name="BackgroundVisual" Grid.Row="1">
+                            <Border Margin="3,0,0,0" Background="{DynamicResource {x:Static brushes:BrushSet.BackgroundBrushKey}}" />
+                        </ContentControl>
+                        <Track x:Name="PART_Track"
+                               Grid.Row="1"
+                               IsDirectionReversed="True"
+                               Orientation="Vertical">
+                            <Track.Thumb>
+                                <Thumb x:Name="Thumb"
+                                       IsTabStop="False"
+                                       SnapsToDevicePixels="True">
+                                    <Thumb.Style>
+                                        <Style TargetType="{x:Type Thumb}">
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type Thumb}">
+                                                        <Grid>
+                                                            <chromes:ButtonChrome x:Name="ButtonChrome"
+                                                                                  Background="{TemplateBinding Background}"
+                                                                                  BorderBrush="{TemplateBinding BorderBrush}"
+                                                                                  BorderThickness="{TemplateBinding BorderThickness}"
+                                                                                  Orientation="Vertical"
+                                                                                  Padding="3,0,0,0"
+                                                                                  RenderEnabled="{TemplateBinding IsEnabled}"
+                                                                                  RenderMouseOver="{TemplateBinding IsMouseOver}"
+                                                                                  RenderPressed="{TemplateBinding IsDragging}"
+                                                                                  Style="{StaticResource ButtonChromeStyle}" />
+                                                            <ContentPresenter>
+                                                                <ContentPresenter.ContentTemplate>
+                                                                    <DataTemplate>
+                                                                        <Border Width="7"
+                                                                                Height="7"
+                                                                                Margin="3,0,0,0"
+                                                                                BorderBrush="{DynamicResource {x:Static brushes:BrushSet.AlternativeAccentBorderBrushKey}}"
+                                                                                BorderThickness="0,1" />
+                                                                    </DataTemplate>
+                                                                </ContentPresenter.ContentTemplate>
+                                                            </ContentPresenter>
+                                                        </Grid>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </Thumb.Style>
+                                </Thumb>
+                            </Track.Thumb>
+                        </Track>
+                        <RepeatButton x:Name="PART_DownButton"
+                                      Grid.Row="2"
+                                      MinHeight="{TemplateBinding MinHeight}"
+                                      Margin="3,0,0,2"
+                                      Command="{x:Static ScrollBar.LineDownCommand}"
+                                      Style="{StaticResource ScrollBarButton}">
+                            <Path x:Name="ArrowBottom"
+                                  Data="M 0,2.5 C0,2.5 0,0.5 0,0.5 0,0.5 3.5,4 3.5,4 3.5,4 7,0.5                                          7,0.5 7,0.5 7,2.5 7,2.5 7,2.5 3.5,6 3.5,6 3.5,6 0,2.5 0,2.5 Z"
+                                  Fill="{DynamicResource {x:Static brushes:BrushSet.MarkBrushKey}}"
+                                  Stretch="Uniform" />
+                        </RepeatButton>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="PART_Track" Property="Opacity" Value="0.3" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="Orientation" Value="Horizontal">
+                <Setter Property="MinWidth" Value="13" />
+                <Setter Property="MinHeight" Value="16" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ScrollBar}">
+                            <Grid x:Name="GridRoot" Height="{TemplateBinding MinHeight}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <RepeatButton x:Name="PART_LeftButton"
+                                              MinWidth="{TemplateBinding MinWidth}"
+                                              Margin="0,3,0,0"
+                                              Command="{x:Static ScrollBar.LineLeftCommand}"
+                                              Style="{StaticResource ScrollBarButton}">
+                                    <Path x:Name="ArrowLeft"
+                                          Data="M 3.18,7 C3.18,7 5,7 5,7 5,7 1.81,3.5 1.81,3.5 1.81,3.5 5,0                                                  5,0 5,0 3.18,0 3.18,0 3.18,0 0,3.5 0,3.5 0,3.5 3.18,7 3.18,7 Z"
+                                          Fill="{DynamicResource {x:Static brushes:BrushSet.MarkBrushKey}}"
+                                          Stretch="Uniform" />
+                                </RepeatButton>
+                                <ContentControl x:Name="BackgroundVisual" Grid.Column="1">
+                                    <Border Margin="0,3,0,0" Background="{DynamicResource {x:Static brushes:BrushSet.BorderBrushKey}}" />
+                                </ContentControl>
+                                <Track x:Name="PART_Track"
+                                       Grid.Column="1"
+                                       IsDirectionReversed="False"
+                                       Orientation="Horizontal">
+                                    <Track.Thumb>
+                                        <Thumb x:Name="Thumb"
+                                               IsTabStop="False"
+                                               SnapsToDevicePixels="True">
+                                            <Thumb.Style>
+                                                <Style TargetType="{x:Type Thumb}">
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type Thumb}">
+                                                                <Grid>
+                                                                    <chromes:ButtonChrome x:Name="ButtonChrome"
+                                                                                          Background="{TemplateBinding Background}"
+                                                                                          BorderBrush="{TemplateBinding BorderBrush}"
+                                                                                          BorderThickness="{TemplateBinding BorderThickness}"
+                                                                                          Orientation="Horizontal"
+                                                                                          Padding="0,3,0,0"
+                                                                                          RenderEnabled="{TemplateBinding IsEnabled}"
+                                                                                          RenderMouseOver="{TemplateBinding IsMouseOver}"
+                                                                                          RenderPressed="{TemplateBinding IsDragging}"
+                                                                                          Style="{StaticResource ButtonChromeStyle}" />
+                                                                    <ContentPresenter>
+                                                                        <ContentPresenter.ContentTemplate>
+                                                                            <DataTemplate>
+                                                                                <Border Width="7"
+                                                                                        Height="7"
+                                                                                        Margin="0,3,0,0"
+                                                                                        BorderBrush="{DynamicResource {x:Static brushes:BrushSet.AlternativeAccentBorderBrushKey}}"
+                                                                                        BorderThickness="1,0" />
+                                                                            </DataTemplate>
+                                                                        </ContentPresenter.ContentTemplate>
+                                                                    </ContentPresenter>
+                                                                </Grid>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Style>
+                                            </Thumb.Style>
+                                        </Thumb>
+                                    </Track.Thumb>
+                                </Track>
+                                <RepeatButton x:Name="PART_RightButton"
+                                              Grid.Column="2"
+                                              MinWidth="{TemplateBinding MinWidth}"
+                                              Margin="0,3,0,0"
+                                              Command="{x:Static ScrollBar.LineRightCommand}"
+                                              Style="{StaticResource ScrollBarButton}">
+                                    <Path x:Name="ArrowRight"
+                                          Data="M 1.81,7 C1.81,7 0,7 0,7 0,7 3.18,3.5 3.18,3.5 3.18,3.5 0,0                                                  0,0 0,0 1.81,0 1.81,0 1.81,0 5,3.5 5,3.5 5,3.5 1.81,7 1.81,7 Z"
+                                          Fill="{DynamicResource {x:Static brushes:BrushSet.MarkBrushKey}}"
+                                          Stretch="Uniform" />
+                                </RepeatButton>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter TargetName="PART_Track" Property="Opacity" Value="0.3" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="GridViewRowWithUserStatusStyle" TargetType="{x:Type telerik:GridViewRow}">
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type telerik:GridViewRow}">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <telerik:SelectiveScrollingGrid x:Name="grid">
+                            <telerik:SelectiveScrollingGrid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </telerik:SelectiveScrollingGrid.ColumnDefinitions>
+                            <telerik:SelectiveScrollingGrid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </telerik:SelectiveScrollingGrid.RowDefinitions>
+                            <Border x:Name="SelectionBackground"
+                                    Grid.Column="2"
+                                    Grid.ColumnSpan="2"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    telerik:SelectiveScrollingGrid.SelectiveScrollingClip="True"
+                                    Background="{DynamicResource {x:Static brushes:BrushSet.AlternativeBackgroundBrushKey}}"
+                                    Padding="{TemplateBinding Padding}" />
+                            <Border x:Name="Background_Over"
+                                    Grid.Column="2"
+                                    Grid.ColumnSpan="2"
+                                    telerik:SelectiveScrollingGrid.SelectiveScrollingClip="True"
+                                    Background="{DynamicResource {x:Static brushes:BrushSet.MouserOverBrushKey}}"
+                                    Visibility="Collapsed" />
+                            <Border x:Name="Background_Selected"
+                                    Grid.Column="2"
+                                    Grid.ColumnSpan="2"
+                                    telerik:SelectiveScrollingGrid.SelectiveScrollingClip="True"
+                                    Background="{DynamicResource {x:Static brushes:BrushSet.BackgroundBrushKey}}"
+                                    Visibility="Collapsed" />
+                            <Border x:Name="Background_Invalid"
+                                    Grid.Column="2"
+                                    Grid.ColumnSpan="2"
+                                    Margin="1,1,1,2"
+                                    telerik:SelectiveScrollingGrid.SelectiveScrollingClip="True"
+                                    BorderBrush="{DynamicResource {x:Static brushes:BrushSet.BorderBrushKey}}"
+                                    BorderThickness="1"
+                                    CornerRadius="1"
+                                    Visibility="Collapsed" />
+                            <telerik:GridViewToggleButton x:Name="PART_HierarchyExpandButton"
+                                                          Grid.Column="2"
+                                                          Width="25"
+                                                          telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                                          IsChecked="{Binding IsExpanded,
+                                                                              Mode=TwoWay,
+                                                                              RelativeSource={RelativeSource TemplatedParent}}"
+                                                          IsHitTestVisible="{Binding IsExpandable,
+                                                                                     RelativeSource={RelativeSource TemplatedParent}}"
+                                                          IsTabStop="{TemplateBinding IsTabStop}">
+                                <telerik:GridViewToggleButton.Opacity>
+                                    <Binding Path="IsExpandable" RelativeSource="{RelativeSource TemplatedParent}">
+                                        <Binding.Converter>
+                                            <telerik:BooleanToOpacityConverter />
+                                        </Binding.Converter>
+                                    </Binding>
+                                </telerik:GridViewToggleButton.Opacity>
+                                <telerik:StyleManager.Theme>
+                                    <telerik:Office_BlackTheme />
+                                </telerik:StyleManager.Theme>
+                                <telerik:GridViewToggleButton.Template>
+                                    <ControlTemplate TargetType="{x:Type telerik:GridViewToggleButton}">
+                                        <Border HorizontalAlignment="Stretch"
+                                                VerticalAlignment="Stretch"
+                                                Background="Transparent">
+                                            <Border Width="9"
+                                                    Height="9"
+                                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                    Background="{TemplateBinding Background}"
+                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                    BorderThickness="{TemplateBinding BorderThickness}">
+                                                <Grid>
+                                                    <Path x:Name="plus"
+                                                          Width="5"
+                                                          Height="5"
+                                                          Margin="{TemplateBinding Padding}"
+                                                          Data="M1.937,0L2.937,0 2.937,2.0209999 5,2.0209999 5,3.0209999 2.937,3.0209999 2.937,5 1.937,5 1.937,3.0209999 0,3.0209999 0,2.0209999 1.937,2.0209999z"
+                                                          Fill="{DynamicResource {x:Static brushes:BrushSet.BackgroundBrushKey}}"
+                                                          Stretch="Fill"
+                                                          Stroke="{x:Null}" />
+                                                    <Rectangle x:Name="minus"
+                                                               Width="5"
+                                                               Height="1"
+                                                               Margin="{TemplateBinding Padding}"
+                                                               HorizontalAlignment="Center"
+                                                               VerticalAlignment="Center"
+                                                               Fill="{DynamicResource {x:Static brushes:BrushSet.BackgroundBrushKey}}"
+                                                               Opacity="0"
+                                                               RadiusX="0"
+                                                               RadiusY="0"
+                                                               Stroke="{x:Null}" />
+                                                </Grid>
+                                            </Border>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsChecked" Value="True">
+                                                <Setter TargetName="plus" Property="Opacity" Value="0" />
+                                                <Setter TargetName="minus" Property="Opacity" Value="1" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </telerik:GridViewToggleButton.Template>
+                                <telerik:GridViewToggleButton.Visibility>
+                                    <Binding Path="HasHierarchy" RelativeSource="{RelativeSource TemplatedParent}">
+                                        <Binding.Converter>
+                                            <telerik:BooleanToVisibilityConverter />
+                                        </Binding.Converter>
+                                    </Binding>
+                                </telerik:GridViewToggleButton.Visibility>
+                            </telerik:GridViewToggleButton>
+                            <Border Grid.Column="2" telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical">
+                                <Border.Visibility>
+                                    <Binding Path="HasHierarchy" RelativeSource="{RelativeSource TemplatedParent}">
+                                        <Binding.Converter>
+                                            <telerik:BooleanToVisibilityConverter />
+                                        </Binding.Converter>
+                                    </Binding>
+                                </Border.Visibility>
+                            </Border>
+                            <telerik:DataCellsPresenter x:Name="PART_DataCellsPresenter"
+                                                        Grid.Column="3"
+                                                        IsTabStop="False">
+                                <telerik:StyleManager.Theme>
+                                    <telerik:Office_BlackTheme />
+                                </telerik:StyleManager.Theme>
+                            </telerik:DataCellsPresenter>
+                            <Border Grid.Row="2"
+                                    Grid.Column="2"
+                                    Grid.ColumnSpan="2"
+                                    telerik:SelectiveScrollingGrid.SelectiveScrollingClip="True"
+                                    Background="{DynamicResource {x:Static brushes:BrushSet.BackgroundBrushKey}}"
+                                    BorderBrush="{DynamicResource {x:Static brushes:BrushSet.BorderBrushKey}}"
+                                    BorderThickness="0,1"
+                                    Padding="0">
+                                <Border.Visibility>
+                                    <Binding Path="IsExpanded" RelativeSource="{RelativeSource TemplatedParent}">
+                                        <Binding.Converter>
+                                            <telerik:BooleanToVisibilityConverter />
+                                        </Binding.Converter>
+                                    </Binding>
+                                </Border.Visibility>
+                                <ContentPresenter x:Name="PART_HierarchyChildPresenter"
+                                                  telerik:SelectiveScrollingGrid.SelectiveScrollingClip="True"
+                                                  Content="{TemplateBinding Content}"
+                                                  ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}" />
+                            </Border>
+                            <telerik:DetailsPresenter x:Name="PART_DetailsPresenter"
+                                                      Grid.Row="1"
+                                                      Grid.Column="2"
+                                                      Grid.ColumnSpan="2"
+                                                      DetailsProvider="{TemplateBinding DetailsProvider}"
+                                                      IsTabStop="False">
+                                <telerik:StyleManager.Theme>
+                                    <telerik:Office_BlackTheme />
+                                </telerik:StyleManager.Theme>
+                            </telerik:DetailsPresenter>
+                            <telerik:IndentPresenter x:Name="PART_IndentPresenter"
+                                                     Grid.RowSpan="4"
+                                                     Grid.Column="1"
+                                                     telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                                     IndentLevel="{TemplateBinding IndentLevel}"
+                                                     IsTabStop="False">
+                                <telerik:StyleManager.Theme>
+                                    <telerik:Office_BlackTheme />
+                                </telerik:StyleManager.Theme>
+                            </telerik:IndentPresenter>
+                            <Border x:Name="PART_IndicatorPresenter"
+                                    Grid.RowSpan="4"
+                                    Grid.Column="0"
+                                    Width="2"
+                                    VerticalAlignment="Stretch"
+                                    telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                    Visibility="{TemplateBinding RowIndicatorVisibility}">
+                                <Rectangle x:Name="NavigatorIndicatorBackground"
+                                           Fill="{DynamicResource {x:Static brushes:BrushSet.BorderBrushKey}}"
+                                           ToolTip="Online"
+                                           Visibility="{Binding RelativeSource={RelativeSource FindAncestor,
+                                                                                               AncestorType=telerik:GridViewRow},
+                                                                Path=DataContext.IsOnline,
+                                                                ConverterParameter=1,
+                                                                Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            </Border>
+                            <Border x:Name="PART_IndicatorPresenter2"
+                                    Grid.RowSpan="4"
+                                    Grid.Column="0"
+                                    Width="2"
+                                    VerticalAlignment="Stretch"
+                                    telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                    Visibility="{TemplateBinding RowIndicatorVisibility}">
+                                <Rectangle x:Name="NavigatorIndicatorBackground2"
+                                           Fill="{DynamicResource {x:Static brushes:BrushSet.AlternativeForegroundBrushKey}}"
+                                           ToolTip="Offline"
+                                           Visibility="{Binding RelativeSource={RelativeSource FindAncestor,
+                                                                                               AncestorType=telerik:GridViewRow},
+                                                                Path=DataContext.IsOnline,
+                                                                Converter={StaticResource InvertedBooleanToVisibilityConverter}}" />
+                            </Border>
+
+                        </telerik:SelectiveScrollingGrid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="Background_Selected" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="False">
+                            <Setter TargetName="Background_Selected" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Background_Over" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter TargetName="Background_Over" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="Margin" Value="0,0,0,2" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+    </Style>
+
+    <Style TargetType="{x:Type telerik:GridViewRow}">
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type telerik:GridViewRow}">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <telerik:SelectiveScrollingGrid x:Name="grid">
+                            <telerik:SelectiveScrollingGrid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </telerik:SelectiveScrollingGrid.ColumnDefinitions>
+                            <telerik:SelectiveScrollingGrid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </telerik:SelectiveScrollingGrid.RowDefinitions>
+                            <Border x:Name="SelectionBackground"
+                                    Grid.Column="2"
+                                    Grid.ColumnSpan="2"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    telerik:SelectiveScrollingGrid.SelectiveScrollingClip="True"
+                                    Background="{DynamicResource {x:Static brushes:BrushSet.AlternativeForegroundBrushKey}}"
+                                    Padding="{TemplateBinding Padding}" />
+                            <Border x:Name="Background_Over"
+                                    Grid.Column="2"
+                                    Grid.ColumnSpan="2"
+                                    telerik:SelectiveScrollingGrid.SelectiveScrollingClip="True"
+                                    Background="{DynamicResource {x:Static brushes:BrushSet.MouserOverBrushKey}}"
+                                    Visibility="Collapsed" />
+                            <Border x:Name="Background_Selected"
+                                    Grid.Column="2"
+                                    Grid.ColumnSpan="2"
+                                    telerik:SelectiveScrollingGrid.SelectiveScrollingClip="True"
+                                    Background="{DynamicResource {x:Static brushes:BrushSet.SelectedBrushKey}}"
+                                    Visibility="Collapsed" />
+                            <Border x:Name="Background_Invalid"
+                                    Grid.Column="2"
+                                    Grid.ColumnSpan="2"
+                                    Margin="1,1,1,2"
+                                    telerik:SelectiveScrollingGrid.SelectiveScrollingClip="True"
+                                    BorderBrush="{DynamicResource {x:Static brushes:BrushSet.BackgroundBrushKey}}"
+                                    BorderThickness="1"
+                                    CornerRadius="1"
+                                    Visibility="Collapsed" />
+                            <telerik:GridViewToggleButton x:Name="PART_HierarchyExpandButton"
+                                                          Grid.Column="2"
+                                                          Width="25"
+                                                          telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                                          IsChecked="{Binding IsExpanded,
+                                                                              Mode=TwoWay,
+                                                                              RelativeSource={RelativeSource TemplatedParent}}"
+                                                          IsHitTestVisible="{Binding IsExpandable,
+                                                                                     RelativeSource={RelativeSource TemplatedParent}}"
+                                                          IsTabStop="{TemplateBinding IsTabStop}">
+                                <telerik:GridViewToggleButton.Opacity>
+                                    <Binding Path="IsExpandable" RelativeSource="{RelativeSource TemplatedParent}">
+                                        <Binding.Converter>
+                                            <telerik:BooleanToOpacityConverter />
+                                        </Binding.Converter>
+                                    </Binding>
+                                </telerik:GridViewToggleButton.Opacity>
+                                <telerik:StyleManager.Theme>
+                                    <telerik:Office_BlackTheme />
+                                </telerik:StyleManager.Theme>
+                                <telerik:GridViewToggleButton.Template>
+                                    <ControlTemplate TargetType="{x:Type telerik:GridViewToggleButton}">
+                                        <Border HorizontalAlignment="Stretch"
+                                                VerticalAlignment="Stretch"
+                                                Background="Transparent">
+                                            <Border Width="9"
+                                                    Height="9"
+                                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                    Background="{TemplateBinding Background}"
+                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                    BorderThickness="{TemplateBinding BorderThickness}">
+                                                <Grid>
+                                                    <Path x:Name="plus"
+                                                          Width="5"
+                                                          Height="5"
+                                                          Margin="{TemplateBinding Padding}"
+                                                          Data="M1.937,0L2.937,0 2.937,2.0209999 5,2.0209999 5,3.0209999 2.937,3.0209999 2.937,5 1.937,5 1.937,3.0209999 0,3.0209999 0,2.0209999 1.937,2.0209999z"
+                                                          Fill="{DynamicResource {x:Static brushes:BrushSet.AlternativeForegroundBrushKey}}"
+                                                          Stretch="Fill"
+                                                          Stroke="{x:Null}" />
+                                                    <Rectangle x:Name="minus"
+                                                               Width="5"
+                                                               Height="1"
+                                                               Margin="{TemplateBinding Padding}"
+                                                               HorizontalAlignment="Center"
+                                                               VerticalAlignment="Center"
+                                                               Fill="{DynamicResource {x:Static brushes:BrushSet.AlternativeForegroundBrushKey}}"
+                                                               Opacity="0"
+                                                               RadiusX="0"
+                                                               RadiusY="0"
+                                                               Stroke="{x:Null}" />
+                                                </Grid>
+                                            </Border>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsChecked" Value="True">
+                                                <Setter TargetName="plus" Property="Opacity" Value="0" />
+                                                <Setter TargetName="minus" Property="Opacity" Value="1" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </telerik:GridViewToggleButton.Template>
+                                <telerik:GridViewToggleButton.Visibility>
+                                    <Binding Path="HasHierarchy" RelativeSource="{RelativeSource TemplatedParent}">
+                                        <Binding.Converter>
+                                            <telerik:BooleanToVisibilityConverter />
+                                        </Binding.Converter>
+                                    </Binding>
+                                </telerik:GridViewToggleButton.Visibility>
+                            </telerik:GridViewToggleButton>
+                            <Border Grid.Column="2" telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical">
+                                <Border.Visibility>
+                                    <Binding Path="HasHierarchy" RelativeSource="{RelativeSource TemplatedParent}">
+                                        <Binding.Converter>
+                                            <telerik:BooleanToVisibilityConverter />
+                                        </Binding.Converter>
+                                    </Binding>
+                                </Border.Visibility>
+                            </Border>
+                            <telerik:DataCellsPresenter x:Name="PART_DataCellsPresenter"
+                                                        Grid.Column="3"
+                                                        IsTabStop="False">
+                                <telerik:StyleManager.Theme>
+                                    <telerik:Office_BlackTheme />
+                                </telerik:StyleManager.Theme>
+                            </telerik:DataCellsPresenter>
+                            <Border Grid.Row="2"
+                                    Grid.Column="2"
+                                    Grid.ColumnSpan="2"
+                                    telerik:SelectiveScrollingGrid.SelectiveScrollingClip="True"
+                                    Background="{DynamicResource {x:Static brushes:BrushSet.BackgroundBrushKey}}"
+                                    BorderBrush="{DynamicResource {x:Static brushes:BrushSet.BorderBrushKey}}"
+                                    BorderThickness="0,1"
+                                    Padding="0">
+                                <Border.Visibility>
+                                    <Binding Path="IsExpanded" RelativeSource="{RelativeSource TemplatedParent}">
+                                        <Binding.Converter>
+                                            <telerik:BooleanToVisibilityConverter />
+                                        </Binding.Converter>
+                                    </Binding>
+                                </Border.Visibility>
+                                <ContentPresenter x:Name="PART_HierarchyChildPresenter"
+                                                  telerik:SelectiveScrollingGrid.SelectiveScrollingClip="True"
+                                                  Content="{TemplateBinding Content}"
+                                                  ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}" />
+                            </Border>
+                            <telerik:DetailsPresenter x:Name="PART_DetailsPresenter"
+                                                      Grid.Row="1"
+                                                      Grid.Column="2"
+                                                      Grid.ColumnSpan="2"
+                                                      DetailsProvider="{TemplateBinding DetailsProvider}"
+                                                      IsTabStop="False">
+                                <telerik:StyleManager.Theme>
+                                    <telerik:Office_BlackTheme />
+                                </telerik:StyleManager.Theme>
+                            </telerik:DetailsPresenter>
+                            <telerik:IndentPresenter x:Name="PART_IndentPresenter"
+                                                     Grid.RowSpan="4"
+                                                     Grid.Column="1"
+                                                     telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                                     IndentLevel="{TemplateBinding IndentLevel}"
+                                                     IsTabStop="False">
+                                <telerik:StyleManager.Theme>
+                                    <telerik:Office_BlackTheme />
+                                </telerik:StyleManager.Theme>
+                            </telerik:IndentPresenter>
+                            <Border x:Name="PART_IndicatorPresenter"
+                                    Grid.RowSpan="4"
+                                    Grid.Column="0"
+                                    Width="2"
+                                    VerticalAlignment="Stretch"
+                                    telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                    Visibility="{TemplateBinding RowIndicatorVisibility}" />
+                            <Border x:Name="PART_IndicatorPresenter2"
+                                    Grid.RowSpan="4"
+                                    Grid.Column="0"
+                                    Width="2"
+                                    VerticalAlignment="Stretch"
+                                    telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                    Visibility="{TemplateBinding RowIndicatorVisibility}" />
+
+                        </telerik:SelectiveScrollingGrid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="Background_Selected" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="False">
+                            <Setter TargetName="Background_Selected" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Background_Over" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter TargetName="Background_Over" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="Margin" Value="0,0,0,2" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+    </Style>
+
+    <Style x:Key="GridViewGroupPanelStyle" TargetType="{x:Type telerik:GridViewGroupPanel}">
+        <Setter Property="Height" Value="30" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type telerik:GridViewGroupPanel}">
+                    <Grid UseLayoutRounding="True">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="Grouping">
+                                <VisualState x:Name="NoGroups" />
+                                <VisualState x:Name="HasGroups">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="panelText" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Collapsed</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="panelTextGrouped" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border Height="{TemplateBinding Height}" Background="{DynamicResource {x:Static brushes:BrushSet.AlternativeBackgroundBrushKey}}" />
+
+                        <StackPanel Margin="0,0,8,0" Orientation="Horizontal">
+                            <TextBlock x:Name="panelText"
+                                       Margin="{TemplateBinding Padding}"
+                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                       telerik:LocalizationManager.ResourceKey="GridViewGroupPanelText"
+                                       FontSize="12"
+                                       Foreground="{DynamicResource {x:Static brushes:BrushSet.AccentForegroundBrushKey}}"
+                                       IsHitTestVisible="False"
+                                       Text="Drag a column header and drop it here to group by that column" />
+                            <TextBlock x:Name="panelTextGrouped"
+                                       Margin="{TemplateBinding Padding}"
+                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                       telerik:LocalizationManager.ResourceKey="GridViewGroupPanelTopTextGrouped"
+                                       Foreground="{DynamicResource {x:Static brushes:BrushSet.AccentForegroundBrushKey}}"
+                                       IsHitTestVisible="False"
+                                       Text="Grouped by:"
+                                       Visibility="Collapsed" />
+                            <ItemsPresenter VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
+    <Style x:Key="GridViewGroupPanelItemStyle" TargetType="{x:Type telerik:GridViewGroupPanelItem}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type telerik:GridViewGroupPanelItem}">
+                    <StackPanel x:Name="PART_GroupPanelItemStackPanel"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Background="{TemplateBinding Background}"
+                                Orientation="Horizontal">
+                        <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" MinHeight="4" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+
+                            <Grid x:Name="PART_ConnectingLine"
+                                  Grid.Row="1"
+                                  Margin="5,0">
+                                <Grid.Opacity>
+                                    <Binding Path="IsFirst" RelativeSource="{RelativeSource TemplatedParent}">
+                                        <Binding.Converter>
+                                            <telerik:InvertedBooleanToOpacityConverter />
+                                        </Binding.Converter>
+                                    </Binding>
+                                </Grid.Opacity>
+
+                                <Path Width="4"
+                                      Height="10"
+                                      Data="M0,0L1,0 1,1 2,1 2,2 3,2 3,3 4,3 4,4 3,4 3,5 2,5 2,6 1,6 1,7 0,7z"
+                                      Fill="{DynamicResource {x:Static brushes:BrushSet.MarkBrushKey}}"
+                                      Stroke="{x:Null}" />
+                            </Grid>
+                        </Grid>
+
+                        <telerik:GridViewGroupPanelCell x:Name="PART_Cell"
+                                                        Content="{TemplateBinding Content}"
+                                                        IsTabStop="False"
+                                                        SortDirection="{Binding SortDirection}">
+
+                            <telerik:GridViewGroupPanelCell.Style>
+                                <Style TargetType="{x:Type telerik:GridViewGroupPanelCell}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type telerik:GridViewGroupPanelCell}">
+                                                <Grid>
+                                                    <VisualStateManager.VisualStateGroups>
+                                                        <VisualStateGroup x:Name="CommonStates">
+                                                            <VisualStateGroup.Transitions>
+                                                                <VisualTransition From="{x:Null}"
+                                                                                  GeneratedDuration="0:0:0.2"
+                                                                                  GeneratedEasingFunction="{x:Null}"
+                                                                                  Storyboard="{x:Null}"
+                                                                                  To="MouseOver" />
+                                                                <VisualTransition From="{x:Null}"
+                                                                                  GeneratedDuration="0:0:0.2"
+                                                                                  GeneratedEasingFunction="{x:Null}"
+                                                                                  Storyboard="{x:Null}"
+                                                                                  To="Normal" />
+                                                            </VisualStateGroup.Transitions>
+                                                            <VisualState x:Name="Normal" />
+                                                            <VisualState x:Name="MouseOver">
+                                                                <Storyboard>
+                                                                    <DoubleAnimationUsingKeyFrames BeginTime="0"
+                                                                                                   Duration="0:0:0.001"
+                                                                                                   Storyboard.TargetName="ContentElement"
+                                                                                                   Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                                                                        <EasingDoubleKeyFrame KeyTime="0" Value="-7" />
+                                                                    </DoubleAnimationUsingKeyFrames>
+                                                                    <DoubleAnimationUsingKeyFrames BeginTime="0"
+                                                                                                   Duration="0:0:0.001"
+                                                                                                   Storyboard.TargetName="PART_CloseButton"
+                                                                                                   Storyboard.TargetProperty="Opacity">
+                                                                        <DiscreteDoubleKeyFrame KeyTime="0" Value="1" />
+                                                                    </DoubleAnimationUsingKeyFrames>
+                                                                </Storyboard>
+                                                            </VisualState>
+                                                        </VisualStateGroup>
+                                                        <VisualStateGroup x:Name="SortDirection">
+                                                            <VisualState x:Name="Ascending">
+                                                                <Storyboard>
+                                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_SortIndicator" Storyboard.TargetProperty="Visibility">
+                                                                        <DiscreteObjectKeyFrame KeyTime="0">
+                                                                            <DiscreteObjectKeyFrame.Value>
+                                                                                <Visibility>Visible</Visibility>
+                                                                            </DiscreteObjectKeyFrame.Value>
+                                                                        </DiscreteObjectKeyFrame>
+                                                                    </ObjectAnimationUsingKeyFrames>
+                                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_SortIndicator" Storyboard.TargetProperty="RenderTransform">
+                                                                        <DiscreteObjectKeyFrame KeyTime="0">
+                                                                            <DiscreteObjectKeyFrame.Value>
+                                                                                <ScaleTransform ScaleX="1" ScaleY="-1" />
+                                                                            </DiscreteObjectKeyFrame.Value>
+                                                                        </DiscreteObjectKeyFrame>
+                                                                    </ObjectAnimationUsingKeyFrames>
+                                                                </Storyboard>
+                                                            </VisualState>
+                                                            <VisualState x:Name="Descending">
+                                                                <Storyboard>
+                                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_SortIndicator" Storyboard.TargetProperty="Visibility">
+                                                                        <DiscreteObjectKeyFrame KeyTime="0">
+                                                                            <DiscreteObjectKeyFrame.Value>
+                                                                                <Visibility>Visible</Visibility>
+                                                                            </DiscreteObjectKeyFrame.Value>
+                                                                        </DiscreteObjectKeyFrame>
+                                                                    </ObjectAnimationUsingKeyFrames>
+                                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_SortIndicator" Storyboard.TargetProperty="RenderTransform">
+                                                                        <DiscreteObjectKeyFrame KeyTime="0">
+                                                                            <DiscreteObjectKeyFrame.Value>
+                                                                                <ScaleTransform ScaleX="1" ScaleY="1" />
+                                                                            </DiscreteObjectKeyFrame.Value>
+                                                                        </DiscreteObjectKeyFrame>
+                                                                    </ObjectAnimationUsingKeyFrames>
+                                                                </Storyboard>
+                                                            </VisualState>
+                                                            <VisualState x:Name="None">
+                                                                <Storyboard>
+                                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_SortIndicator" Storyboard.TargetProperty="Visibility">
+                                                                        <DiscreteObjectKeyFrame KeyTime="0">
+                                                                            <DiscreteObjectKeyFrame.Value>
+                                                                                <Visibility>Collapsed</Visibility>
+                                                                            </DiscreteObjectKeyFrame.Value>
+                                                                        </DiscreteObjectKeyFrame>
+                                                                    </ObjectAnimationUsingKeyFrames>
+                                                                </Storyboard>
+                                                            </VisualState>
+                                                        </VisualStateGroup>
+                                                    </VisualStateManager.VisualStateGroups>
+                                                    <Border x:Name="OuterBorder"
+                                                            BorderBrush="{DynamicResource {x:Static brushes:BrushSet.AlternativeAccentBorderBrushKey}}"
+                                                            BorderThickness="1">
+
+                                                        <Grid>
+                                                            <Path x:Name="PART_SortIndicator"
+                                                                  Width="5"
+                                                                  Height="3"
+                                                                  Margin="0,3"
+                                                                  HorizontalAlignment="Center"
+                                                                  VerticalAlignment="Top"
+                                                                  Data="M0,0L1,0 2,0 3,0 4,0 5,0 5,1 4,1 4,2 3,2 3,3 2,3 2,2 1,2 1,1 0,1 0,0z"
+                                                                  Fill="{DynamicResource {x:Static brushes:BrushSet.ForegroundBrushKey}}"
+                                                                  RenderTransformOrigin="0.5,0.5"
+                                                                  Stretch="Fill"
+                                                                  Visibility="Collapsed" />
+
+                                                            <ContentControl x:Name="ContentElement"
+                                                                            Margin="{TemplateBinding Padding}"
+                                                                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                                            Content="{TemplateBinding Content}"
+                                                                            Foreground="{TemplateBinding Foreground}"
+                                                                            IsTabStop="{TemplateBinding IsTabStop}">
+                                                                <ContentControl.RenderTransform>
+                                                                    <TransformGroup>
+                                                                        <ScaleTransform />
+                                                                        <SkewTransform />
+                                                                        <RotateTransform />
+                                                                        <TranslateTransform />
+                                                                    </TransformGroup>
+                                                                </ContentControl.RenderTransform>
+                                                            </ContentControl>
+
+                                                            <Button x:Name="PART_CloseButton"
+                                                                    Margin="4,0"
+                                                                    HorizontalAlignment="Right"
+                                                                    VerticalAlignment="Center"
+                                                                    Opacity="0">
+                                                                <Button.Style>
+                                                                    <Style TargetType="{x:Type Button}">
+                                                                        <Setter Property="Template">
+                                                                            <Setter.Value>
+                                                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                                                    <Border x:Name="CloseButton">
+                                                                                        <TextBlock Foreground="{DynamicResource {x:Static brushes:BrushSet.AccentForegroundBrushKey}}"
+                                                                                                   Style="{StaticResource IconText}"
+                                                                                                   Text="" />
+                                                                                    </Border>
+                                                                                </ControlTemplate>
+                                                                            </Setter.Value>
+                                                                        </Setter>
+                                                                        <Setter Property="Background" Value="{DynamicResource {x:Static brushes:BrushSet.ForegroundBrushKey}}" />
+                                                                        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static brushes:BrushSet.BorderBrushKey}}" />
+                                                                        <Setter Property="BorderThickness" Value="1" />
+                                                                        <Setter Property="Padding" Value="0" />
+                                                                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                                                                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                                                    </Style>
+                                                                </Button.Style>
+                                                            </Button>
+                                                        </Grid>
+                                                    </Border>
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="Background" Value="{DynamicResource {x:Static brushes:BrushSet.BackgroundBrushKey}}" />
+                                    <Setter Property="BorderThickness" Value="1" />
+                                    <Setter Property="BorderBrush" Value="{DynamicResource {x:Static brushes:BrushSet.BorderBrushKey}}" />
+                                    <Setter Property="Padding" Value="20,0" />
+                                    <Setter Property="Height" Value="30" />
+                                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                    <Setter Property="Foreground" Value="{DynamicResource {x:Static brushes:BrushSet.ForegroundBrushKey}}" />
+                                    <Setter Property="SnapsToDevicePixels" Value="True" />
+                                </Style>
+                            </telerik:GridViewGroupPanelCell.Style>
+                        </telerik:GridViewGroupPanelCell>
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Padding" Value="2,0,2,2" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+    </Style>
+
+    <Style x:Key="GridViewGroupRowStyle" TargetType="{x:Type telerik:GridViewGroupRow}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type telerik:GridViewGroupRow}">
+                    <Grid x:Name="PART_GroupExpanderGrid">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition x:Name="PART_HeaderRow" MinHeight="{TemplateBinding MinHeight}" />
+                            <RowDefinition x:Name="ContentRow" Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="ExpandStateGroup">
+                                <VisualState x:Name="Expanded">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Content" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+
+
+                                        <DoubleAnimationUsingKeyFrames BeginTime="0"
+                                                                       Storyboard.TargetName="ExpanderButton"
+                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)">
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="180" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Collapsed">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="0"
+                                                                       Storyboard.TargetName="ExpanderButton"
+                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)">
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+
+                        <Border x:Name="PART_IndicatorPresenter"
+                                Grid.Column="0"
+                                Width="30"
+                                VerticalAlignment="Stretch"
+                                telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                Background="{DynamicResource {x:Static brushes:BrushSet.AlternativeBackgroundBrushKey}}"
+                                BorderBrush="{DynamicResource {x:Static brushes:BrushSet.AccentBackgroundBrushKey}}"
+                                BorderThickness="0,0,2,0"
+                                Visibility="{TemplateBinding RowIndicatorVisibility}" />
+
+                        <telerik:IndentPresenter Grid.Column="1"
+                                                 telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                                 IndentLevel="{TemplateBinding Level}"
+                                                 IsTabStop="False">
+                            <telerik:IndentPresenter.Style>
+                                <Style TargetType="{x:Type telerik:IndentPresenter}">
+
+                                    <Setter Property="ItemTemplate">
+                                        <Setter.Value>
+                                            <DataTemplate>
+                                                <telerik:GridViewIndentCell Background="Transparent"
+                                                                            BorderBrush="Transparent"
+                                                                            IsTabStop="False" />
+                                            </DataTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+
+                                </Style>
+                            </telerik:IndentPresenter.Style>
+                        </telerik:IndentPresenter>
+
+                        <Border x:Name="ToggleButtonBorder"
+                                Grid.Column="2"
+                                Grid.ColumnSpan="2"
+                                MinHeight="{TemplateBinding MinHeight}"
+                                telerik:SelectiveScrollingGrid.SelectiveScrollingClip="True"
+                                Background="{TemplateBinding Background}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="25" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Border x:Name="IconOuterBorder"
+                                        HorizontalAlignment="Stretch"
+                                        telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                        Background="Transparent">
+
+                                    <Path x:Name="ExpanderButton"
+                                          Width="7"
+                                          Height="5"
+                                          Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="Left"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Data="M0,0L1,0 2,0 2,0.99999991 3,0.99999991 3,2 4,2 4,0.99999991 5,0.99999991 5,0 5.9999999,0 7,0 7,0.99999991 5.9999999,0.99999991 5.9999999,2 5,2 5,3 4,3 4,4 3,4 3,3 2,3 2,2 1,2 1,0.99999991 0,0.99999991z"
+                                          Fill="{DynamicResource {x:Static brushes:BrushSet.MarkBrushKey}}"
+                                          RenderTransformOrigin="0.5,0.5">
+                                        <Path.RenderTransform>
+                                            <RotateTransform />
+                                        </Path.RenderTransform>
+                                    </Path>
+
+                                </Border>
+
+                                <ToggleButton x:Name="HeaderButton"
+                                              Grid.Column="0"
+                                              Grid.ColumnSpan="3"
+                                              telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                              Background="{TemplateBinding Background}"
+                                              IsChecked="{Binding IsExpanded,
+                                                                  Mode=TwoWay,
+                                                                  RelativeSource={RelativeSource TemplatedParent}}"
+                                              IsTabStop="{TemplateBinding IsTabStop}"
+                                              Opacity="0" />
+
+                                <ToggleButton Grid.Column="1"
+                                              telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                              Background="Transparent"
+                                              BorderBrush="{x:Null}"
+                                              BorderThickness="0"
+                                              IsChecked="{Binding IsExpanded,
+                                                                  Mode=TwoWay,
+                                                                  RelativeSource={RelativeSource TemplatedParent}}"
+                                              IsTabStop="{TemplateBinding IsTabStop}"
+                                              Padding="0,0,10,0">
+                                    <ToggleButton.Style>
+                                        <Style TargetType="{x:Type ToggleButton}">
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                                        <Border Background="{TemplateBinding Background}"
+                                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                                BorderThickness="{TemplateBinding BorderThickness}">
+                                                            <ContentPresenter Content="{TemplateBinding Content}"
+                                                                              ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                                                              ContentTemplate="{TemplateBinding ContentTemplate}" />
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Setter Property="Foreground" Value="{DynamicResource {x:Static brushes:BrushSet.AccentForegroundBrushKey}}" />
+                                            <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                            <Setter Property="VerticalContentAlignment" Value="Center" />
+                                            <Setter Property="Padding" Value="9,0,0,0" />
+                                        </Style>
+                                    </ToggleButton.Style>
+                                    <ContentPresenter Grid.Column="1"
+                                                      Margin="0,0,10,0"
+                                                      VerticalAlignment="Center"
+                                                      Content="{TemplateBinding GroupViewModel}"
+                                                      ContentTemplate="{TemplateBinding GroupHeaderTemplate}" />
+                                </ToggleButton>
+                                <Border Grid.Column="2"
+                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        telerik:SelectiveScrollingGrid.SelectiveScrollingClip="True">
+                                    <Border.Visibility>
+                                        <Binding Path="ShowHeaderAggregates" RelativeSource="{RelativeSource TemplatedParent}">
+                                            <Binding.Converter>
+                                                <telerik:BooleanToVisibilityConverter />
+                                            </Binding.Converter>
+                                        </Binding>
+                                    </Border.Visibility>
+                                    <telerik:AggregateResultsList HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                                  IsTabStop="False">
+                                        <telerik:AggregateResultsList.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel IsItemsHost="True" Orientation="Horizontal" />
+                                            </ItemsPanelTemplate>
+                                        </telerik:AggregateResultsList.ItemsPanel>
+                                        <telerik:AggregateResultsList.ItemTemplate>
+                                            <DataTemplate>
+                                                <telerik:GridViewAggregateResultCell AggregateResult="{Binding}" IsTabStop="False">
+                                                    <telerik:StyleManager.Theme>
+                                                        <telerik:Office_BlackTheme />
+                                                    </telerik:StyleManager.Theme>
+                                                </telerik:GridViewAggregateResultCell>
+                                            </DataTemplate>
+                                        </telerik:AggregateResultsList.ItemTemplate>
+                                    </telerik:AggregateResultsList>
+                                </Border>
+
+
+                            </Grid>
+                        </Border>
+
+                        <Border x:Name="Content"
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="3"
+                                Margin="0,2"
+                                Visibility="Collapsed">
+                            <StackPanel>
+                                <telerik:GridViewVirtualizingPanel x:Name="PART_GridViewVirtualizingPanel"
+                                                                   CanHorizontallyScroll="True"
+                                                                   CanVerticallyScroll="True" />
+                                <telerik:GridViewGroupFooterRow x:Name="Footer" IsTabStop="False" />
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="GroupHeaderTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <ContentPresenter Content="{Binding Header}" />
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Background" Value="{DynamicResource {x:Static brushes:BrushSet.AlternativeBackgroundBrushKey}}" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="Padding" Value="10,0,0,0" />
+        <Setter Property="MinHeight" Value="30" />
+        <Setter Property="AllowDrop" Value="True" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+    </Style>
+
+    <Style TargetType="{x:Type telerik:GridViewHeaderRow}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type telerik:GridViewHeaderRow}">
+                    <telerik:SelectiveScrollingGrid>
+                        <telerik:SelectiveScrollingGrid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </telerik:SelectiveScrollingGrid.ColumnDefinitions>
+                        <telerik:SelectiveScrollingGrid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition />
+                        </telerik:SelectiveScrollingGrid.RowDefinitions>
+                        <telerik:CommonHeaderPresenter x:Name="PART_CommonHeaderPresenter"
+                                                       Grid.Column="3"
+                                                       IsTabStop="False">
+                            <telerik:StyleManager.Theme>
+                                <telerik:Office_BlackTheme />
+                            </telerik:StyleManager.Theme>
+                        </telerik:CommonHeaderPresenter>
+                        <Border Grid.ColumnSpan="2"
+                                telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                Background="{DynamicResource {x:Static brushes:BrushSet.BackgroundBrushKey}}" />
+                        <Border x:Name="CommonHeaderIndent"
+                                Grid.ColumnSpan="2"
+                                Margin="-1,0,0,0"
+                                telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                Background="{DynamicResource {x:Static brushes:BrushSet.BackgroundBrushKey}}"
+                                BorderBrush="{DynamicResource {x:Static brushes:BrushSet.BorderBrushKey}}"
+                                BorderThickness="0,0,1,1"
+                                Visibility="{Binding Visibility,
+                                                     ElementName=PART_CommonHeaderPresenter}" />
+                        <Grid x:Name="PART_OuterGrid"
+                              Grid.Row="1"
+                              Grid.ColumnSpan="4">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Border x:Name="PART_GridViewHeaderRowBorder"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Background="Transparent"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="0"
+                                    Padding="{TemplateBinding Padding}">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{DynamicResource {x:Static brushes:BrushSet.BorderBrushKey}}"
+                                        BorderThickness="0" />
+                            </Border>
+                            <Border x:Name="PART_FieldFilterPlaceholder"
+                                    Grid.Row="1"
+                                    Background="{DynamicResource {x:Static brushes:BrushSet.BackgroundBrushKey}}"
+                                    BorderBrush="{DynamicResource {x:Static brushes:BrushSet.BorderBrushKey}}"
+                                    BorderThickness="0,0,1,1"
+                                    Visibility="{TemplateBinding FieldFilterPlaceholderVisibility}" />
+                        </Grid>
+                        <telerik:DataCellsPresenter x:Name="PART_DataCellsPresenter"
+                                                    Grid.Row="1"
+                                                    Grid.Column="3"
+                                                    IsTabStop="False" />
+
+                        <Border x:Name="PART_IndicatorPresenter"
+                                Grid.Row="1"
+                                Width="2"
+                                telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                BorderBrush="Transparent"
+                                BorderThickness="0"
+                                Visibility="{TemplateBinding RowIndicatorVisibility}">
+                            <Border BorderBrush="Transparent" BorderThickness="0" />
+                        </Border>
+                        <telerik:IndentPresenter x:Name="PART_IndentPresenter"
+                                                 Grid.Row="1"
+                                                 Grid.Column="1"
+                                                 MinHeight="{TemplateBinding MinHeight}"
+                                                 telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                                 IndentLevel="{TemplateBinding IndentLevel}"
+                                                 IsTabStop="False">
+                            <telerik:IndentPresenter.ItemTemplate>
+                                <DataTemplate>
+                                    <telerik:GridViewHeaderIndentCell IsTabStop="False">
+                                        <telerik:StyleManager.Theme>
+                                            <telerik:Office_BlackTheme />
+                                        </telerik:StyleManager.Theme>
+                                    </telerik:GridViewHeaderIndentCell>
+                                </DataTemplate>
+                            </telerik:IndentPresenter.ItemTemplate>
+                            <telerik:StyleManager.Theme>
+                                <telerik:Office_BlackTheme />
+                            </telerik:StyleManager.Theme>
+                        </telerik:IndentPresenter>
+                        <Border x:Name="PART_CommonHeaderHierarchyIndentPresenterAllLevels"
+                                Grid.Row="0"
+                                Grid.RowSpan="2"
+                                Grid.Column="2"
+                                Width="25"
+                                telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                Background="{DynamicResource {x:Static brushes:BrushSet.BackgroundBrushKey}}"
+                                BorderBrush="Transparent"
+                                BorderThickness="0,0,1,1">
+                            <Border.Visibility>
+                                <Binding Path="HasHierarchy" RelativeSource="{RelativeSource TemplatedParent}">
+                                    <Binding.Converter>
+                                        <telerik:BooleanToVisibilityConverter />
+                                    </Binding.Converter>
+                                </Binding>
+                            </Border.Visibility>
+                        </Border>
+                        <Border x:Name="PART_CommonHeaderHierarchyIndentPresenterFirstLevel"
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                Width="25"
+                                Margin="0,0,0,0"
+                                telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                Background="{DynamicResource {x:Static brushes:BrushSet.BackgroundBrushKey}}"
+                                BorderBrush="Transparent"
+                                BorderThickness="0,0,1,1">
+                            <Border.Visibility>
+                                <Binding Path="HasHierarchy" RelativeSource="{RelativeSource TemplatedParent}">
+                                    <Binding.Converter>
+                                        <telerik:BooleanToVisibilityConverter />
+                                    </Binding.Converter>
+                                </Binding>
+                            </Border.Visibility>
+                        </Border>
+                        <Border x:Name="PART_HierarchyIndentPresenter"
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                Width="25"
+                                telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                BorderBrush="Transparent"
+                                BorderThickness="0">
+                            <Border.Visibility>
+                                <Binding Path="HasHierarchy" RelativeSource="{RelativeSource TemplatedParent}">
+                                    <Binding.Converter>
+                                        <telerik:BooleanToVisibilityConverter />
+                                    </Binding.Converter>
+                                </Binding>
+                            </Border.Visibility>
+                            <Border Background="{DynamicResource {x:Static brushes:BrushSet.BackgroundBrushKey}}"
+                                    BorderBrush="{DynamicResource {x:Static brushes:BrushSet.BorderBrushKey}}"
+                                    BorderThickness="0" />
+                        </Border>
+                    </telerik:SelectiveScrollingGrid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="MinHeight" Value="30" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+    </Style>
+
+    <Style x:Key="GridViewHeaderRowStyle" TargetType="{x:Type telerik:GridViewHeaderRow}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type telerik:GridViewHeaderRow}">
+                    <telerik:SelectiveScrollingGrid>
+                        <telerik:SelectiveScrollingGrid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </telerik:SelectiveScrollingGrid.ColumnDefinitions>
+                        <telerik:SelectiveScrollingGrid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition />
+                        </telerik:SelectiveScrollingGrid.RowDefinitions>
+
+                        <telerik:CommonHeaderPresenter x:Name="PART_CommonHeaderPresenter"
+                                                       Grid.Column="3"
+                                                       IsTabStop="False">
+                            <telerik:StyleManager.Theme>
+                                <telerik:Office_BlackTheme />
+                            </telerik:StyleManager.Theme>
+                        </telerik:CommonHeaderPresenter>
+
+                        <Border Grid.ColumnSpan="2"
+                                telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                Background="{DynamicResource {x:Static brushes:BrushSet.BorderBrushKey}}" />
+
+                        <Border x:Name="CommonHeaderIndent"
+                                Grid.ColumnSpan="2"
+                                Margin="-1,0,0,0"
+                                telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                Background="{DynamicResource {x:Static brushes:BrushSet.BackgroundBrushKey}}"
+                                BorderBrush="{DynamicResource {x:Static brushes:BrushSet.BorderBrushKey}}"
+                                BorderThickness="0,0,1,1"
+                                Visibility="{Binding Visibility,
+                                                     ElementName=PART_CommonHeaderPresenter}" />
+
+                        <Grid x:Name="PART_OuterGrid"
+                              Grid.Row="1"
+                              Grid.ColumnSpan="4">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Border x:Name="PART_GridViewHeaderRowBorder"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Background="Transparent"
+                                    Padding="{TemplateBinding Padding}" />
+
+                            <Border x:Name="PART_FieldFilterPlaceholder"
+                                    Grid.Row="1"
+                                    Background="{DynamicResource {x:Static brushes:BrushSet.BackgroundBrushKey}}"
+                                    BorderBrush="{DynamicResource {x:Static brushes:BrushSet.BorderBrushKey}}"
+                                    BorderThickness="0,0,1,1"
+                                    Visibility="{TemplateBinding FieldFilterPlaceholderVisibility}" />
+                        </Grid>
+
+                        <telerik:DataCellsPresenter x:Name="PART_DataCellsPresenter"
+                                                    Grid.Row="1"
+                                                    Grid.Column="3"
+                                                    IsTabStop="False">
+                            <telerik:DataCellsPresenter.Style>
+                                <Style TargetType="{x:Type telerik:DataCellsPresenter}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type telerik:DataCellsPresenter}">
+                                                <Grid>
+                                                    <ItemsPresenter />
+
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="IsTabStop" Value="False" />
+                                    <Setter Property="ItemsPanel">
+                                        <Setter.Value>
+                                            <ItemsPanelTemplate>
+                                                <telerik:GridViewCellsPanel IsItemsHost="True" />
+                                            </ItemsPanelTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="SnapsToDevicePixels" Value="True" />
+                                </Style>
+                            </telerik:DataCellsPresenter.Style>
+                        </telerik:DataCellsPresenter>
+
+                        <Border x:Name="PART_IndicatorPresenter"
+                                Grid.Row="1"
+                                Width="30"
+                                telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                Background="Transparent"
+                                Visibility="{TemplateBinding RowIndicatorVisibility}" />
+
+
+                        <telerik:IndentPresenter x:Name="PART_IndentPresenter"
+                                                 Grid.Row="1"
+                                                 Grid.Column="1"
+                                                 MinHeight="{TemplateBinding MinHeight}"
+                                                 telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                                 IndentLevel="{TemplateBinding IndentLevel}"
+                                                 IsTabStop="False">
+                            <telerik:IndentPresenter.ItemTemplate>
+                                <DataTemplate>
+                                    <telerik:GridViewHeaderIndentCell Background="Transparent"
+                                                                      BorderBrush="Transparent"
+                                                                      IsTabStop="False" />
+
+                                </DataTemplate>
+                            </telerik:IndentPresenter.ItemTemplate>
+
+                        </telerik:IndentPresenter>
+
+                        <Border x:Name="PART_CommonHeaderHierarchyIndentPresenterAllLevels"
+                                Grid.Row="0"
+                                Grid.RowSpan="10"
+                                Grid.Column="2"
+                                Width="25"
+                                Margin="0,0,0,0"
+                                telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                Background="{DynamicResource {x:Static brushes:BrushSet.BackgroundBrushKey}}"
+                                BorderBrush="Transparent"
+                                BorderThickness="0,0,1,1">
+                            <Border.Visibility>
+                                <Binding Path="HasHierarchy" RelativeSource="{RelativeSource TemplatedParent}">
+                                    <Binding.Converter>
+                                        <telerik:BooleanToVisibilityConverter />
+                                    </Binding.Converter>
+                                </Binding>
+                            </Border.Visibility>
+                        </Border>
+                        <Border x:Name="PART_CommonHeaderHierarchyIndentPresenterFirstLevel"
+                                Grid.Row="0"
+                                Grid.RowSpan="1"
+                                Grid.Column="2"
+                                Width="25"
+                                Margin="0,-1,0,0"
+                                telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                Background="{DynamicResource {x:Static brushes:BrushSet.BackgroundBrushKey}}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="0,0,1,1">
+                            <Border.Visibility>
+                                <Binding Path="HasHierarchy" RelativeSource="{RelativeSource TemplatedParent}">
+                                    <Binding.Converter>
+                                        <telerik:BooleanToVisibilityConverter />
+                                    </Binding.Converter>
+                                </Binding>
+                            </Border.Visibility>
+                        </Border>
+                        <Border x:Name="PART_HierarchyIndentPresenter"
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                Width="25"
+                                telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                BorderBrush="Transparent"
+                                BorderThickness="0">
+                            <Border.Visibility>
+                                <Binding Path="HasHierarchy" RelativeSource="{RelativeSource TemplatedParent}">
+                                    <Binding.Converter>
+                                        <telerik:BooleanToVisibilityConverter />
+                                    </Binding.Converter>
+                                </Binding>
+                            </Border.Visibility>
+                        </Border>
+                    </telerik:SelectiveScrollingGrid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="MinHeight" Value="30" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+    </Style>
+
+    <Style x:Key="TimeDifferenceGridViewCell" TargetType="{x:Type telerik:GridViewCell}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type telerik:GridViewCell}">
+                    <Grid>
+                        <Border x:Name="PART_CellBorder"
+                                Background="{Binding Background,
+                                                     RelativeSource={RelativeSource TemplatedParent}}"
+                                BorderBrush="{StaticResource PanelBackgroundColor}"
+                                BorderThickness="0,0,2,0" />
+                        <ContentPresenter x:Name="PART_ContentPresenter"
+                                          Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="Stretch"
+                                          VerticalAlignment="Stretch"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}" />
+                        <!--<Rectangle x:Name="NavigatorIndicatorBackground"
+                                   Width="2"
+                                   HorizontalAlignment="Right"
+                                   Fill="{StaticResource BuyerColor}"
+                                   ToolTip="Online"
+                                   Visibility="{Binding RelativeSource={RelativeSource FindAncestor,
+                                                                                       AncestorType=telerik:GridViewRow},
+                                                        Path=DataContext.IsOnline,
+                                                        ConverterParameter=1,
+                                                        Converter={StaticResource BooleanToVisibilityConverter}}" />
+                        <Rectangle x:Name="NavigatorIndicatorBackground2"
+                                   Width="2"
+                                   HorizontalAlignment="Right"
+                                   Fill="DarkGray"
+                                   ToolTip="Offline"
+                                   Visibility="{Binding RelativeSource={RelativeSource FindAncestor,
+                                                                                       AncestorType=telerik:GridViewRow},
+                                                        Path=DataContext.IsOnline,
+                                                        Converter={StaticResource InvertedBooleanToVisibilityConverter}}" />-->
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="PART_CellBorder" Property="Opacity" Value="0.3" />
+                            <Setter TargetName="PART_ContentPresenter" Property="Opacity" Value="0.3" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="Padding" Value="1, 0, 2, 0" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+    </Style>
+
+    <Style TargetType="{x:Type telerik:GridViewCell}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type telerik:GridViewCell}">
+                    <Grid>
+                        <Border x:Name="PART_CellBorder"
+                                Background="{Binding Background,
+                                                     RelativeSource={RelativeSource TemplatedParent}}"
+                                BorderBrush="{DynamicResource {x:Static brushes:BrushSet.AccentBackgroundBrushKey}}"
+                                BorderThickness="0,0,2,0" />
+
+                        <ContentPresenter x:Name="PART_ContentPresenter"
+                                          Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="PART_CellBorder" Property="Opacity" Value="0.3" />
+                            <Setter TargetName="PART_ContentPresenter" Property="Opacity" Value="0.3" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Padding" Value="8,0" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+    </Style>
+
+    <Style TargetType="{x:Type telerik:GridViewHeaderCell}">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Padding" Value="5,0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type telerik:GridViewHeaderCell}">
+                    <Border x:Name="GridViewHeaderCell" BorderThickness="{TemplateBinding BorderThickness}">
+
+                        <Grid x:Name="PART_HeaderCellGrid">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <Path x:Name="PART_SortIndicator"
+                                  Grid.ColumnSpan="2"
+                                  Width="7"
+                                  Height="4"
+                                  Margin="0,3,0,0"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Top"
+                                  Data="M256,328L248,336 264,336"
+                                  Fill="{DynamicResource {x:Static brushes:BrushSet.ForegroundBrushKey}}"
+                                  Opacity="0"
+                                  RenderTransformOrigin="0.5,0.5"
+                                  Stretch="Fill">
+                                <Path.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="1" ScaleY="-1" />
+                                        <SkewTransform AngleX="0" AngleY="0" />
+                                        <RotateTransform Angle="0" />
+                                        <TranslateTransform X="0" Y="0" />
+                                    </TransformGroup>
+                                </Path.RenderTransform>
+                            </Path>
+
+                            <Thumb x:Name="PART_LeftHeaderGripper"
+                                   Grid.ColumnSpan="2"
+                                   HorizontalAlignment="Left"
+                                   IsTabStop="{TemplateBinding IsTabStop}">
+                                <Thumb.Style>
+                                    <Style TargetType="{x:Type Thumb}">
+                                        <Setter Property="Width" Value="8" />
+                                        <Setter Property="Background" Value="Transparent" />
+                                        <Setter Property="BorderBrush" Value="Transparent" />
+                                        <Setter Property="BorderThickness" Value="0" />
+                                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                                        <Setter Property="Padding" Value="0" />
+                                        <Setter Property="Cursor" Value="SizeWE" />
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type Thumb}">
+                                                    <Border HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                            Background="{TemplateBinding Background}"
+                                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                                            Padding="{TemplateBinding Padding}" />
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </Thumb.Style>
+                            </Thumb>
+
+                            <Thumb x:Name="PART_RightHeaderGripper"
+                                   Grid.ColumnSpan="2"
+                                   HorizontalAlignment="Right"
+                                   IsTabStop="{TemplateBinding IsTabStop}">
+                                <Thumb.Style>
+                                    <Style TargetType="{x:Type Thumb}">
+                                        <Setter Property="Width" Value="8" />
+                                        <Setter Property="Background" Value="Transparent" />
+                                        <Setter Property="BorderBrush" Value="Transparent" />
+                                        <Setter Property="BorderThickness" Value="0" />
+                                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                                        <Setter Property="Padding" Value="0" />
+                                        <Setter Property="Cursor" Value="SizeWE" />
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type Thumb}">
+                                                    <Border HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                            Background="{TemplateBinding Background}"
+                                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                                            Padding="{TemplateBinding Padding}" />
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </Thumb.Style>
+                            </Thumb>
+                            <ContentControl x:Name="ContentPresenter"
+                                            Grid.Column="0"
+                                            Margin="{TemplateBinding Padding}"
+                                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                            Content="{TemplateBinding Content}"
+                                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                                            Foreground="{DynamicResource {x:Static brushes:BrushSet.ForegroundBrushKey}}"
+                                            IsTabStop="{TemplateBinding IsTabStop}" />
+
+                            <telerik:FilteringDropDown x:Name="PART_DistinctFilterControl"
+                                                       Grid.Column="1"
+                                                       Margin="5,0,0,0"
+                                                       IsTabStop="False"
+                                                       Visibility="{TemplateBinding FilteringUIVisibility}" />
+
+                        </Grid>
+                    </Border>
+
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="GridViewHeaderCell" Property="Background" Value="{DynamicResource {x:Static brushes:BrushSet.MouserOverBrushKey}}" />
+                        </Trigger>
+                        <Trigger Property="SortingState" Value="Ascending">
+                            <Setter Property="Foreground" Value="{DynamicResource {x:Static brushes:BrushSet.AlternativeForegroundBrushKey}}" />
+                            <Setter TargetName="PART_SortIndicator" Property="Opacity" Value="1" />
+                            <Setter TargetName="PART_SortIndicator" Property="LayoutTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="1" ScaleY="1" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="SortingState" Value="Descending">
+                            <Setter Property="Foreground" Value="{DynamicResource {x:Static brushes:BrushSet.AlternativeForegroundBrushKey}}" />
+                            <Setter TargetName="PART_SortIndicator" Property="Opacity" Value="1" />
+                            <Setter TargetName="PART_SortIndicator" Property="LayoutTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="1" ScaleY="-1" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="SortingState" Value="None">
+                            <Setter TargetName="PART_SortIndicator" Property="Opacity" Value="0" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="UnselectedGridViewRowStyle" TargetType="{x:Type telerik:GridViewRow}">
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type telerik:GridViewRow}">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Unfocused" />
+                                <VisualState x:Name="Focused">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NavigatorIndicator" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="SelectionStates">
+                                <VisualState x:Name="Unselected" />
+                                <VisualState x:Name="SelectedUnfocused" />
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver" />
+                                <VisualState x:Name="Selected" />
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="ValueStates">
+                                <VisualState x:Name="RowValid" />
+                                <VisualState x:Name="RowInvalid">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Background_Invalid" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ErrorIndicator" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="EditStates">
+                                <VisualState x:Name="ReadOnlyMode" />
+                                <VisualState x:Name="EditMode">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EditIndicator" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="InvalidEditMode">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Background_Invalid" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InvalidEditableIndicator" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <telerik:SelectiveScrollingGrid x:Name="grid">
+                            <telerik:SelectiveScrollingGrid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </telerik:SelectiveScrollingGrid.ColumnDefinitions>
+                            <telerik:SelectiveScrollingGrid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </telerik:SelectiveScrollingGrid.RowDefinitions>
+                            <Border x:Name="SelectionBackground"
+                                    Grid.Column="2"
+                                    Grid.ColumnSpan="2"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    telerik:SelectiveScrollingGrid.SelectiveScrollingClip="True"
+                                    Background="{DynamicResource {x:Static brushes:BrushSet.AlternativeBackgroundBrushKey}}"
+                                    Padding="{TemplateBinding Padding}" />
+                            <Border x:Name="Background_Invalid"
+                                    Grid.Column="2"
+                                    Grid.ColumnSpan="2"
+                                    telerik:SelectiveScrollingGrid.SelectiveScrollingClip="True"
+                                    BorderBrush="{DynamicResource {x:Static brushes:BrushSet.InvalidBrushKey}}"
+                                    BorderThickness="1"
+                                    Visibility="Collapsed" />
+                            <telerik:GridViewToggleButton x:Name="PART_HierarchyExpandButton"
+                                                          Grid.Column="2"
+                                                          Width="25"
+                                                          telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                                          IsChecked="{Binding IsExpanded,
+                                                                              Mode=TwoWay,
+                                                                              RelativeSource={RelativeSource TemplatedParent}}"
+                                                          IsHitTestVisible="{Binding IsExpandable,
+                                                                                     RelativeSource={RelativeSource TemplatedParent}}"
+                                                          IsTabStop="{TemplateBinding IsTabStop}"
+                                                          PresentationMode="Arrow">
+                                <telerik:GridViewToggleButton.Opacity>
+                                    <Binding Path="IsExpandable" RelativeSource="{RelativeSource TemplatedParent}">
+                                        <Binding.Converter>
+                                            <telerik:BooleanToOpacityConverter />
+                                        </Binding.Converter>
+                                    </Binding>
+                                </telerik:GridViewToggleButton.Opacity>
+                                <telerik:GridViewToggleButton.Template>
+                                    <ControlTemplate TargetType="{x:Type telerik:GridViewToggleButton}">
+                                        <Border HorizontalAlignment="Stretch"
+                                                VerticalAlignment="Stretch"
+                                                Background="Transparent">
+                                            <Border Width="9"
+                                                    Height="9"
+                                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                    Background="{TemplateBinding Background}"
+                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                    BorderThickness="{TemplateBinding BorderThickness}">
+                                                <Grid>
+                                                    <Path x:Name="plus"
+                                                          Width="5"
+                                                          Height="5"
+                                                          Margin="{TemplateBinding Padding}"
+                                                          Data="M1.937,0L2.937,0 2.937,2.0209999 5,2.0209999 5,3.0209999 2.937,3.0209999 2.937,5 1.937,5 1.937,3.0209999 0,3.0209999 0,2.0209999 1.937,2.0209999z"
+                                                          Fill="{DynamicResource {x:Static brushes:BrushSet.AlternativeForegroundBrushKey}}"
+                                                          Stretch="Fill"
+                                                          Stroke="{x:Null}" />
+                                                    <Rectangle x:Name="minus"
+                                                               Width="5"
+                                                               Height="1"
+                                                               Margin="{TemplateBinding Padding}"
+                                                               HorizontalAlignment="Center"
+                                                               VerticalAlignment="Center"
+                                                               Fill="{DynamicResource {x:Static brushes:BrushSet.AlternativeForegroundBrushKey}}"
+                                                               Opacity="0"
+                                                               RadiusX="0"
+                                                               RadiusY="0"
+                                                               Stroke="{x:Null}" />
+                                                </Grid>
+                                            </Border>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsChecked" Value="True">
+                                                <Setter TargetName="plus" Property="Opacity" Value="0" />
+                                                <Setter TargetName="minus" Property="Opacity" Value="1" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </telerik:GridViewToggleButton.Template>
+                                <telerik:GridViewToggleButton.Visibility>
+                                    <Binding Path="HasHierarchy" RelativeSource="{RelativeSource TemplatedParent}">
+                                        <Binding.Converter>
+                                            <telerik:BooleanToVisibilityConverter />
+                                        </Binding.Converter>
+                                    </Binding>
+                                </telerik:GridViewToggleButton.Visibility>
+                            </telerik:GridViewToggleButton>
+                            <Border Grid.Column="2" telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical">
+                                <Border.Visibility>
+                                    <Binding Path="HasHierarchy" RelativeSource="{RelativeSource TemplatedParent}">
+                                        <Binding.Converter>
+                                            <telerik:BooleanToVisibilityConverter />
+                                        </Binding.Converter>
+                                    </Binding>
+                                </Border.Visibility>
+                            </Border>
+                            <telerik:DataCellsPresenter x:Name="PART_DataCellsPresenter"
+                                                        Grid.Column="3"
+                                                        IsTabStop="False">
+                                <telerik:DataCellsPresenter.Style>
+                                    <Style TargetType="{x:Type telerik:DataCellsPresenter}">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type telerik:DataCellsPresenter}">
+                                                    <Grid>
+                                                        <ItemsPresenter />
+                                                    </Grid>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Setter Property="IsTabStop" Value="False" />
+                                        <Setter Property="ItemsPanel">
+                                            <Setter.Value>
+                                                <ItemsPanelTemplate>
+                                                    <telerik:GridViewCellsPanel IsItemsHost="True" />
+                                                </ItemsPanelTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Setter Property="SnapsToDevicePixels" Value="True" />
+                                    </Style>
+
+                                </telerik:DataCellsPresenter.Style>
+                            </telerik:DataCellsPresenter>
+                            <Border Grid.Row="2"
+                                    Grid.Column="2"
+                                    Grid.ColumnSpan="2"
+                                    telerik:SelectiveScrollingGrid.SelectiveScrollingClip="True"
+                                    Background="{DynamicResource {x:Static brushes:BrushSet.BackgroundBrushKey}}"
+                                    BorderBrush="{DynamicResource {x:Static brushes:BrushSet.BorderBrushKey}}"
+                                    BorderThickness="0,1"
+                                    Padding="0">
+                                <Border.Visibility>
+                                    <Binding Path="IsExpanded" RelativeSource="{RelativeSource TemplatedParent}">
+                                        <Binding.Converter>
+                                            <telerik:BooleanToVisibilityConverter />
+                                        </Binding.Converter>
+                                    </Binding>
+                                </Border.Visibility>
+                                <ContentPresenter x:Name="PART_HierarchyChildPresenter"                                                  
+                                                  telerik:SelectiveScrollingGrid.SelectiveScrollingClip="True"
+                                                  Content="{TemplateBinding Content}"
+                                                  ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}" />
+                            </Border>
+                            <telerik:DetailsPresenter x:Name="PART_DetailsPresenter"
+                                                      Grid.Row="1"                                                      
+                                                      Grid.Column="2"
+                                                      Grid.ColumnSpan="2"
+                                                      DetailsProvider="{TemplateBinding DetailsProvider}"
+                                                      IsTabStop="False" />
+
+                            <telerik:IndentPresenter x:Name="PART_IndentPresenter"
+                                                     Grid.RowSpan="4"
+                                                     Grid.Column="1"
+                                                     telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                                     IndentLevel="{TemplateBinding IndentLevel}"
+                                                     IsTabStop="False">
+                                <telerik:IndentPresenter.Style>
+                                    <Style TargetType="{x:Type telerik:IndentPresenter}">
+
+                                        <Setter Property="ItemTemplate">
+                                            <Setter.Value>
+                                                <DataTemplate>
+                                                    <telerik:GridViewIndentCell Background="Transparent"
+                                                                                BorderBrush="Transparent"
+                                                                                IsTabStop="False" />
+                                                </DataTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </telerik:IndentPresenter.Style>
+                            </telerik:IndentPresenter>
+                            <Border x:Name="PART_IndicatorPresenter"
+                                    Grid.RowSpan="4"
+                                    Grid.Column="0"
+                                    Width="30"
+                                    VerticalAlignment="Stretch"
+                                    telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{DynamicResource {x:Static brushes:BrushSet.AccentBackgroundBrushKey}}"
+                                    BorderThickness="0,0,2,0"
+                                    Visibility="{TemplateBinding RowIndicatorVisibility}">
+                                <Grid>
+                                    <Border x:Name="NavigatorIndicator"
+                                            Width="8"
+                                            Height="8"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Visibility="Collapsed">
+                                        <Path Data="M 0,0 L 3,0 8,4 3,8 0,8 5,4 Z" Fill="{DynamicResource {x:Static brushes:BrushSet.MarkBrushKey}}" />
+                                    </Border>
+                                    <Border x:Name="EditIndicator"
+                                            Width="18"
+                                            Height="12"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Background="{DynamicResource {x:Static brushes:BrushSet.AlternativeBackgroundBrushKey}}"
+                                            BorderBrush="{DynamicResource {x:Static brushes:BrushSet.BorderBrushKey}}"
+                                            BorderThickness="1"
+                                            Visibility="Collapsed">
+                                        <Path Data="M 3,2 L 4,2 5,2 6,2 6,3 5,3 5,4 5,5 5,6 5,7 6,7 6,8 5,8 4,8 3,8 3,7 4,7 4,6 4,5 4,4 4,3 3,3 Z" Fill="{DynamicResource {x:Static brushes:BrushSet.MarkBrushKey}}" />
+                                    </Border>
+                                    <Border x:Name="InvalidEditableIndicator"
+                                            Width="18"
+                                            Height="12"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Background="{DynamicResource {x:Static brushes:BrushSet.AlternativeBackgroundBrushKey}}"
+                                            BorderBrush="{DynamicResource {x:Static brushes:BrushSet.InvalidBrushKey}}"
+                                            BorderThickness="1"
+                                            Visibility="Collapsed">
+                                        <Path Data="M 3,2 L 4,2 5,2 6,2 6,3 5,3 5,4 5,5 5,6 5,7 6,7 6,8 5,8 4,8 3,8 3,7 4,7 4,6 4,5 4,4 4,3 3,3 Z" Fill="{DynamicResource {x:Static brushes:BrushSet.InvalidBrushKey}}" />
+                                    </Border>
+                                </Grid>
+                            </Border>
+                        </telerik:SelectiveScrollingGrid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="SelectionBackground" Property="Background" Value="{DynamicResource {x:Static brushes:BrushSet.MouserOverBrushKey}}" />
+                        </Trigger>
+
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="SelectionBackground" Property="Background" Value="{DynamicResource {x:Static brushes:BrushSet.AccentSelectedBrushKey}}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="Margin" Value="0,0,0,2" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+
+
+    </Style>
+
+    <Style x:Key="HierarchicalGridRowWithUserStatusStyle" TargetType="{x:Type telerik:GridViewRow}">
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type telerik:GridViewRow}">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <telerik:SelectiveScrollingGrid x:Name="grid">
+                            <telerik:SelectiveScrollingGrid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </telerik:SelectiveScrollingGrid.ColumnDefinitions>
+                            <telerik:SelectiveScrollingGrid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </telerik:SelectiveScrollingGrid.RowDefinitions>
+                            <Border x:Name="SelectionBackground"
+                                    Grid.Column="2"
+                                    Grid.ColumnSpan="2"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    telerik:SelectiveScrollingGrid.SelectiveScrollingClip="True"
+                                    Background="{DynamicResource {x:Static brushes:BrushSet.BackgroundBrushKey}}"
+                                    Padding="{TemplateBinding Padding}" />
+                            <Border x:Name="Background_Over"
+                                    Grid.Column="2"
+                                    Grid.ColumnSpan="2"
+                                    telerik:SelectiveScrollingGrid.SelectiveScrollingClip="True"
+                                    Background="{DynamicResource {x:Static brushes:BrushSet.MouserOverBrushKey}}"
+                                    Visibility="Collapsed" />
+                            <Border x:Name="Background_Selected"
+                                    Grid.Column="2"
+                                    Grid.ColumnSpan="2"
+                                    telerik:SelectiveScrollingGrid.SelectiveScrollingClip="True"
+                                    Background="{DynamicResource {x:Static brushes:BrushSet.BackgroundBrushKey}}"
+                                    Visibility="Collapsed" />
+                            <Border x:Name="Background_Invalid"
+                                    Grid.Column="2"
+                                    Grid.ColumnSpan="2"
+                                    Margin="1,1,1,2"
+                                    telerik:SelectiveScrollingGrid.SelectiveScrollingClip="True"
+                                    BorderBrush="{DynamicResource {x:Static brushes:BrushSet.BorderBrushKey}}"
+                                    BorderThickness="1"
+                                    CornerRadius="1"
+                                    Visibility="Collapsed" />
+                            <telerik:GridViewToggleButton x:Name="PART_HierarchyExpandButton"
+                                                          Grid.Column="2"
+                                                          Width="55"
+                                                          telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                                          IsChecked="{Binding IsExpanded,
+                                                                              Mode=TwoWay,
+                                                                              RelativeSource={RelativeSource TemplatedParent}}"
+                                                          IsHitTestVisible="{Binding IsExpandable,
+                                                                                     RelativeSource={RelativeSource TemplatedParent}}"
+                                                          IsTabStop="{TemplateBinding IsTabStop}"
+                                                          PresentationMode="Arrow">
+                                <telerik:GridViewToggleButton.Opacity>
+                                    <Binding Path="IsExpandable" RelativeSource="{RelativeSource TemplatedParent}">
+                                        <Binding.Converter>
+                                            <telerik:BooleanToOpacityConverter />
+                                        </Binding.Converter>
+                                    </Binding>
+                                </telerik:GridViewToggleButton.Opacity>
+                                <telerik:GridViewToggleButton.Visibility>
+                                    <Binding Path="HasHierarchy" RelativeSource="{RelativeSource TemplatedParent}">
+                                        <Binding.Converter>
+                                            <converters:BooleanToHidenVisibilityConverter />
+                                        </Binding.Converter>
+                                    </Binding>
+                                </telerik:GridViewToggleButton.Visibility>
+                            </telerik:GridViewToggleButton>
+                            <Border Grid.Column="2" telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical">
+                                <Border.Visibility>
+                                    <Binding Path="HasHierarchy" RelativeSource="{RelativeSource TemplatedParent}">
+                                        <Binding.Converter>
+                                            <telerik:BooleanToVisibilityConverter />
+                                        </Binding.Converter>
+                                    </Binding>
+                                </Border.Visibility>
+                            </Border>
+                            <telerik:DataCellsPresenter x:Name="PART_DataCellsPresenter"
+                                                        Grid.Column="3"
+                                                        IsTabStop="False">
+                                <telerik:StyleManager.Theme>
+                                    <telerik:Office_BlackTheme />
+                                </telerik:StyleManager.Theme>
+                            </telerik:DataCellsPresenter>
+                            <Border Grid.Row="2"
+                                    Grid.Column="2"
+                                    Grid.ColumnSpan="2"
+                                    Margin="-3, 0, 0, 0"
+                                    telerik:SelectiveScrollingGrid.SelectiveScrollingClip="True"
+                                    Background="{DynamicResource {x:Static brushes:BrushSet.BackgroundBrushKey}}"
+                                    BorderBrush="{DynamicResource {x:Static brushes:BrushSet.BorderBrushKey}}"
+                                    BorderThickness="0,1"
+                                    Padding="0">
+                                <Border.Visibility>
+                                    <Binding Path="IsExpanded" RelativeSource="{RelativeSource TemplatedParent}">
+                                        <Binding.Converter>
+                                            <telerik:BooleanToVisibilityConverter />
+                                        </Binding.Converter>
+                                    </Binding>
+                                </Border.Visibility>
+                                <ContentPresenter x:Name="PART_HierarchyChildPresenter"
+                                                  telerik:SelectiveScrollingGrid.SelectiveScrollingClip="True"
+                                                  Content="{TemplateBinding Content}"
+                                                  ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}" />
+                            </Border>
+                            <telerik:DetailsPresenter x:Name="PART_DetailsPresenter"
+                                                      Grid.Row="1"
+                                                      Grid.Column="2"
+                                                      Grid.ColumnSpan="2"
+                                                      DetailsProvider="{TemplateBinding DetailsProvider}"
+                                                      IsTabStop="False">
+                                <telerik:StyleManager.Theme>
+                                    <telerik:Office_BlackTheme />
+                                </telerik:StyleManager.Theme>
+                            </telerik:DetailsPresenter>
+                            <telerik:IndentPresenter x:Name="PART_IndentPresenter"
+                                                     Grid.RowSpan="4"
+                                                     Grid.Column="1"
+                                                     telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                                     IndentLevel="{TemplateBinding IndentLevel}"
+                                                     IsTabStop="False">
+                                <telerik:StyleManager.Theme>
+                                    <telerik:Office_BlackTheme />
+                                </telerik:StyleManager.Theme>
+                            </telerik:IndentPresenter>
+                            <Border x:Name="PART_IndicatorPresenter"
+                                    Grid.RowSpan="4"
+                                    Grid.Column="0"
+                                    Width="2"
+                                    VerticalAlignment="Stretch"
+                                    telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                    Visibility="{TemplateBinding RowIndicatorVisibility}">
+                                <Rectangle x:Name="NavigatorIndicatorBackground"
+                                           Fill="{DynamicResource {x:Static brushes:BrushSet.AlternativeForegroundBrushKey}}"
+                                           ToolTip="Online"
+                                           Visibility="{Binding RelativeSource={RelativeSource FindAncestor,
+                                                                                               AncestorType=telerik:GridViewRow},
+                                                                Path=DataContext.IsOnline,
+                                                                ConverterParameter=1,
+                                                                Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            </Border>
+                            <Border x:Name="PART_IndicatorPresenter2"
+                                    Grid.RowSpan="4"
+                                    Grid.Column="0"
+                                    Width="2"
+                                    VerticalAlignment="Stretch"
+                                    telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                    Visibility="{TemplateBinding RowIndicatorVisibility}">
+                                <Rectangle x:Name="NavigatorIndicatorBackground2"
+                                           Fill="{DynamicResource {x:Static brushes:BrushSet.AlternativeForegroundBrushKey}}"
+                                           ToolTip="Offline"
+                                           Visibility="{Binding RelativeSource={RelativeSource FindAncestor,
+                                                                                               AncestorType=telerik:GridViewRow},
+                                                                Path=DataContext.IsOnline,
+                                                                Converter={StaticResource InvertedBooleanToVisibilityConverter}}" />
+                            </Border>
+
+                        </telerik:SelectiveScrollingGrid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="Background_Selected" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="False">
+                            <Setter TargetName="Background_Selected" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Background_Over" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter TargetName="Background_Over" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="Margin" Value="0,0,0,2" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+    </Style>
+
+    <Style x:Key="HierarchicalGridRowStyle" TargetType="{x:Type telerik:GridViewRow}">
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type telerik:GridViewRow}">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <telerik:SelectiveScrollingGrid x:Name="grid">
+                            <telerik:SelectiveScrollingGrid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </telerik:SelectiveScrollingGrid.ColumnDefinitions>
+                            <telerik:SelectiveScrollingGrid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </telerik:SelectiveScrollingGrid.RowDefinitions>
+                            <Border x:Name="SelectionBackground"
+                                    Grid.Column="2"
+                                    Grid.ColumnSpan="2"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    telerik:SelectiveScrollingGrid.SelectiveScrollingClip="True"
+                                    Background="{DynamicResource {x:Static brushes:BrushSet.AlternativeForegroundBrushKey}}"
+                                    Padding="{TemplateBinding Padding}" />
+                            <Border x:Name="Background_Over"
+                                    Grid.Column="2"
+                                    Grid.ColumnSpan="2"
+                                    telerik:SelectiveScrollingGrid.SelectiveScrollingClip="True"
+                                    Background="{DynamicResource {x:Static brushes:BrushSet.MouserOverBrushKey}}"
+                                    Visibility="Collapsed" />
+                            <Border x:Name="Background_Selected"
+                                    Grid.Column="2"
+                                    Grid.ColumnSpan="2"
+                                    telerik:SelectiveScrollingGrid.SelectiveScrollingClip="True"
+                                    Background="{DynamicResource {x:Static brushes:BrushSet.AlternativeForegroundBrushKey}}"
+                                    Visibility="Collapsed" />
+                            <Border x:Name="Background_Invalid"
+                                    Grid.Column="2"
+                                    Grid.ColumnSpan="2"
+                                    Margin="1,1,1,2"
+                                    telerik:SelectiveScrollingGrid.SelectiveScrollingClip="True"
+                                    BorderBrush="{DynamicResource {x:Static brushes:BrushSet.BorderBrushKey}}"
+                                    BorderThickness="1"
+                                    CornerRadius="1"
+                                    Visibility="Collapsed" />
+                            <telerik:GridViewToggleButton x:Name="PART_HierarchyExpandButton"
+                                                          Grid.Column="2"
+                                                          Width="25"
+                                                          telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                                          IsChecked="{Binding IsExpanded,
+                                                                              Mode=TwoWay,
+                                                                              RelativeSource={RelativeSource TemplatedParent}}"
+                                                          IsHitTestVisible="{Binding IsExpandable,
+                                                                                     RelativeSource={RelativeSource TemplatedParent}}"
+                                                          IsTabStop="{TemplateBinding IsTabStop}"
+                                                          PresentationMode="Arrow">
+                                <telerik:GridViewToggleButton.Opacity>
+                                    <Binding Path="IsExpandable" RelativeSource="{RelativeSource TemplatedParent}">
+                                        <Binding.Converter>
+                                            <telerik:BooleanToOpacityConverter />
+                                        </Binding.Converter>
+                                    </Binding>
+                                </telerik:GridViewToggleButton.Opacity>
+                                <telerik:GridViewToggleButton.Visibility>
+                                    <Binding Path="HasHierarchy" RelativeSource="{RelativeSource TemplatedParent}">
+                                        <Binding.Converter>
+                                            <converters:BooleanToHidenVisibilityConverter />
+                                        </Binding.Converter>
+                                    </Binding>
+                                </telerik:GridViewToggleButton.Visibility>
+                            </telerik:GridViewToggleButton>
+                            <Border Grid.Column="2" telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical">
+                                <Border.Visibility>
+                                    <Binding Path="HasHierarchy" RelativeSource="{RelativeSource TemplatedParent}">
+                                        <Binding.Converter>
+                                            <telerik:BooleanToVisibilityConverter />
+                                        </Binding.Converter>
+                                    </Binding>
+                                </Border.Visibility>
+                            </Border>
+                            <telerik:DataCellsPresenter x:Name="PART_DataCellsPresenter"
+                                                        Grid.Column="3"
+                                                        IsTabStop="False">
+                                <telerik:StyleManager.Theme>
+                                    <telerik:Office_BlackTheme />
+                                </telerik:StyleManager.Theme>
+                            </telerik:DataCellsPresenter>
+                            <Border Grid.Row="2"
+                                    Grid.Column="2"
+                                    Grid.ColumnSpan="2"
+                                    Margin="-3, 0, 0, 0"
+                                    telerik:SelectiveScrollingGrid.SelectiveScrollingClip="True"
+                                    Background="{DynamicResource {x:Static brushes:BrushSet.AlternativeForegroundBrushKey}}"
+                                    BorderBrush="{DynamicResource {x:Static brushes:BrushSet.BorderBrushKey}}"
+                                    BorderThickness="0,1"
+                                    Padding="0">
+                                <Border.Visibility>
+                                    <Binding Path="IsExpanded" RelativeSource="{RelativeSource TemplatedParent}">
+                                        <Binding.Converter>
+                                            <telerik:BooleanToVisibilityConverter />
+                                        </Binding.Converter>
+                                    </Binding>
+                                </Border.Visibility>
+                                <ContentPresenter x:Name="PART_HierarchyChildPresenter"
+                                                  telerik:SelectiveScrollingGrid.SelectiveScrollingClip="True"
+                                                  Content="{TemplateBinding Content}"
+                                                  ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}" />
+                            </Border>
+                            <telerik:DetailsPresenter x:Name="PART_DetailsPresenter"
+                                                      Grid.Row="1"
+                                                      Grid.Column="2"
+                                                      Grid.ColumnSpan="2"
+                                                      DetailsProvider="{TemplateBinding DetailsProvider}"
+                                                      IsTabStop="False">
+                                <telerik:StyleManager.Theme>
+                                    <telerik:Office_BlackTheme />
+                                </telerik:StyleManager.Theme>
+                            </telerik:DetailsPresenter>
+                            <telerik:IndentPresenter x:Name="PART_IndentPresenter"
+                                                     Grid.RowSpan="4"
+                                                     Grid.Column="1"
+                                                     telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                                     IndentLevel="{TemplateBinding IndentLevel}"
+                                                     IsTabStop="False">
+                                <telerik:StyleManager.Theme>
+                                    <telerik:Office_BlackTheme />
+                                </telerik:StyleManager.Theme>
+                            </telerik:IndentPresenter>
+                            <Border x:Name="PART_IndicatorPresenter"
+                                    Grid.RowSpan="4"
+                                    Grid.Column="0"
+                                    Width="2"
+                                    VerticalAlignment="Stretch"
+                                    telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                    Visibility="{TemplateBinding RowIndicatorVisibility}" />
+                            <Border x:Name="PART_IndicatorPresenter2"
+                                    Grid.RowSpan="4"
+                                    Grid.Column="0"
+                                    Width="2"
+                                    VerticalAlignment="Stretch"
+                                    telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                    Visibility="{TemplateBinding RowIndicatorVisibility}" />
+
+                        </telerik:SelectiveScrollingGrid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="Background_Selected" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="False">
+                            <Setter TargetName="Background_Selected" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Background_Over" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter TargetName="Background_Over" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="Margin" Value="0,0,0,2" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+    </Style>
+
+    <Style x:Key="GridViewUnselectableStyle"
+           BasedOn="{StaticResource {x:Type telerik:GridViewRow}}"
+           TargetType="{x:Type telerik:GridViewRow}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type telerik:GridViewRow}">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <telerik:SelectiveScrollingGrid x:Name="grid">
+                            <telerik:SelectiveScrollingGrid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </telerik:SelectiveScrollingGrid.ColumnDefinitions>
+                            <telerik:SelectiveScrollingGrid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </telerik:SelectiveScrollingGrid.RowDefinitions>
+                            <Border x:Name="SelectionBackground"
+                                    Grid.Column="2"
+                                    Grid.ColumnSpan="2"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    telerik:SelectiveScrollingGrid.SelectiveScrollingClip="True"
+                                    Background="{DynamicResource {x:Static brushes:BrushSet.AlternativeForegroundBrushKey}}"
+                                    Padding="{TemplateBinding Padding}" />
+                            <Border x:Name="Background_Invalid"
+                                    Grid.Column="2"
+                                    Grid.ColumnSpan="2"
+                                    Margin="1,1,1,2"
+                                    telerik:SelectiveScrollingGrid.SelectiveScrollingClip="True"
+                                    BorderBrush="{DynamicResource {x:Static brushes:BrushSet.BorderBrushKey}}"
+                                    BorderThickness="1"
+                                    CornerRadius="1"
+                                    Visibility="Collapsed" />
+                            <telerik:GridViewToggleButton x:Name="PART_HierarchyExpandButton"
+                                                          Grid.Column="2"
+                                                          Width="25"
+                                                          telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                                          IsChecked="{Binding IsExpanded,
+                                                                              Mode=TwoWay,
+                                                                              RelativeSource={RelativeSource TemplatedParent}}"
+                                                          IsHitTestVisible="{Binding IsExpandable,
+                                                                                     RelativeSource={RelativeSource TemplatedParent}}"
+                                                          IsTabStop="{TemplateBinding IsTabStop}">
+                                <telerik:GridViewToggleButton.Opacity>
+                                    <Binding Path="IsExpandable" RelativeSource="{RelativeSource TemplatedParent}">
+                                        <Binding.Converter>
+                                            <telerik:BooleanToOpacityConverter />
+                                        </Binding.Converter>
+                                    </Binding>
+                                </telerik:GridViewToggleButton.Opacity>
+                                <telerik:StyleManager.Theme>
+                                    <telerik:Office_BlackTheme />
+                                </telerik:StyleManager.Theme>
+                                <telerik:GridViewToggleButton.Template>
+                                    <ControlTemplate TargetType="{x:Type telerik:GridViewToggleButton}">
+                                        <Border HorizontalAlignment="Stretch"
+                                                VerticalAlignment="Stretch"
+                                                Background="Transparent">
+                                            <Border Width="9"
+                                                    Height="9"
+                                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                    Background="{TemplateBinding Background}"
+                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                    BorderThickness="{TemplateBinding BorderThickness}">
+                                                <Grid>
+                                                    <Path x:Name="plus"
+                                                          Width="5"
+                                                          Height="5"
+                                                          Margin="{TemplateBinding Padding}"
+                                                          Data="M1.937,0L2.937,0 2.937,2.0209999 5,2.0209999 5,3.0209999 2.937,3.0209999 2.937,5 1.937,5 1.937,3.0209999 0,3.0209999 0,2.0209999 1.937,2.0209999z"
+                                                          Fill="{DynamicResource {x:Static brushes:BrushSet.AlternativeForegroundBrushKey}}"
+                                                          Stretch="Fill"
+                                                          Stroke="{x:Null}" />
+                                                    <Rectangle x:Name="minus"
+                                                               Width="5"
+                                                               Height="1"
+                                                               Margin="{TemplateBinding Padding}"
+                                                               HorizontalAlignment="Center"
+                                                               VerticalAlignment="Center"
+                                                               Fill="{DynamicResource {x:Static brushes:BrushSet.AlternativeForegroundBrushKey}}"
+                                                               Opacity="0"
+                                                               RadiusX="0"
+                                                               RadiusY="0"
+                                                               Stroke="{x:Null}" />
+                                                </Grid>
+                                            </Border>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsChecked" Value="True">
+                                                <Setter TargetName="plus" Property="Opacity" Value="0" />
+                                                <Setter TargetName="minus" Property="Opacity" Value="1" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </telerik:GridViewToggleButton.Template>
+                                <telerik:GridViewToggleButton.Visibility>
+                                    <Binding Path="HasHierarchy" RelativeSource="{RelativeSource TemplatedParent}">
+                                        <Binding.Converter>
+                                            <telerik:BooleanToVisibilityConverter />
+                                        </Binding.Converter>
+                                    </Binding>
+                                </telerik:GridViewToggleButton.Visibility>
+                            </telerik:GridViewToggleButton>
+                            <Border Grid.Column="2" telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical">
+                                <Border.Visibility>
+                                    <Binding Path="HasHierarchy" RelativeSource="{RelativeSource TemplatedParent}">
+                                        <Binding.Converter>
+                                            <telerik:BooleanToVisibilityConverter />
+                                        </Binding.Converter>
+                                    </Binding>
+                                </Border.Visibility>
+                            </Border>
+                            <telerik:DataCellsPresenter x:Name="PART_DataCellsPresenter"
+                                                        Grid.Column="3"
+                                                        IsTabStop="False" />
+                            <Border Grid.Row="2"
+                                    Grid.Column="2"
+                                    Grid.ColumnSpan="2"
+                                    telerik:SelectiveScrollingGrid.SelectiveScrollingClip="True"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="0,1"
+                                    Padding="6">
+                                <Border.Visibility>
+                                    <Binding Path="IsExpanded" RelativeSource="{RelativeSource TemplatedParent}">
+                                        <Binding.Converter>
+                                            <telerik:BooleanToVisibilityConverter />
+                                        </Binding.Converter>
+                                    </Binding>
+                                </Border.Visibility>
+                                <ContentPresenter x:Name="PART_HierarchyChildPresenter"
+                                                  telerik:SelectiveScrollingGrid.SelectiveScrollingClip="True"
+                                                  Content="{TemplateBinding Content}"
+                                                  ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}" />
+                            </Border>
+                            <telerik:DetailsPresenter x:Name="PART_DetailsPresenter"
+                                                      Grid.Row="1"
+                                                      Grid.Column="2"
+                                                      Grid.ColumnSpan="2"
+                                                      DetailsProvider="{TemplateBinding DetailsProvider}"
+                                                      IsTabStop="False">
+                                <telerik:StyleManager.Theme>
+                                    <telerik:Office_BlackTheme />
+                                </telerik:StyleManager.Theme>
+                            </telerik:DetailsPresenter>
+                            <telerik:IndentPresenter x:Name="PART_IndentPresenter"
+                                                     Grid.RowSpan="4"
+                                                     Grid.Column="1"
+                                                     telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                                     IndentLevel="{TemplateBinding IndentLevel}"
+                                                     IsTabStop="False">
+                                <ContentPresenter />
+                            </telerik:IndentPresenter>
+                        </telerik:SelectiveScrollingGrid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type telerik:GridViewScrollViewer}">
+        <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
+        <Setter Property="HorizontalScrollBarVisibility" Value="Auto" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ScrollViewer">
+                    <Grid x:Name="PART_RootPanel" Background="{DynamicResource {x:Static brushes:BrushSet.AccentBackgroundBrushKey}}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <ScrollBar x:Name="PART_VerticalScrollBar"
+                                   Grid.RowSpan="4"
+                                   Grid.Column="1"
+                                   AutomationProperties.AutomationId="VerticalScrollBar"
+                                   Cursor="Arrow"
+                                   Maximum="{TemplateBinding ScrollableHeight}"
+                                   Minimum="0.0"
+                                   Style="{StaticResource RadGridViewScrollBarStyle}"
+                                   ViewportSize="{TemplateBinding ViewportHeight}"
+                                   Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
+                                   Value="{Binding RelativeSource={RelativeSource TemplatedParent},
+                                                   Path=VerticalOffset,
+                                                   Mode=OneWay}" />
+
+                        <ScrollContentPresenter Grid.Row="2" CanContentScroll="{TemplateBinding CanContentScroll}" />
+                        <ScrollBar x:Name="PART_HorizontalScrollBar"
+                                   Grid.Row="4"
+                                   AutomationProperties.AutomationId="HorizontalScrollBar"
+                                   Cursor="Arrow"
+                                   Maximum="{TemplateBinding ScrollableWidth}"
+                                   Minimum="0.0"
+                                   Orientation="Horizontal"
+                                   Style="{StaticResource RadGridViewScrollBarStyle}"
+                                   ViewportSize="{TemplateBinding ViewportWidth}"
+                                   Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"
+                                   Value="{Binding RelativeSource={RelativeSource TemplatedParent},
+                                                   Path=HorizontalOffset,
+                                                   Mode=OneWay}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type telerik:GridViewEditorPresenter}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type telerik:GridViewEditorPresenter}">
+                    <Grid>
+                        <ContentPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Content="{TemplateBinding Content}"
+                                          ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}" />
+
+                        <Border x:Name="ValidationErrorBorder"
+                                BorderBrush="{DynamicResource {x:Static brushes:BrushSet.InvalidBrushKey}}"
+                                BorderThickness="2"
+                                SnapsToDevicePixels="True"
+                                Visibility="Collapsed">
+                            <Path Width="6"
+                                  Height="6"
+                                  HorizontalAlignment="Right"
+                                  VerticalAlignment="Top"
+                                  Data="M 0,0 L 6,0 L 6,6 Z"
+                                  Fill="{DynamicResource {x:Static brushes:BrushSet.InvalidBrushKey}}" />
+                        </Border>
+
+                        <Popup x:Name="ValidationErrorPopup"
+                               AllowsTransparency="True"
+                               IsOpen="False"
+                               Placement="Right">
+                            <Border Height="25"
+                                    Background="{DynamicResource {x:Static brushes:BrushSet.InvalidBrushKey}}"
+                                    BorderThickness="5,0">
+                                <ContentControl Margin="5,0"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Center"
+                                                Content="{TemplateBinding ErrorMessage}"
+                                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                FontSize="10"
+                                                Foreground="{DynamicResource {x:Static brushes:BrushSet.ForegroundBrushKey}}" />
+                            </Border>
+                        </Popup>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsContentValid" Value="False">
+                            <Setter TargetName="ValidationErrorBorder" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger SourceName="ValidationErrorBorder" Property="IsMouseOver" Value="True">
+                            <Setter TargetName="ValidationErrorPopup" Property="IsOpen" Value="True" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+</ResourceDictionary>

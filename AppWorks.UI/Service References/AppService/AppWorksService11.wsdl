@@ -1,0 +1,3152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="AppWorksService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="WSHttpBinding_IAppWorksServices_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="922337203685477" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:49471/AppWorksServices.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:49471/AppWorksServices.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:49471/AppWorksServices.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:49471/AppWorksServices.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/AppWorksService.Properties" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IAppWorksServices_GetTableColumnNames_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTableColumnNames" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetTableColumnNames_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTableColumnNamesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_CheckDuplicateCalenderAndPeriod_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckDuplicateCalenderAndPeriod" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_CheckDuplicateCalenderAndPeriod_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckDuplicateCalenderAndPeriodResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetVehicleLegsInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVehicleLegsInfo" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetVehicleLegsInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVehicleLegsInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetInvoiceCreditCostCenterNumber_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetInvoiceCreditCostCenterNumber" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetInvoiceCreditCostCenterNumber_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetInvoiceCreditCostCenterNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_InsertBillingLineItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertBillingLineItems" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_InsertBillingLineItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertBillingLineItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateCustomerAddredss_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCustomerAddredss" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateCustomerAddredss_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCustomerAddredssResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetCustomerAddredssType_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerAddredssType" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetCustomerAddredssType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerAddredssTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetCodeDetailsForInvoice_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCodeDetailsForInvoice" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetCodeDetailsForInvoice_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCodeDetailsForInvoiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetInvoiceDataForInvoicePrint_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetInvoiceDataForInvoicePrint" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetInvoiceDataForInvoicePrint_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetInvoiceDataForInvoicePrintResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetVehicleListingReport_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVehicleListingReport" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetVehicleListingReport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVehicleListingReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_LoadCustomerList_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadCustomerList" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_LoadCustomerList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadCustomerListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_LoadBatchList_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadBatchList" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_LoadBatchList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadBatchListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetPortStorageRequestReport_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPortStorageRequestReport" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetPortStorageRequestReport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPortStorageRequestReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetPortStorageVehicleSummeryReport_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPortStorageVehicleSummeryReport" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetPortStorageVehicleSummeryReport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPortStorageVehicleSummeryReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetPortStorageLaneSummaryList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPortStorageLaneSummaryList" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetPortStorageLaneSummaryList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPortStorageLaneSummaryListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetPortStorageInBoundList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPortStorageInBoundList" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetPortStorageInBoundList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPortStorageInBoundListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetDAIAddressName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDAIAddressName" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetDAIAddressName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDAIAddressNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_LoadInvoiceList_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadInvoiceList" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_LoadInvoiceList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadInvoiceListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetBatchLocationImport_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBatchLocationImport" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetBatchLocationImport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBatchLocationImportResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetInventoryComparisionList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetInventoryComparisionList" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetInventoryComparisionList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetInventoryComparisionListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateRequestPrintIndexForVehicles_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRequestPrintIndexForVehicles" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateRequestPrintIndexForVehicles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRequestPrintIndexForVehiclesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsers" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetModules_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetModules" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetModules_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetModulesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetCustomers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomers" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetCustomers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_AddUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddUser" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_AddUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_AddUserCustomer_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserCustomer" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_AddUserCustomer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserCustomerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_AddUserModule_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserModule" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_AddUserModule_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserModuleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_DeleteUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUser" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_DeleteUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetRoles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoles" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetRoles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRolesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetGroups_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroups" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetGroups_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroupsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_InsertUpdateUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertUpdateUser" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_InsertUpdateUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertUpdateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_CheckDuplicateEmail_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckDuplicateEmail" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_CheckDuplicateEmail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckDuplicateEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_CheckDuplicatePortalUserName_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckDuplicatePortalUserName" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_CheckDuplicatePortalUserName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckDuplicatePortalUserNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetPortStorageInventoryDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPortStorageInventoryDetails" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetPortStorageInventoryDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPortStorageInventoryDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateRequestCheckedVehicles_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRequestCheckedVehicles" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateRequestCheckedVehicles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRequestCheckedVehiclesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_CheckMultipleVIN_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckMultipleVIN" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_CheckMultipleVIN_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckMultipleVINResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetDecodedPortStorageVIN_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDecodedPortStorageVIN" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetDecodedPortStorageVIN_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDecodedPortStorageVINResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_InsertDecodeVIN_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertDecodeVIN" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_InsertDecodeVIN_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertDecodeVINResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetDecodedVINForVINDecode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDecodedVINForVINDecode" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetDecodedVINForVINDecode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDecodedVINForVINDecodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetDecodeDataFromWeb_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDecodeDataFromWeb" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetDecodeDataFromWeb_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDecodeDataFromWebResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetRolesSelection_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRolesSelection" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetRolesSelection_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRolesSelectionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetBillingRecordExport_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBillingRecordExport" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetBillingRecordExport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBillingRecordExportResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetBillingExportBatchId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBillingExportBatchId" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetBillingExportBatchId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBillingExportBatchIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_SetBillingExportNextBatchId_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetBillingExportNextBatchId" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_SetBillingExportNextBatchId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetBillingExportNextBatchIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetBillingExportFilePath_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBillingExportFilePath" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetBillingExportFilePath_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBillingExportFilePathResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateBillingLineItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateBillingLineItem" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateBillingLineItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateBillingLineItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_LogErrorToDb_InputMessage">
+    <wsdl:part name="parameters" element="tns:LogErrorToDb" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_LogErrorToDb_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LogErrorToDbResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateStorageVehicleOutgate_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateStorageVehicleOutgate" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateStorageVehicleOutgate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateStorageVehicleOutgateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetPortStorageVehiclesBatchId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPortStorageVehiclesBatchId" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetPortStorageVehiclesBatchId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPortStorageVehiclesBatchIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_SetPortStorageVehiclesNextBatchId_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetPortStorageVehiclesNextBatchId" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_SetPortStorageVehiclesNextBatchId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetPortStorageVehiclesNextBatchIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_ImportPortStorageVehicles_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportPortStorageVehicles" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_ImportPortStorageVehicles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportPortStorageVehiclesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetPortStorageVehicleImportList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPortStorageVehicleImportList" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetPortStorageVehicleImportList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPortStorageVehicleImportListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_LoadVehiclesBatchList_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadVehiclesBatchList" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_LoadVehiclesBatchList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadVehiclesBatchListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetPortStorageVehiclesImportFileDirectory_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPortStorageVehiclesImportFileDirectory" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetPortStorageVehiclesImportFileDirectory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPortStorageVehiclesImportFileDirectoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetPortStorageVehiclesImportFileName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPortStorageVehiclesImportFileName" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetPortStorageVehiclesImportFileName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPortStorageVehiclesImportFileNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetPortStorageVehiclesImportFileArchiveDirectory_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPortStorageVehiclesImportFileArchiveDirectory" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetPortStorageVehiclesImportFileArchiveDirectory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPortStorageVehiclesImportFileArchiveDirectoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetPortStorageLocationBatchId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPortStorageLocationBatchId" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetPortStorageLocationBatchId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPortStorageLocationBatchIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_SetPortStorageLocationNextBatchId_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetPortStorageLocationNextBatchId" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_SetPortStorageLocationNextBatchId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetPortStorageLocationNextBatchIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_ImportPortStorageLocation_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportPortStorageLocation" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_ImportPortStorageLocation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportPortStorageLocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetPortStorageLocationImportList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPortStorageLocationImportList" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetPortStorageLocationImportList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPortStorageLocationImportListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_LoadLocationBatchList_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadLocationBatchList" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_LoadLocationBatchList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadLocationBatchListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetPortStorageLocationImportFileName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPortStorageLocationImportFileName" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetPortStorageLocationImportFileName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPortStorageLocationImportFileNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_LocationImportTransactionProcess_InputMessage">
+    <wsdl:part name="parameters" element="tns:LocationImportTransactionProcess" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_LocationImportTransactionProcess_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LocationImportTransactionProcessResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_VehicleImportTransactionProcess_InputMessage">
+    <wsdl:part name="parameters" element="tns:VehicleImportTransactionProcess" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_VehicleImportTransactionProcess_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VehicleImportTransactionProcessResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetSystemSettings_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSystemSettings" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetSystemSettings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSystemSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateCompanyInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCompanyInfo" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateCompanyInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCompanyInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetStorageVehicleDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStorageVehicleDetails" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetStorageVehicleDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStorageVehicleDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetLineItemsList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLineItemsList" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetLineItemsList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLineItemsListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_ResetExportedInd_InputMessage">
+    <wsdl:part name="parameters" element="tns:ResetExportedInd" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_ResetExportedInd_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ResetExportedIndResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_InsertBilling_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertBilling" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_InsertBilling_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertBillingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateBillingTab_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateBillingTab" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateBillingTab_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateBillingTabResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_DeleteBillingData_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteBillingData" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_DeleteBillingData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteBillingDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_BillingSearch_InputMessage">
+    <wsdl:part name="parameters" element="tns:BillingSearch" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_BillingSearch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BillingSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetBillingData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBillingData" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetBillingData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBillingDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateStorageVehicleOutgateData_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateStorageVehicleOutgateData" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateStorageVehicleOutgateData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateStorageVehicleOutgateDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateSystemSettings_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateSystemSettings" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateSystemSettings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateSystemSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_FindSystemSettings_InputMessage">
+    <wsdl:part name="parameters" element="tns:FindSystemSettings" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_FindSystemSettings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FindSystemSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_DeleteSystemSettings_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteSystemSettings" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_DeleteSystemSettings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteSystemSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_InsertSystemSettings_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertSystemSettings" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_InsertSystemSettings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertSystemSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetLoggedInUserDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLoggedInUserDetails" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetLoggedInUserDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLoggedInUserDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_ValidateLogin_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateLogin" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_ValidateLogin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetUserRole_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserRole" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetUserRole_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserRoleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UserName_InputMessage">
+    <wsdl:part name="parameters" element="tns:UserName" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UserName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UserNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_IsUserExists_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsUserExists" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_IsUserExists_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsUserExistsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_ExistingUserRole_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExistingUserRole" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_ExistingUserRole_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExistingUserRoleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_AllRoles_InputMessage">
+    <wsdl:part name="parameters" element="tns:AllRoles" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_AllRoles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AllRolesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_ModifiedUserRole_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModifiedUserRole" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_ModifiedUserRole_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModifiedUserRoleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_RemoveUserRole_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveUserRole" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_RemoveUserRole_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveUserRoleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_RecordList_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecordList" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_RecordList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecordListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_RoleList_InputMessage">
+    <wsdl:part name="parameters" element="tns:RoleList" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_RoleList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RoleListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetUserRecord_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserRecord" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetUserRecord_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetModificationRecord_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetModificationRecord" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetModificationRecord_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetModificationRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateUserDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserDetails" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateUserDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_DeleteUserDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserDetails" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_DeleteUserDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_RemoveUserDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveUserDetails" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_RemoveUserDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveUserDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetVehicleSearchDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVehicleSearchDetails" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetVehicleSearchDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVehicleSearchDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_InsertVehicleDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertVehicleDetails" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_InsertVehicleDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertVehicleDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetPerDiemVehicalDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPerDiemVehicalDetails" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetPerDiemVehicalDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPerDiemVehicalDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_EditDamageCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditDamageCode" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_EditDamageCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditDamageCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetCustomerSearchDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerSearchDetails" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetCustomerSearchDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerSearchDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetVehiclePerDiemSearchDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVehiclePerDiemSearchDetails" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetVehiclePerDiemSearchDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVehiclePerDiemSearchDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdatePortStorageProcessignDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePortStorageProcessignDetails" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdatePortStorageProcessignDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePortStorageProcessignDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_CustomerType_InputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerType" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_CustomerType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_DecodeVIN_InputMessage">
+    <wsdl:part name="parameters" element="tns:DecodeVIN" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_DecodeVIN_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DecodeVINResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetPortStorageProcessignDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPortStorageProcessignDetails" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetPortStorageProcessignDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPortStorageProcessignDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdatePortStorageDateOutProcessignDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePortStorageDateOutProcessignDetails" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdatePortStorageDateOutProcessignDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePortStorageDateOutProcessignDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetPortStorageDateOutProcessignDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPortStorageDateOutProcessignDetails" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetPortStorageDateOutProcessignDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPortStorageDateOutProcessignDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetLocationHistory_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLocationHistory" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetLocationHistory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLocationHistoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetVecheleDetailByVIN_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVecheleDetailByVIN" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetVecheleDetailByVIN_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVecheleDetailByVINResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_RequestBatchProcess_InputMessage">
+    <wsdl:part name="parameters" element="tns:RequestBatchProcess" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_RequestBatchProcess_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RequestBatchProcessResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_DateOutBatchProcess_InputMessage">
+    <wsdl:part name="parameters" element="tns:DateOutBatchProcess" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_DateOutBatchProcess_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DateOutBatchProcessResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_CheckMultipleVecheleDetailByVIN_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckMultipleVecheleDetailByVIN" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_CheckMultipleVecheleDetailByVIN_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckMultipleVecheleDetailByVINResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_InspectionTypeOnly_InputMessage">
+    <wsdl:part name="parameters" element="tns:InspectionTypeOnly" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_InspectionTypeOnly_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InspectionTypeOnlyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_VehicalStatusList_InputMessage">
+    <wsdl:part name="parameters" element="tns:VehicalStatusList" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_VehicalStatusList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VehicalStatusListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_CallVehialDetailsbyVIN_InputMessage">
+    <wsdl:part name="parameters" element="tns:CallVehialDetailsbyVIN" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_CallVehialDetailsbyVIN_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CallVehialDetailsbyVINResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateVehicalSearchDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateVehicalSearchDetails" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateVehicalSearchDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateVehicalSearchDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_BindVehicleDamageDetail_InputMessage">
+    <wsdl:part name="parameters" element="tns:BindVehicleDamageDetail" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_BindVehicleDamageDetail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BindVehicleDamageDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_AddDamageCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddDamageCode" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_AddDamageCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddDamageCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_DeleteVehicalSearchDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteVehicalSearchDetails" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_DeleteVehicalSearchDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteVehicalSearchDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_AddBillingPeriod_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddBillingPeriod" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_AddBillingPeriod_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddBillingPeriodResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_FindBillingPeriod_InputMessage">
+    <wsdl:part name="parameters" element="tns:FindBillingPeriod" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_FindBillingPeriod_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FindBillingPeriodResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_AddCodeAdmin_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddCodeAdmin" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_AddCodeAdmin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddCodeAdminResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_CodeTypeList_InputMessage">
+    <wsdl:part name="parameters" element="tns:CodeTypeList" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_CodeTypeList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CodeTypeListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateBillingPeriodAdminDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateBillingPeriodAdminDetails" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateBillingPeriodAdminDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateBillingPeriodAdminDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_DeleteBillingPeriodAdminDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteBillingPeriodAdminDetails" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_DeleteBillingPeriodAdminDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteBillingPeriodAdminDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_FindCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:FindCode" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_FindCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FindCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_ModifyCodeAdminRecord_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyCodeAdminRecord" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_ModifyCodeAdminRecord_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyCodeAdminRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_DeleteCodeAdminDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCodeAdminDetails" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_DeleteCodeAdminDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCodeAdminDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetPortStorageInvoicesList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPortStorageInvoicesList" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetPortStorageInvoicesList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPortStorageInvoicesListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_LoadCodeList_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadCodeList" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_LoadCodeList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadCodeListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetLocationList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLocationList" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetLocationList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLocationListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetBillingStreetAddress_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBillingStreetAddress" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetBillingStreetAddress_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBillingStreetAddressResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_NotesList_InputMessage">
+    <wsdl:part name="parameters" element="tns:NotesList" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_NotesList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NotesListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetPortStorageRateList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPortStorageRateList" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetPortStorageRateList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPortStorageRateListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_AddPortStorageRate_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddPortStorageRate" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_AddPortStorageRate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddPortStorageRateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdatePortStorageRate_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePortStorageRate" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdatePortStorageRate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePortStorageRateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_DeletePortStorageRate_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePortStorageRate" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_DeletePortStorageRate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePortStorageRateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_LoadPerformanceStndrdOriginLocationList_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadPerformanceStndrdOriginLocationList" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_LoadPerformanceStndrdOriginLocationList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadPerformanceStndrdOriginLocationListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_AddLocationEmailContact_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddLocationEmailContact" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_AddLocationEmailContact_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddLocationEmailContactResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_AddLocationPerformanceStandard_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddLocationPerformanceStandard" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_AddLocationPerformanceStandard_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddLocationPerformanceStandardResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateLocationEmailContact_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateLocationEmailContact" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateLocationEmailContact_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateLocationEmailContactResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateLocationPerformanceStandard_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateLocationPerformanceStandard" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateLocationPerformanceStandard_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateLocationPerformanceStandardResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_AddLocation_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddLocation" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_AddLocation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddLocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_AddCustomerNotes_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddCustomerNotes" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_AddCustomerNotes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddCustomerNotesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateCustomerNotes_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCustomerNotes" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateCustomerNotes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCustomerNotesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateCustomerSearchDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCustomerSearchDetails" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateCustomerSearchDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCustomerSearchDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_InsertCustomer_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertCustomer" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_InsertCustomer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertCustomerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_DeleteLocation_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteLocation" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_DeleteLocation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteLocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateBilling_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateBilling" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateBilling_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateBillingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdatePostStorageVehicles_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePostStorageVehicles" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdatePostStorageVehicles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePostStorageVehiclesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_InsertBillingId_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertBillingId" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_InsertBillingId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertBillingIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_SetDefaultvalue_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetDefaultvalue" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_SetDefaultvalue_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetDefaultvalueResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateSettingsValue_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateSettingsValue" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateSettingsValue_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateSettingsValueResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateNextInvoiceNumberValue_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateNextInvoiceNumberValue" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateNextInvoiceNumberValue_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateNextInvoiceNumberValueResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetBillingCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBillingCount" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetBillingCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBillingCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetPortStorageVehicleList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPortStorageVehicleList" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetPortStorageVehicleList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPortStorageVehicleListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateLocation_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateLocation" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateLocation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateLocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_CalculatePortStoragePerDiem_InputMessage">
+    <wsdl:part name="parameters" element="tns:CalculatePortStoragePerDiem" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_CalculatePortStoragePerDiem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CalculatePortStoragePerDiemResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_PsRatesCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:PsRatesCount" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_PsRatesCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PsRatesCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_PsRatesInvoice_InputMessage">
+    <wsdl:part name="parameters" element="tns:PsRatesInvoice" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_PsRatesInvoice_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PsRatesInvoiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateVehicleRates_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateVehicleRates" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_UpdateVehicleRates_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateVehicleRatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_CheckDuplicateCodeAndType_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckDuplicateCodeAndType" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_CheckDuplicateCodeAndType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckDuplicateCodeAndTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetCustomerInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerInfo" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetCustomerInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetLoadInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLoadInfo" />
+  </wsdl:message>
+  <wsdl:message name="IAppWorksServices_GetLoadInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLoadInfoResponse" />
+  </wsdl:message>
+  <wsdl:portType msc:usingSession="true" name="IAppWorksServices">
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetTableColumnNames">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetTableColumnNames" message="tns:IAppWorksServices_GetTableColumnNames_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetTableColumnNamesResponse" message="tns:IAppWorksServices_GetTableColumnNames_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="CheckDuplicateCalenderAndPeriod">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/CheckDuplicateCalenderAndPeriod" message="tns:IAppWorksServices_CheckDuplicateCalenderAndPeriod_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/CheckDuplicateCalenderAndPeriodResponse" message="tns:IAppWorksServices_CheckDuplicateCalenderAndPeriod_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetVehicleLegsInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetVehicleLegsInfo" message="tns:IAppWorksServices_GetVehicleLegsInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetVehicleLegsInfoResponse" message="tns:IAppWorksServices_GetVehicleLegsInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetInvoiceCreditCostCenterNumber">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetInvoiceCreditCostCenterNumber" message="tns:IAppWorksServices_GetInvoiceCreditCostCenterNumber_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetInvoiceCreditCostCenterNumberResponse" message="tns:IAppWorksServices_GetInvoiceCreditCostCenterNumber_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="InsertBillingLineItems">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/InsertBillingLineItems" message="tns:IAppWorksServices_InsertBillingLineItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/InsertBillingLineItemsResponse" message="tns:IAppWorksServices_InsertBillingLineItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateCustomerAddredss">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateCustomerAddredss" message="tns:IAppWorksServices_UpdateCustomerAddredss_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateCustomerAddredssResponse" message="tns:IAppWorksServices_UpdateCustomerAddredss_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetCustomerAddredssType">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetCustomerAddredssType" message="tns:IAppWorksServices_GetCustomerAddredssType_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetCustomerAddredssTypeResponse" message="tns:IAppWorksServices_GetCustomerAddredssType_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetCodeDetailsForInvoice">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetCodeDetailsForInvoice" message="tns:IAppWorksServices_GetCodeDetailsForInvoice_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetCodeDetailsForInvoiceResponse" message="tns:IAppWorksServices_GetCodeDetailsForInvoice_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetInvoiceDataForInvoicePrint">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetInvoiceDataForInvoicePrint" message="tns:IAppWorksServices_GetInvoiceDataForInvoicePrint_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetInvoiceDataForInvoicePrintResponse" message="tns:IAppWorksServices_GetInvoiceDataForInvoicePrint_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetVehicleListingReport">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetVehicleListingReport" message="tns:IAppWorksServices_GetVehicleListingReport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetVehicleListingReportResponse" message="tns:IAppWorksServices_GetVehicleListingReport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="LoadCustomerList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/LoadCustomerList" message="tns:IAppWorksServices_LoadCustomerList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/LoadCustomerListResponse" message="tns:IAppWorksServices_LoadCustomerList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="LoadBatchList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/LoadBatchList" message="tns:IAppWorksServices_LoadBatchList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/LoadBatchListResponse" message="tns:IAppWorksServices_LoadBatchList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetPortStorageRequestReport">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetPortStorageRequestReport" message="tns:IAppWorksServices_GetPortStorageRequestReport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetPortStorageRequestReportResponse" message="tns:IAppWorksServices_GetPortStorageRequestReport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetPortStorageVehicleSummeryReport">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetPortStorageVehicleSummeryReport" message="tns:IAppWorksServices_GetPortStorageVehicleSummeryReport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetPortStorageVehicleSummeryReportResponse" message="tns:IAppWorksServices_GetPortStorageVehicleSummeryReport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetPortStorageLaneSummaryList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetPortStorageLaneSummaryList" message="tns:IAppWorksServices_GetPortStorageLaneSummaryList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetPortStorageLaneSummaryListResponse" message="tns:IAppWorksServices_GetPortStorageLaneSummaryList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetPortStorageInBoundList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetPortStorageInBoundList" message="tns:IAppWorksServices_GetPortStorageInBoundList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetPortStorageInBoundListResponse" message="tns:IAppWorksServices_GetPortStorageInBoundList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetDAIAddressName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetDAIAddressName" message="tns:IAppWorksServices_GetDAIAddressName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetDAIAddressNameResponse" message="tns:IAppWorksServices_GetDAIAddressName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="LoadInvoiceList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/LoadInvoiceList" message="tns:IAppWorksServices_LoadInvoiceList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/LoadInvoiceListResponse" message="tns:IAppWorksServices_LoadInvoiceList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetBatchLocationImport">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetBatchLocationImport" message="tns:IAppWorksServices_GetBatchLocationImport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetBatchLocationImportResponse" message="tns:IAppWorksServices_GetBatchLocationImport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetInventoryComparisionList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetInventoryComparisionList" message="tns:IAppWorksServices_GetInventoryComparisionList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetInventoryComparisionListResponse" message="tns:IAppWorksServices_GetInventoryComparisionList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateRequestPrintIndexForVehicles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateRequestPrintIndexForVehicles" message="tns:IAppWorksServices_UpdateRequestPrintIndexForVehicles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateRequestPrintIndexForVehiclesResponse" message="tns:IAppWorksServices_UpdateRequestPrintIndexForVehicles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetUsers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetUsers" message="tns:IAppWorksServices_GetUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetUsersResponse" message="tns:IAppWorksServices_GetUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetModules">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetModules" message="tns:IAppWorksServices_GetModules_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetModulesResponse" message="tns:IAppWorksServices_GetModules_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetCustomers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetCustomers" message="tns:IAppWorksServices_GetCustomers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetCustomersResponse" message="tns:IAppWorksServices_GetCustomers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="AddUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/AddUser" message="tns:IAppWorksServices_AddUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/AddUserResponse" message="tns:IAppWorksServices_AddUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="AddUserCustomer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/AddUserCustomer" message="tns:IAppWorksServices_AddUserCustomer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/AddUserCustomerResponse" message="tns:IAppWorksServices_AddUserCustomer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="AddUserModule">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/AddUserModule" message="tns:IAppWorksServices_AddUserModule_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/AddUserModuleResponse" message="tns:IAppWorksServices_AddUserModule_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="DeleteUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/DeleteUser" message="tns:IAppWorksServices_DeleteUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/DeleteUserResponse" message="tns:IAppWorksServices_DeleteUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetRoles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetRoles" message="tns:IAppWorksServices_GetRoles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetRolesResponse" message="tns:IAppWorksServices_GetRoles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetGroups">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetGroups" message="tns:IAppWorksServices_GetGroups_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetGroupsResponse" message="tns:IAppWorksServices_GetGroups_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="InsertUpdateUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/InsertUpdateUser" message="tns:IAppWorksServices_InsertUpdateUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/InsertUpdateUserResponse" message="tns:IAppWorksServices_InsertUpdateUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="CheckDuplicateEmail">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/CheckDuplicateEmail" message="tns:IAppWorksServices_CheckDuplicateEmail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/CheckDuplicateEmailResponse" message="tns:IAppWorksServices_CheckDuplicateEmail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="CheckDuplicatePortalUserName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/CheckDuplicatePortalUserName" message="tns:IAppWorksServices_CheckDuplicatePortalUserName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/CheckDuplicatePortalUserNameResponse" message="tns:IAppWorksServices_CheckDuplicatePortalUserName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetPortStorageInventoryDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetPortStorageInventoryDetails" message="tns:IAppWorksServices_GetPortStorageInventoryDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetPortStorageInventoryDetailsResponse" message="tns:IAppWorksServices_GetPortStorageInventoryDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateRequestCheckedVehicles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateRequestCheckedVehicles" message="tns:IAppWorksServices_UpdateRequestCheckedVehicles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateRequestCheckedVehiclesResponse" message="tns:IAppWorksServices_UpdateRequestCheckedVehicles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="CheckMultipleVIN">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/CheckMultipleVIN" message="tns:IAppWorksServices_CheckMultipleVIN_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/CheckMultipleVINResponse" message="tns:IAppWorksServices_CheckMultipleVIN_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetDecodedPortStorageVIN">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetDecodedPortStorageVIN" message="tns:IAppWorksServices_GetDecodedPortStorageVIN_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetDecodedPortStorageVINResponse" message="tns:IAppWorksServices_GetDecodedPortStorageVIN_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="InsertDecodeVIN">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/InsertDecodeVIN" message="tns:IAppWorksServices_InsertDecodeVIN_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/InsertDecodeVINResponse" message="tns:IAppWorksServices_InsertDecodeVIN_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetDecodedVINForVINDecode">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetDecodedVINForVINDecode" message="tns:IAppWorksServices_GetDecodedVINForVINDecode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetDecodedVINForVINDecodeResponse" message="tns:IAppWorksServices_GetDecodedVINForVINDecode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetDecodeDataFromWeb">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetDecodeDataFromWeb" message="tns:IAppWorksServices_GetDecodeDataFromWeb_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetDecodeDataFromWebResponse" message="tns:IAppWorksServices_GetDecodeDataFromWeb_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetRolesSelection">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetRolesSelection" message="tns:IAppWorksServices_GetRolesSelection_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetRolesSelectionResponse" message="tns:IAppWorksServices_GetRolesSelection_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetBillingRecordExport">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetBillingRecordExport" message="tns:IAppWorksServices_GetBillingRecordExport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetBillingRecordExportResponse" message="tns:IAppWorksServices_GetBillingRecordExport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetBillingExportBatchId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetBillingExportBatchId" message="tns:IAppWorksServices_GetBillingExportBatchId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetBillingExportBatchIdResponse" message="tns:IAppWorksServices_GetBillingExportBatchId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SetBillingExportNextBatchId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/SetBillingExportNextBatchId" message="tns:IAppWorksServices_SetBillingExportNextBatchId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/SetBillingExportNextBatchIdResponse" message="tns:IAppWorksServices_SetBillingExportNextBatchId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetBillingExportFilePath">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetBillingExportFilePath" message="tns:IAppWorksServices_GetBillingExportFilePath_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetBillingExportFilePathResponse" message="tns:IAppWorksServices_GetBillingExportFilePath_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateBillingLineItem">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateBillingLineItem" message="tns:IAppWorksServices_UpdateBillingLineItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateBillingLineItemResponse" message="tns:IAppWorksServices_UpdateBillingLineItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="LogErrorToDb">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/LogErrorToDb" message="tns:IAppWorksServices_LogErrorToDb_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/LogErrorToDbResponse" message="tns:IAppWorksServices_LogErrorToDb_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateStorageVehicleOutgate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateStorageVehicleOutgate" message="tns:IAppWorksServices_UpdateStorageVehicleOutgate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateStorageVehicleOutgateResponse" message="tns:IAppWorksServices_UpdateStorageVehicleOutgate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetPortStorageVehiclesBatchId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetPortStorageVehiclesBatchId" message="tns:IAppWorksServices_GetPortStorageVehiclesBatchId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetPortStorageVehiclesBatchIdResponse" message="tns:IAppWorksServices_GetPortStorageVehiclesBatchId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SetPortStorageVehiclesNextBatchId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/SetPortStorageVehiclesNextBatchId" message="tns:IAppWorksServices_SetPortStorageVehiclesNextBatchId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/SetPortStorageVehiclesNextBatchIdResponse" message="tns:IAppWorksServices_SetPortStorageVehiclesNextBatchId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ImportPortStorageVehicles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/ImportPortStorageVehicles" message="tns:IAppWorksServices_ImportPortStorageVehicles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/ImportPortStorageVehiclesResponse" message="tns:IAppWorksServices_ImportPortStorageVehicles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetPortStorageVehicleImportList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetPortStorageVehicleImportList" message="tns:IAppWorksServices_GetPortStorageVehicleImportList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetPortStorageVehicleImportListResponse" message="tns:IAppWorksServices_GetPortStorageVehicleImportList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="LoadVehiclesBatchList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/LoadVehiclesBatchList" message="tns:IAppWorksServices_LoadVehiclesBatchList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/LoadVehiclesBatchListResponse" message="tns:IAppWorksServices_LoadVehiclesBatchList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetPortStorageVehiclesImportFileDirectory">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetPortStorageVehiclesImportFileDirectory" message="tns:IAppWorksServices_GetPortStorageVehiclesImportFileDirectory_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetPortStorageVehiclesImportFileDirectoryResponse" message="tns:IAppWorksServices_GetPortStorageVehiclesImportFileDirectory_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetPortStorageVehiclesImportFileName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetPortStorageVehiclesImportFileName" message="tns:IAppWorksServices_GetPortStorageVehiclesImportFileName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetPortStorageVehiclesImportFileNameResponse" message="tns:IAppWorksServices_GetPortStorageVehiclesImportFileName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetPortStorageVehiclesImportFileArchiveDirectory">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetPortStorageVehiclesImportFileArchiveDirectory" message="tns:IAppWorksServices_GetPortStorageVehiclesImportFileArchiveDirectory_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetPortStorageVehiclesImportFileArchiveDirectoryResponse" message="tns:IAppWorksServices_GetPortStorageVehiclesImportFileArchiveDirectory_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetPortStorageLocationBatchId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetPortStorageLocationBatchId" message="tns:IAppWorksServices_GetPortStorageLocationBatchId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetPortStorageLocationBatchIdResponse" message="tns:IAppWorksServices_GetPortStorageLocationBatchId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SetPortStorageLocationNextBatchId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/SetPortStorageLocationNextBatchId" message="tns:IAppWorksServices_SetPortStorageLocationNextBatchId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/SetPortStorageLocationNextBatchIdResponse" message="tns:IAppWorksServices_SetPortStorageLocationNextBatchId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ImportPortStorageLocation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/ImportPortStorageLocation" message="tns:IAppWorksServices_ImportPortStorageLocation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/ImportPortStorageLocationResponse" message="tns:IAppWorksServices_ImportPortStorageLocation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetPortStorageLocationImportList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetPortStorageLocationImportList" message="tns:IAppWorksServices_GetPortStorageLocationImportList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetPortStorageLocationImportListResponse" message="tns:IAppWorksServices_GetPortStorageLocationImportList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="LoadLocationBatchList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/LoadLocationBatchList" message="tns:IAppWorksServices_LoadLocationBatchList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/LoadLocationBatchListResponse" message="tns:IAppWorksServices_LoadLocationBatchList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetPortStorageLocationImportFileName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetPortStorageLocationImportFileName" message="tns:IAppWorksServices_GetPortStorageLocationImportFileName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetPortStorageLocationImportFileNameResponse" message="tns:IAppWorksServices_GetPortStorageLocationImportFileName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="LocationImportTransactionProcess">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/LocationImportTransactionProcess" message="tns:IAppWorksServices_LocationImportTransactionProcess_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/LocationImportTransactionProcessResponse" message="tns:IAppWorksServices_LocationImportTransactionProcess_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="VehicleImportTransactionProcess">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/VehicleImportTransactionProcess" message="tns:IAppWorksServices_VehicleImportTransactionProcess_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/VehicleImportTransactionProcessResponse" message="tns:IAppWorksServices_VehicleImportTransactionProcess_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetSystemSettings">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetSystemSettings" message="tns:IAppWorksServices_GetSystemSettings_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetSystemSettingsResponse" message="tns:IAppWorksServices_GetSystemSettings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateCompanyInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateCompanyInfo" message="tns:IAppWorksServices_UpdateCompanyInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateCompanyInfoResponse" message="tns:IAppWorksServices_UpdateCompanyInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetStorageVehicleDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetStorageVehicleDetails" message="tns:IAppWorksServices_GetStorageVehicleDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetStorageVehicleDetailsResponse" message="tns:IAppWorksServices_GetStorageVehicleDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetLineItemsList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetLineItemsList" message="tns:IAppWorksServices_GetLineItemsList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetLineItemsListResponse" message="tns:IAppWorksServices_GetLineItemsList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ResetExportedInd">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/ResetExportedInd" message="tns:IAppWorksServices_ResetExportedInd_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/ResetExportedIndResponse" message="tns:IAppWorksServices_ResetExportedInd_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="InsertBilling">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/InsertBilling" message="tns:IAppWorksServices_InsertBilling_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/InsertBillingResponse" message="tns:IAppWorksServices_InsertBilling_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateBillingTab">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateBillingTab" message="tns:IAppWorksServices_UpdateBillingTab_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateBillingTabResponse" message="tns:IAppWorksServices_UpdateBillingTab_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="DeleteBillingData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/DeleteBillingData" message="tns:IAppWorksServices_DeleteBillingData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/DeleteBillingDataResponse" message="tns:IAppWorksServices_DeleteBillingData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="BillingSearch">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/BillingSearch" message="tns:IAppWorksServices_BillingSearch_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/BillingSearchResponse" message="tns:IAppWorksServices_BillingSearch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetBillingData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetBillingData" message="tns:IAppWorksServices_GetBillingData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetBillingDataResponse" message="tns:IAppWorksServices_GetBillingData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateStorageVehicleOutgateData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateStorageVehicleOutgateData" message="tns:IAppWorksServices_UpdateStorageVehicleOutgateData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateStorageVehicleOutgateDataResponse" message="tns:IAppWorksServices_UpdateStorageVehicleOutgateData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateSystemSettings">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateSystemSettings" message="tns:IAppWorksServices_UpdateSystemSettings_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateSystemSettingsResponse" message="tns:IAppWorksServices_UpdateSystemSettings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="FindSystemSettings">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/FindSystemSettings" message="tns:IAppWorksServices_FindSystemSettings_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/FindSystemSettingsResponse" message="tns:IAppWorksServices_FindSystemSettings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="DeleteSystemSettings">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/DeleteSystemSettings" message="tns:IAppWorksServices_DeleteSystemSettings_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/DeleteSystemSettingsResponse" message="tns:IAppWorksServices_DeleteSystemSettings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="InsertSystemSettings">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/InsertSystemSettings" message="tns:IAppWorksServices_InsertSystemSettings_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/InsertSystemSettingsResponse" message="tns:IAppWorksServices_InsertSystemSettings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetLoggedInUserDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetLoggedInUserDetails" message="tns:IAppWorksServices_GetLoggedInUserDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetLoggedInUserDetailsResponse" message="tns:IAppWorksServices_GetLoggedInUserDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ValidateLogin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/ValidateLogin" message="tns:IAppWorksServices_ValidateLogin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/ValidateLoginResponse" message="tns:IAppWorksServices_ValidateLogin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetUserRole">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetUserRole" message="tns:IAppWorksServices_GetUserRole_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetUserRoleResponse" message="tns:IAppWorksServices_GetUserRole_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UserName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/UserName" message="tns:IAppWorksServices_UserName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/UserNameResponse" message="tns:IAppWorksServices_UserName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="IsUserExists">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/IsUserExists" message="tns:IAppWorksServices_IsUserExists_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/IsUserExistsResponse" message="tns:IAppWorksServices_IsUserExists_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ExistingUserRole">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/ExistingUserRole" message="tns:IAppWorksServices_ExistingUserRole_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/ExistingUserRoleResponse" message="tns:IAppWorksServices_ExistingUserRole_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="AllRoles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/AllRoles" message="tns:IAppWorksServices_AllRoles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/AllRolesResponse" message="tns:IAppWorksServices_AllRoles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ModifiedUserRole">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/ModifiedUserRole" message="tns:IAppWorksServices_ModifiedUserRole_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/ModifiedUserRoleResponse" message="tns:IAppWorksServices_ModifiedUserRole_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="RemoveUserRole">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/RemoveUserRole" message="tns:IAppWorksServices_RemoveUserRole_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/RemoveUserRoleResponse" message="tns:IAppWorksServices_RemoveUserRole_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="RecordList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/RecordList" message="tns:IAppWorksServices_RecordList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/RecordListResponse" message="tns:IAppWorksServices_RecordList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="RoleList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/RoleList" message="tns:IAppWorksServices_RoleList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/RoleListResponse" message="tns:IAppWorksServices_RoleList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetUserRecord">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetUserRecord" message="tns:IAppWorksServices_GetUserRecord_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetUserRecordResponse" message="tns:IAppWorksServices_GetUserRecord_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetModificationRecord">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetModificationRecord" message="tns:IAppWorksServices_GetModificationRecord_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetModificationRecordResponse" message="tns:IAppWorksServices_GetModificationRecord_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateUserDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateUserDetails" message="tns:IAppWorksServices_UpdateUserDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateUserDetailsResponse" message="tns:IAppWorksServices_UpdateUserDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="DeleteUserDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/DeleteUserDetails" message="tns:IAppWorksServices_DeleteUserDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/DeleteUserDetailsResponse" message="tns:IAppWorksServices_DeleteUserDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="RemoveUserDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/RemoveUserDetails" message="tns:IAppWorksServices_RemoveUserDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/RemoveUserDetailsResponse" message="tns:IAppWorksServices_RemoveUserDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetVehicleSearchDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetVehicleSearchDetails" message="tns:IAppWorksServices_GetVehicleSearchDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetVehicleSearchDetailsResponse" message="tns:IAppWorksServices_GetVehicleSearchDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="InsertVehicleDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/InsertVehicleDetails" message="tns:IAppWorksServices_InsertVehicleDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/InsertVehicleDetailsResponse" message="tns:IAppWorksServices_InsertVehicleDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetPerDiemVehicalDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetPerDiemVehicalDetails" message="tns:IAppWorksServices_GetPerDiemVehicalDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetPerDiemVehicalDetailsResponse" message="tns:IAppWorksServices_GetPerDiemVehicalDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="EditDamageCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/EditDamageCode" message="tns:IAppWorksServices_EditDamageCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/EditDamageCodeResponse" message="tns:IAppWorksServices_EditDamageCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetCustomerSearchDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetCustomerSearchDetails" message="tns:IAppWorksServices_GetCustomerSearchDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetCustomerSearchDetailsResponse" message="tns:IAppWorksServices_GetCustomerSearchDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetVehiclePerDiemSearchDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetVehiclePerDiemSearchDetails" message="tns:IAppWorksServices_GetVehiclePerDiemSearchDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetVehiclePerDiemSearchDetailsResponse" message="tns:IAppWorksServices_GetVehiclePerDiemSearchDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdatePortStorageProcessignDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/UpdatePortStorageProcessignDetails" message="tns:IAppWorksServices_UpdatePortStorageProcessignDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/UpdatePortStorageProcessignDetailsResponse" message="tns:IAppWorksServices_UpdatePortStorageProcessignDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="CustomerType">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/CustomerType" message="tns:IAppWorksServices_CustomerType_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/CustomerTypeResponse" message="tns:IAppWorksServices_CustomerType_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="DecodeVIN">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/DecodeVIN" message="tns:IAppWorksServices_DecodeVIN_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/DecodeVINResponse" message="tns:IAppWorksServices_DecodeVIN_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetPortStorageProcessignDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetPortStorageProcessignDetails" message="tns:IAppWorksServices_GetPortStorageProcessignDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetPortStorageProcessignDetailsResponse" message="tns:IAppWorksServices_GetPortStorageProcessignDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdatePortStorageDateOutProcessignDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/UpdatePortStorageDateOutProcessignDetails" message="tns:IAppWorksServices_UpdatePortStorageDateOutProcessignDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/UpdatePortStorageDateOutProcessignDetailsResponse" message="tns:IAppWorksServices_UpdatePortStorageDateOutProcessignDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetPortStorageDateOutProcessignDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetPortStorageDateOutProcessignDetails" message="tns:IAppWorksServices_GetPortStorageDateOutProcessignDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetPortStorageDateOutProcessignDetailsResponse" message="tns:IAppWorksServices_GetPortStorageDateOutProcessignDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetLocationHistory">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetLocationHistory" message="tns:IAppWorksServices_GetLocationHistory_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetLocationHistoryResponse" message="tns:IAppWorksServices_GetLocationHistory_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetVecheleDetailByVIN">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetVecheleDetailByVIN" message="tns:IAppWorksServices_GetVecheleDetailByVIN_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetVecheleDetailByVINResponse" message="tns:IAppWorksServices_GetVecheleDetailByVIN_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="RequestBatchProcess">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/RequestBatchProcess" message="tns:IAppWorksServices_RequestBatchProcess_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/RequestBatchProcessResponse" message="tns:IAppWorksServices_RequestBatchProcess_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="DateOutBatchProcess">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/DateOutBatchProcess" message="tns:IAppWorksServices_DateOutBatchProcess_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/DateOutBatchProcessResponse" message="tns:IAppWorksServices_DateOutBatchProcess_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="CheckMultipleVecheleDetailByVIN">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/CheckMultipleVecheleDetailByVIN" message="tns:IAppWorksServices_CheckMultipleVecheleDetailByVIN_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/CheckMultipleVecheleDetailByVINResponse" message="tns:IAppWorksServices_CheckMultipleVecheleDetailByVIN_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="InspectionTypeOnly">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/InspectionTypeOnly" message="tns:IAppWorksServices_InspectionTypeOnly_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/InspectionTypeOnlyResponse" message="tns:IAppWorksServices_InspectionTypeOnly_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="VehicalStatusList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/VehicalStatusList" message="tns:IAppWorksServices_VehicalStatusList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/VehicalStatusListResponse" message="tns:IAppWorksServices_VehicalStatusList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="CallVehialDetailsbyVIN">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/CallVehialDetailsbyVIN" message="tns:IAppWorksServices_CallVehialDetailsbyVIN_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/CallVehialDetailsbyVINResponse" message="tns:IAppWorksServices_CallVehialDetailsbyVIN_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateVehicalSearchDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateVehicalSearchDetails" message="tns:IAppWorksServices_UpdateVehicalSearchDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateVehicalSearchDetailsResponse" message="tns:IAppWorksServices_UpdateVehicalSearchDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="BindVehicleDamageDetail">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/BindVehicleDamageDetail" message="tns:IAppWorksServices_BindVehicleDamageDetail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/BindVehicleDamageDetailResponse" message="tns:IAppWorksServices_BindVehicleDamageDetail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="AddDamageCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/AddDamageCode" message="tns:IAppWorksServices_AddDamageCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/AddDamageCodeResponse" message="tns:IAppWorksServices_AddDamageCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="DeleteVehicalSearchDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/DeleteVehicalSearchDetails" message="tns:IAppWorksServices_DeleteVehicalSearchDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/DeleteVehicalSearchDetailsResponse" message="tns:IAppWorksServices_DeleteVehicalSearchDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="AddBillingPeriod">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/AddBillingPeriod" message="tns:IAppWorksServices_AddBillingPeriod_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/AddBillingPeriodResponse" message="tns:IAppWorksServices_AddBillingPeriod_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="FindBillingPeriod">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/FindBillingPeriod" message="tns:IAppWorksServices_FindBillingPeriod_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/FindBillingPeriodResponse" message="tns:IAppWorksServices_FindBillingPeriod_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="AddCodeAdmin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/AddCodeAdmin" message="tns:IAppWorksServices_AddCodeAdmin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/AddCodeAdminResponse" message="tns:IAppWorksServices_AddCodeAdmin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="CodeTypeList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/CodeTypeList" message="tns:IAppWorksServices_CodeTypeList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/CodeTypeListResponse" message="tns:IAppWorksServices_CodeTypeList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateBillingPeriodAdminDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateBillingPeriodAdminDetails" message="tns:IAppWorksServices_UpdateBillingPeriodAdminDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateBillingPeriodAdminDetailsResponse" message="tns:IAppWorksServices_UpdateBillingPeriodAdminDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="DeleteBillingPeriodAdminDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/DeleteBillingPeriodAdminDetails" message="tns:IAppWorksServices_DeleteBillingPeriodAdminDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/DeleteBillingPeriodAdminDetailsResponse" message="tns:IAppWorksServices_DeleteBillingPeriodAdminDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="FindCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/FindCode" message="tns:IAppWorksServices_FindCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/FindCodeResponse" message="tns:IAppWorksServices_FindCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ModifyCodeAdminRecord">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/ModifyCodeAdminRecord" message="tns:IAppWorksServices_ModifyCodeAdminRecord_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/ModifyCodeAdminRecordResponse" message="tns:IAppWorksServices_ModifyCodeAdminRecord_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="DeleteCodeAdminDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/DeleteCodeAdminDetails" message="tns:IAppWorksServices_DeleteCodeAdminDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/DeleteCodeAdminDetailsResponse" message="tns:IAppWorksServices_DeleteCodeAdminDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetPortStorageInvoicesList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetPortStorageInvoicesList" message="tns:IAppWorksServices_GetPortStorageInvoicesList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetPortStorageInvoicesListResponse" message="tns:IAppWorksServices_GetPortStorageInvoicesList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="LoadCodeList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/LoadCodeList" message="tns:IAppWorksServices_LoadCodeList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/LoadCodeListResponse" message="tns:IAppWorksServices_LoadCodeList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetLocationList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetLocationList" message="tns:IAppWorksServices_GetLocationList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetLocationListResponse" message="tns:IAppWorksServices_GetLocationList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetBillingStreetAddress">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetBillingStreetAddress" message="tns:IAppWorksServices_GetBillingStreetAddress_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetBillingStreetAddressResponse" message="tns:IAppWorksServices_GetBillingStreetAddress_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="NotesList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/NotesList" message="tns:IAppWorksServices_NotesList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/NotesListResponse" message="tns:IAppWorksServices_NotesList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetPortStorageRateList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetPortStorageRateList" message="tns:IAppWorksServices_GetPortStorageRateList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetPortStorageRateListResponse" message="tns:IAppWorksServices_GetPortStorageRateList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="AddPortStorageRate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/AddPortStorageRate" message="tns:IAppWorksServices_AddPortStorageRate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/AddPortStorageRateResponse" message="tns:IAppWorksServices_AddPortStorageRate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdatePortStorageRate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/UpdatePortStorageRate" message="tns:IAppWorksServices_UpdatePortStorageRate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/UpdatePortStorageRateResponse" message="tns:IAppWorksServices_UpdatePortStorageRate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="DeletePortStorageRate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/DeletePortStorageRate" message="tns:IAppWorksServices_DeletePortStorageRate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/DeletePortStorageRateResponse" message="tns:IAppWorksServices_DeletePortStorageRate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="LoadPerformanceStndrdOriginLocationList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/LoadPerformanceStndrdOriginLocationList" message="tns:IAppWorksServices_LoadPerformanceStndrdOriginLocationList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/LoadPerformanceStndrdOriginLocationListResponse" message="tns:IAppWorksServices_LoadPerformanceStndrdOriginLocationList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="AddLocationEmailContact">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/AddLocationEmailContact" message="tns:IAppWorksServices_AddLocationEmailContact_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/AddLocationEmailContactResponse" message="tns:IAppWorksServices_AddLocationEmailContact_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="AddLocationPerformanceStandard">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/AddLocationPerformanceStandard" message="tns:IAppWorksServices_AddLocationPerformanceStandard_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/AddLocationPerformanceStandardResponse" message="tns:IAppWorksServices_AddLocationPerformanceStandard_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateLocationEmailContact">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateLocationEmailContact" message="tns:IAppWorksServices_UpdateLocationEmailContact_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateLocationEmailContactResponse" message="tns:IAppWorksServices_UpdateLocationEmailContact_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateLocationPerformanceStandard">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateLocationPerformanceStandard" message="tns:IAppWorksServices_UpdateLocationPerformanceStandard_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateLocationPerformanceStandardResponse" message="tns:IAppWorksServices_UpdateLocationPerformanceStandard_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="AddLocation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/AddLocation" message="tns:IAppWorksServices_AddLocation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/AddLocationResponse" message="tns:IAppWorksServices_AddLocation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="AddCustomerNotes">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/AddCustomerNotes" message="tns:IAppWorksServices_AddCustomerNotes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/AddCustomerNotesResponse" message="tns:IAppWorksServices_AddCustomerNotes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateCustomerNotes">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateCustomerNotes" message="tns:IAppWorksServices_UpdateCustomerNotes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateCustomerNotesResponse" message="tns:IAppWorksServices_UpdateCustomerNotes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateCustomerSearchDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateCustomerSearchDetails" message="tns:IAppWorksServices_UpdateCustomerSearchDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateCustomerSearchDetailsResponse" message="tns:IAppWorksServices_UpdateCustomerSearchDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="InsertCustomer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/InsertCustomer" message="tns:IAppWorksServices_InsertCustomer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/InsertCustomerResponse" message="tns:IAppWorksServices_InsertCustomer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="DeleteLocation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/DeleteLocation" message="tns:IAppWorksServices_DeleteLocation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/DeleteLocationResponse" message="tns:IAppWorksServices_DeleteLocation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateBilling">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateBilling" message="tns:IAppWorksServices_UpdateBilling_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateBillingResponse" message="tns:IAppWorksServices_UpdateBilling_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdatePostStorageVehicles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/UpdatePostStorageVehicles" message="tns:IAppWorksServices_UpdatePostStorageVehicles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/UpdatePostStorageVehiclesResponse" message="tns:IAppWorksServices_UpdatePostStorageVehicles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="InsertBillingId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/InsertBillingId" message="tns:IAppWorksServices_InsertBillingId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/InsertBillingIdResponse" message="tns:IAppWorksServices_InsertBillingId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SetDefaultvalue">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/SetDefaultvalue" message="tns:IAppWorksServices_SetDefaultvalue_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/SetDefaultvalueResponse" message="tns:IAppWorksServices_SetDefaultvalue_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateSettingsValue">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateSettingsValue" message="tns:IAppWorksServices_UpdateSettingsValue_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateSettingsValueResponse" message="tns:IAppWorksServices_UpdateSettingsValue_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateNextInvoiceNumberValue">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateNextInvoiceNumberValue" message="tns:IAppWorksServices_UpdateNextInvoiceNumberValue_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateNextInvoiceNumberValueResponse" message="tns:IAppWorksServices_UpdateNextInvoiceNumberValue_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetBillingCount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetBillingCount" message="tns:IAppWorksServices_GetBillingCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetBillingCountResponse" message="tns:IAppWorksServices_GetBillingCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetPortStorageVehicleList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetPortStorageVehicleList" message="tns:IAppWorksServices_GetPortStorageVehicleList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetPortStorageVehicleListResponse" message="tns:IAppWorksServices_GetPortStorageVehicleList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateLocation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateLocation" message="tns:IAppWorksServices_UpdateLocation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateLocationResponse" message="tns:IAppWorksServices_UpdateLocation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="CalculatePortStoragePerDiem">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/CalculatePortStoragePerDiem" message="tns:IAppWorksServices_CalculatePortStoragePerDiem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/CalculatePortStoragePerDiemResponse" message="tns:IAppWorksServices_CalculatePortStoragePerDiem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="PsRatesCount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/PsRatesCount" message="tns:IAppWorksServices_PsRatesCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/PsRatesCountResponse" message="tns:IAppWorksServices_PsRatesCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="PsRatesInvoice">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/PsRatesInvoice" message="tns:IAppWorksServices_PsRatesInvoice_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/PsRatesInvoiceResponse" message="tns:IAppWorksServices_PsRatesInvoice_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateVehicleRates">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateVehicleRates" message="tns:IAppWorksServices_UpdateVehicleRates_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/UpdateVehicleRatesResponse" message="tns:IAppWorksServices_UpdateVehicleRates_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="CheckDuplicateCodeAndType">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/CheckDuplicateCodeAndType" message="tns:IAppWorksServices_CheckDuplicateCodeAndType_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/CheckDuplicateCodeAndTypeResponse" message="tns:IAppWorksServices_CheckDuplicateCodeAndType_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetCustomerInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetCustomerInfo" message="tns:IAppWorksServices_GetCustomerInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetCustomerInfoResponse" message="tns:IAppWorksServices_GetCustomerInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetLoadInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppWorksServices/GetLoadInfo" message="tns:IAppWorksServices_GetLoadInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppWorksServices/GetLoadInfoResponse" message="tns:IAppWorksServices_GetLoadInfo_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSHttpBinding_IAppWorksServices" type="tns:IAppWorksServices">
+    <wsp:PolicyReference URI="#WSHttpBinding_IAppWorksServices_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetTableColumnNames">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetTableColumnNames" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckDuplicateCalenderAndPeriod">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/CheckDuplicateCalenderAndPeriod" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleLegsInfo">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetVehicleLegsInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInvoiceCreditCostCenterNumber">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetInvoiceCreditCostCenterNumber" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertBillingLineItems">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/InsertBillingLineItems" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCustomerAddredss">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/UpdateCustomerAddredss" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerAddredssType">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetCustomerAddredssType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCodeDetailsForInvoice">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetCodeDetailsForInvoice" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInvoiceDataForInvoicePrint">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetInvoiceDataForInvoicePrint" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleListingReport">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetVehicleListingReport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadCustomerList">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/LoadCustomerList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadBatchList">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/LoadBatchList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPortStorageRequestReport">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetPortStorageRequestReport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPortStorageVehicleSummeryReport">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetPortStorageVehicleSummeryReport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPortStorageLaneSummaryList">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetPortStorageLaneSummaryList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPortStorageInBoundList">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetPortStorageInBoundList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDAIAddressName">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetDAIAddressName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadInvoiceList">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/LoadInvoiceList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBatchLocationImport">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetBatchLocationImport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInventoryComparisionList">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetInventoryComparisionList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRequestPrintIndexForVehicles">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/UpdateRequestPrintIndexForVehicles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetUsers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetModules">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetModules" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomers">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetCustomers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUser">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/AddUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUserCustomer">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/AddUserCustomer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUserModule">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/AddUserModule" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/DeleteUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoles">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetRoles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGroups">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetGroups" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUpdateUser">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/InsertUpdateUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckDuplicateEmail">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/CheckDuplicateEmail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckDuplicatePortalUserName">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/CheckDuplicatePortalUserName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPortStorageInventoryDetails">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetPortStorageInventoryDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRequestCheckedVehicles">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/UpdateRequestCheckedVehicles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckMultipleVIN">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/CheckMultipleVIN" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDecodedPortStorageVIN">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetDecodedPortStorageVIN" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertDecodeVIN">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/InsertDecodeVIN" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDecodedVINForVINDecode">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetDecodedVINForVINDecode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDecodeDataFromWeb">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetDecodeDataFromWeb" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRolesSelection">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetRolesSelection" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBillingRecordExport">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetBillingRecordExport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBillingExportBatchId">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetBillingExportBatchId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetBillingExportNextBatchId">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/SetBillingExportNextBatchId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBillingExportFilePath">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetBillingExportFilePath" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBillingLineItem">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/UpdateBillingLineItem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogErrorToDb">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/LogErrorToDb" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStorageVehicleOutgate">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/UpdateStorageVehicleOutgate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPortStorageVehiclesBatchId">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetPortStorageVehiclesBatchId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetPortStorageVehiclesNextBatchId">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/SetPortStorageVehiclesNextBatchId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportPortStorageVehicles">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/ImportPortStorageVehicles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPortStorageVehicleImportList">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetPortStorageVehicleImportList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadVehiclesBatchList">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/LoadVehiclesBatchList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPortStorageVehiclesImportFileDirectory">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetPortStorageVehiclesImportFileDirectory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPortStorageVehiclesImportFileName">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetPortStorageVehiclesImportFileName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPortStorageVehiclesImportFileArchiveDirectory">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetPortStorageVehiclesImportFileArchiveDirectory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPortStorageLocationBatchId">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetPortStorageLocationBatchId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetPortStorageLocationNextBatchId">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/SetPortStorageLocationNextBatchId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportPortStorageLocation">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/ImportPortStorageLocation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPortStorageLocationImportList">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetPortStorageLocationImportList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadLocationBatchList">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/LoadLocationBatchList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPortStorageLocationImportFileName">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetPortStorageLocationImportFileName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LocationImportTransactionProcess">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/LocationImportTransactionProcess" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VehicleImportTransactionProcess">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/VehicleImportTransactionProcess" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemSettings">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetSystemSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCompanyInfo">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/UpdateCompanyInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStorageVehicleDetails">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetStorageVehicleDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLineItemsList">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetLineItemsList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetExportedInd">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/ResetExportedInd" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertBilling">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/InsertBilling" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBillingTab">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/UpdateBillingTab" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBillingData">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/DeleteBillingData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BillingSearch">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/BillingSearch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBillingData">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetBillingData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStorageVehicleOutgateData">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/UpdateStorageVehicleOutgateData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSystemSettings">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/UpdateSystemSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindSystemSettings">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/FindSystemSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSystemSettings">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/DeleteSystemSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertSystemSettings">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/InsertSystemSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLoggedInUserDetails">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetLoggedInUserDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateLogin">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/ValidateLogin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserRole">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetUserRole" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserName">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/UserName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsUserExists">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/IsUserExists" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExistingUserRole">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/ExistingUserRole" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AllRoles">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/AllRoles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModifiedUserRole">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/ModifiedUserRole" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveUserRole">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/RemoveUserRole" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecordList">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/RecordList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RoleList">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/RoleList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserRecord">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetUserRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetModificationRecord">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetModificationRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserDetails">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/UpdateUserDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserDetails">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/DeleteUserDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveUserDetails">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/RemoveUserDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleSearchDetails">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetVehicleSearchDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertVehicleDetails">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/InsertVehicleDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPerDiemVehicalDetails">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetPerDiemVehicalDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditDamageCode">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/EditDamageCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerSearchDetails">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetCustomerSearchDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehiclePerDiemSearchDetails">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetVehiclePerDiemSearchDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePortStorageProcessignDetails">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/UpdatePortStorageProcessignDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomerType">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/CustomerType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DecodeVIN">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/DecodeVIN" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPortStorageProcessignDetails">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetPortStorageProcessignDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePortStorageDateOutProcessignDetails">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/UpdatePortStorageDateOutProcessignDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPortStorageDateOutProcessignDetails">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetPortStorageDateOutProcessignDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocationHistory">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetLocationHistory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVecheleDetailByVIN">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetVecheleDetailByVIN" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RequestBatchProcess">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/RequestBatchProcess" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DateOutBatchProcess">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/DateOutBatchProcess" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckMultipleVecheleDetailByVIN">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/CheckMultipleVecheleDetailByVIN" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InspectionTypeOnly">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/InspectionTypeOnly" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VehicalStatusList">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/VehicalStatusList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CallVehialDetailsbyVIN">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/CallVehialDetailsbyVIN" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateVehicalSearchDetails">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/UpdateVehicalSearchDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BindVehicleDamageDetail">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/BindVehicleDamageDetail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddDamageCode">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/AddDamageCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteVehicalSearchDetails">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/DeleteVehicalSearchDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddBillingPeriod">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/AddBillingPeriod" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindBillingPeriod">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/FindBillingPeriod" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddCodeAdmin">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/AddCodeAdmin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CodeTypeList">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/CodeTypeList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBillingPeriodAdminDetails">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/UpdateBillingPeriodAdminDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBillingPeriodAdminDetails">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/DeleteBillingPeriodAdminDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindCode">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/FindCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyCodeAdminRecord">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/ModifyCodeAdminRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCodeAdminDetails">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/DeleteCodeAdminDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPortStorageInvoicesList">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetPortStorageInvoicesList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadCodeList">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/LoadCodeList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocationList">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetLocationList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBillingStreetAddress">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetBillingStreetAddress" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NotesList">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/NotesList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPortStorageRateList">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetPortStorageRateList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddPortStorageRate">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/AddPortStorageRate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePortStorageRate">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/UpdatePortStorageRate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePortStorageRate">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/DeletePortStorageRate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadPerformanceStndrdOriginLocationList">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/LoadPerformanceStndrdOriginLocationList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddLocationEmailContact">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/AddLocationEmailContact" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddLocationPerformanceStandard">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/AddLocationPerformanceStandard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLocationEmailContact">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/UpdateLocationEmailContact" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLocationPerformanceStandard">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/UpdateLocationPerformanceStandard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddLocation">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/AddLocation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddCustomerNotes">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/AddCustomerNotes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCustomerNotes">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/UpdateCustomerNotes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCustomerSearchDetails">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/UpdateCustomerSearchDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertCustomer">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/InsertCustomer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLocation">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/DeleteLocation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBilling">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/UpdateBilling" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePostStorageVehicles">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/UpdatePostStorageVehicles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertBillingId">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/InsertBillingId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDefaultvalue">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/SetDefaultvalue" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSettingsValue">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/UpdateSettingsValue" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateNextInvoiceNumberValue">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/UpdateNextInvoiceNumberValue" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBillingCount">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetBillingCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPortStorageVehicleList">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetPortStorageVehicleList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLocation">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/UpdateLocation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CalculatePortStoragePerDiem">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/CalculatePortStoragePerDiem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PsRatesCount">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/PsRatesCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PsRatesInvoice">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/PsRatesInvoice" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateVehicleRates">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/UpdateVehicleRates" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckDuplicateCodeAndType">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/CheckDuplicateCodeAndType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerInfo">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetCustomerInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLoadInfo">
+      <soap12:operation soapAction="http://tempuri.org/IAppWorksServices/GetLoadInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AppWorksService">
+    <wsdl:port name="WSHttpBinding_IAppWorksServices" binding="tns:WSHttpBinding_IAppWorksServices">
+      <soap12:address location="http://localhost:49471/AppWorksServices.svc" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>http://localhost:49471/AppWorksServices.svc</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

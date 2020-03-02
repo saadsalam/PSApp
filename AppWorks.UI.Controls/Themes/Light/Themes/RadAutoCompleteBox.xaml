@@ -1,0 +1,225 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                    xmlns:brushes="clr-namespace:AppWorks.UI.Controls.Themes">
+
+    <Style TargetType="{x:Type telerik:RadAutoCompleteBox}">
+        <Setter Property="IsTabStop" Value="False"/>
+        <Setter Property="TextBoxStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type telerik:RadWatermarkTextBox}">
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="Margin" Value="3,3,0,0"/>
+                    <Setter Property="Padding" Value="0"/>
+                    <Setter Property="BorderBrush" Value="Transparent"/>
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                    <Setter Property="Foreground" Value="{DynamicResource {x:Static brushes:BrushSet.ForegroundBrushKey}}"/>
+                    <Style.BasedOn>
+                        <Style TargetType="{x:Type telerik:RadWatermarkTextBox}">
+                            <Setter Property="Padding" Value="5,2"/>
+                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            <Setter Property="AllowDrop" Value="True"/>
+                            <Setter Property="IsTabStop" Value="True"/>
+                            <Setter Property="Foreground" Value="{DynamicResource {x:Static brushes:BrushSet.ForegroundBrushKey}}"/>
+                            <Setter Property="Background" Value="{DynamicResource {x:Static brushes:BrushSet.BackgroundBrushKey}}"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource {x:Static brushes:BrushSet.BorderBrushKey}}"/>
+                            <Setter Property="BorderThickness" Value="1"/>
+                            <Setter Property="telerik:CaretBrushHelper.CaretBrush" Value="{DynamicResource {x:Static brushes:BrushSet.BorderBrushKey}}"/>
+                            <Setter Property="KeyboardNavigation.TabNavigation" Value="Once"/>
+                            <Setter Property="SnapsToDevicePixels" Value="True"/>
+                            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                            <Setter Property="Validation.ErrorTemplate">
+                                <Setter.Value>
+                                    <ControlTemplate/>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static brushes:BrushSet.BorderBrushKey}}"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type telerik:RadWatermarkTextBox}">
+                                        <Grid x:Name="RootElement" Background="#01010101">
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup x:Name="CommonStates">
+                                                    <VisualState x:Name="Normal"/>
+                                                    <VisualState x:Name="MouseOver">
+                                                        <Storyboard>
+                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="MouseOverVisual">
+                                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                                    <DiscreteObjectKeyFrame.Value>
+                                                                        <Visibility>Visible</Visibility>
+                                                                    </DiscreteObjectKeyFrame.Value>
+                                                                </DiscreteObjectKeyFrame>
+                                                            </ObjectAnimationUsingKeyFrames>
+                                                        </Storyboard>
+                                                    </VisualState>
+                                                    <VisualState x:Name="Disabled">
+                                                        <Storyboard>
+                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="MouseOverVisual">
+                                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                                    <DiscreteObjectKeyFrame.Value>
+                                                                        <SolidColorBrush Color="#FF5D5C5C"/>
+                                                                    </DiscreteObjectKeyFrame.Value>
+                                                                </DiscreteObjectKeyFrame>
+                                                            </ObjectAnimationUsingKeyFrames>
+                                                            <DoubleAnimation Duration="0" To="0.27" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PART_ContentHost"/>
+                                                        </Storyboard>
+                                                    </VisualState>
+                                                    <VisualState x:Name="ReadOnly"/>
+                                                </VisualStateGroup>
+                                                <VisualStateGroup x:Name="FocusStates">
+                                                    <VisualState x:Name="Focused">
+                                                        <Storyboard>
+                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="Focus">
+                                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                                    <DiscreteObjectKeyFrame.Value>
+                                                                        <Visibility>Visible</Visibility>
+                                                                    </DiscreteObjectKeyFrame.Value>
+                                                                </DiscreteObjectKeyFrame>
+                                                            </ObjectAnimationUsingKeyFrames>
+                                                        </Storyboard>
+                                                    </VisualState>
+                                                    <VisualState x:Name="Unfocused"/>
+                                                </VisualStateGroup>
+                                                <VisualStateGroup x:Name="WatermarkStates">
+                                                    <VisualState x:Name="WatermarkHidden">
+                                                        <Storyboard>
+                                                            <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="WatermarkVisualElement"/>
+                                                        </Storyboard>
+                                                    </VisualState>
+                                                    <VisualState x:Name="WatermarkVisible"/>
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+                                            <Border x:Name="Background" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="3" Margin="0" Padding="0"/>
+                                            <ContentControl x:Name="WatermarkVisualElement" BorderThickness="{TemplateBinding BorderThickness}" ContentTemplate="{TemplateBinding WatermarkTemplate}" Content="{TemplateBinding WatermarkContent}" Foreground="{TemplateBinding Foreground}" FontStyle="Italic" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" IsHitTestVisible="False" IsTabStop="False" Margin="2,0,0,0" Opacity="0.5" Padding="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                                <ContentControl.Template>
+                                                    <ControlTemplate TargetType="{x:Type ContentControl}">
+                                                        <Border BorderThickness="{TemplateBinding BorderThickness}">
+                                                            <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Margin="{TemplateBinding Padding}"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </ContentControl.Template>
+                                            </ContentControl>
+                                            <Border x:Name="MouseOverVisual" BorderThickness="{TemplateBinding BorderThickness}" Background="Transparent" Cursor="IBeam" CornerRadius="3" Margin="0" Padding="0" Visibility="Collapsed">
+                                                <Border.BorderBrush>
+                                                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                                        <GradientStop Color="#FFB0B0B0" Offset="0"/>
+                                                        <GradientStop Color="#FFB0B0B0" Offset="1"/>
+                                                        <GradientStop Color="#FFE0E1E2" Offset="0.5"/>
+                                                    </LinearGradientBrush>
+                                                </Border.BorderBrush>
+                                            </Border>
+                                            <ScrollViewer x:Name="PART_ContentHost" BorderThickness="0" Background="Transparent" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                                <telerik:StyleManager.Theme>
+                                                    <telerik:Expression_DarkTheme/>
+                                                </telerik:StyleManager.Theme>
+                                            </ScrollViewer>
+                                            <Border x:Name="Focus" BorderBrush="#FF789FC3" BorderThickness="{TemplateBinding BorderThickness}" Grid.ColumnSpan="2" CornerRadius="3" IsHitTestVisible="False" Visibility="Collapsed"/>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Style.BasedOn>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type telerik:RadAutoCompleteBox}">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="MouseOverVisual"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="MouseOverVisual">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Visible</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="MouseOverVisual">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <SolidColorBrush Color="#FF5D5C5C"/>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Unfocused"/>
+                                <VisualState x:Name="Focused">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="FocusVisual"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="1"/>
+                        <Border x:Name="MouseOverVisual" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="1" Opacity="0">
+                            <Border.BorderBrush>
+                                <LinearGradientBrush EndPoint="0.971000015735626,0.5" StartPoint="0.0399999991059303,0.5">
+                                    <GradientStop Color="#FFB0B0B0" Offset="0"/>
+                                    <GradientStop Color="#FFB0B0B0" Offset="1"/>
+                                    <GradientStop Color="#FFE0E1E2" Offset="0.5"/>
+                                </LinearGradientBrush>
+                            </Border.BorderBrush>
+                        </Border>
+                        <Border x:Name="FocusVisual" BorderBrush="#FF789FC3" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="1" IsHitTestVisible="False" Opacity="0"/>
+                        <ScrollViewer x:Name="PART_ScrollViewer" BorderThickness="0" Background="Transparent" Height="{TemplateBinding Height}" HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}" IsTabStop="False" Margin="{TemplateBinding BorderThickness}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                            <telerik:StyleManager.Theme>
+                                <telerik:Expression_DarkTheme/>
+                            </telerik:StyleManager.Theme>
+                            <telerik:AutoCompleteBoxesItemsControl x:Name="PART_Boxes" BoxesItemTemplate="{TemplateBinding BoxesItemTemplate}" DisplayMemberPath="{TemplateBinding DisplayMemberPath}" Foreground="{TemplateBinding Foreground}" Height="{TemplateBinding Height}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" IsTabStop="False" Margin="{TemplateBinding Padding}" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                <telerik:AutoCompleteBoxesItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <telerik:AutoCompleteBoxesWrapPanel IsItemsHost="True" Width="{Binding ActualWidth, ElementName=WatermarkTextBox}"/>
+                                    </ItemsPanelTemplate>
+                                </telerik:AutoCompleteBoxesItemsControl.ItemsPanel>
+                            </telerik:AutoCompleteBoxesItemsControl>
+                        </ScrollViewer>
+                        <Popup x:Name="PART_Popup">
+                            <Border Background="{DynamicResource {x:Static brushes:BrushSet.BackgroundBrushKey}}"
+                                    BorderThickness="2"
+                                    BorderBrush="{DynamicResource {x:Static brushes:BrushSet.BorderBrushKey}}">
+                                <Grid x:Name="PopupRoot">
+                                    <telerik:RadListBox x:Name="PART_ListBox" ItemsSource="{TemplateBinding FilteredItems}" CanKeyboardNavigationSelectItems="{x:Null}" IsTabStop="False" ItemTemplate="{TemplateBinding DropDownItemTemplate}" IsTextSearchEnabled="True" MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{TemplateBinding MinDropDownWidth}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" SelectedValueBinding="{x:Null}" TextBinding="{x:Null}">
+                                        <telerik:StyleManager.Theme>
+                                            <telerik:Expression_DarkTheme/>
+                                        </telerik:StyleManager.Theme>
+                                    </telerik:RadListBox>
+                                </Grid>
+                            </Border>
+                        </Popup>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static brushes:BrushSet.BorderBrushKey}}"/>
+        <Setter Property="Background" Value="{DynamicResource {x:Static brushes:BrushSet.AlternativeBackgroundBrushKey}}"/>
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static brushes:BrushSet.ForegroundBrushKey}}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="0,0,3,3"/>
+        <Setter Property="Cursor" Value="IBeam"/>
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled"/>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="Validation.ErrorTemplate">
+            <Setter.Value>
+                <ControlTemplate/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

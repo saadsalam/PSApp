@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A708EB9C-2ACF-42F6-BF94-401B9098C2D3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AppWorksService.Properties</RootNamespace>
+    <AssemblyName>AppWorksService.Properties</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\packages\Dot_Net_Generic_Recommended_Code_Analysis_RulesetUpdated.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AutoExportRateList.cs" />
+    <Compile Include="BillingInvoiceDetailsProp.cs" />
+    <Compile Include="BillingLineItemsProp.cs" />
+    <Compile Include="BillingListProp.cs" />
+    <Compile Include="BillingPeriodprop.cs" />
+    <Compile Include="Billingprop.cs" />
+    <Compile Include="ChargeRateList.cs" />
+    <Compile Include="CodeList.cs" />
+    <Compile Include="CodeProp.cs" />
+    <Compile Include="CustomerNoteList.cs" />
+    <Compile Include="CustomerSearchProp.cs" />
+    <Compile Include="DamageCodeProp.cs" />
+    <Compile Include="DataContract.cs" />
+    <Compile Include="DataMember.cs" />
+    <Compile Include="ErrorLogProp.cs" />
+    <Compile Include="FileType.cs" />
+    <Compile Include="FindUserProp.cs" />
+    <Compile Include="GroupList.cs" />
+    <Compile Include="InspectionDamageProp.cs" />
+    <Compile Include="InvoiceListProp.cs" />
+    <Compile Include="LocationEmailContactList.cs" />
+    <Compile Include="LocationList.cs" />
+    <Compile Include="LocationPerformanceStandardList.cs" />
+    <Compile Include="LoginProperties.cs" />
+    <Compile Include="LoginResult.cs" />
+    <Compile Include="ModuleList.cs" />
+    <Compile Include="OrderHistoryList.cs" />
+    <Compile Include="PerDiemProp.cs" />
+    <Compile Include="PortStorageDamageDetailsProp.cs" />
+    <Compile Include="PortStorageInBoundListProp.cs" />
+    <Compile Include="PortStorageInventoryList.cs" />
+    <Compile Include="PortStorageInvoicesProp.cs" />
+    <Compile Include="PortStorageLocationHistoryProp.cs" />
+    <Compile Include="PortStorageRateList.cs" />
+    <Compile Include="PortStorageRequestsReportProp.cs" />
+    <Compile Include="PortStorageVehicleImportProp.cs" />
+    <Compile Include="PortStorageVehiclePrint.cs" />
+    <Compile Include="PortStorageVehicleProp.cs" />
+    <Compile Include="PortStorageVehicleSummaryReportProp.cs" />
+    <Compile Include="Print.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="AdminUserProp.cs" />
+    <Compile Include="RoleList.cs" />
+    <Compile Include="StorageVehicleOutgateProp.cs" />
+    <Compile Include="UserApplicationConstantsProp.cs" />
+    <Compile Include="UserCustomerList.cs" />
+    <Compile Include="VehicleListingReportProp.cs" />
+    <Compile Include="VehicleLocationImportTransactionProp.cs" />
+    <Compile Include="VehicleProp.cs" />
+    <Compile Include="VINDecodeList.cs" />
+    <Compile Include="WebPortalUserList.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AppWorks.UI.Controls\AppWorks.UI.Controls.csproj">
+      <Project>{D281FAB2-0E70-46B1-8BD2-E8BF2CCF5562}</Project>
+      <Name>AppWorks.UI.Controls</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

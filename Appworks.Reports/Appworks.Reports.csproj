@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4DFCAC60-FC66-497A-80EF-D5C8FD99C12C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Appworks.Reports</RootNamespace>
+    <AssemblyName>Appworks.Reports</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.Reporting, Version=10.1.16.615, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Teleriks\Telerik.Reporting.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls, Version=2016.2.613.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Teleriks\Telerik.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Input, Version=2016.2.613.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Teleriks\Telerik.Windows.Controls.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Navigation, Version=2016.2.613.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Teleriks\Telerik.Windows.Controls.Navigation.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Data, Version=2016.2.613.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Teleriks\Telerik.Windows.Data.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BillingExportProp.cs" />
+    <Compile Include="BillingInvoiceByDateRPT.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BillingInvoiceByDateRPT.Designer.cs">
+      <DependentUpon>BillingInvoiceByDateRPT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BillingInvoiceRPT.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BillingInvoiceRPT.Designer.cs">
+      <DependentUpon>BillingInvoiceRPT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryComparisionReport.cs" />
+    <Compile Include="InventoryComparisionRPT.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="InventoryComparisionRPT.Designer.cs">
+      <DependentUpon>InventoryComparisionRPT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InvoiceSummaryReport.cs" />
+    <Compile Include="InvoiceSummaryRPT.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="InvoiceSummaryRPT.Designer.cs">
+      <DependentUpon>InvoiceSummaryRPT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LaneSummaryReport.cs" />
+    <Compile Include="LaneSummaryRPT.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LaneSummaryRPT.Designer.cs">
+      <DependentUpon>LaneSummaryRPT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PortStorageInBoundReport.cs" />
+    <Compile Include="PortStorageInBoundRPT.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PortStorageInBoundRPT.Designer.cs">
+      <DependentUpon>PortStorageInBoundRPT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PrintInvoiceErrorReport.cs" />
+    <Compile Include="PrintInvoiceErrorRPT.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PrintInvoiceErrorRPT.Designer.cs">
+      <DependentUpon>PrintInvoiceErrorRPT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PrintInvoiceReport.cs" />
+    <Compile Include="PrintInvoiceRPT.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PrintInvoiceRPT.Designer.cs">
+      <DependentUpon>PrintInvoiceRPT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PrintRequestReport.cs" />
+    <Compile Include="PrintRequestRPT.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PrintRequestRPT.Designer.cs">
+      <DependentUpon>PrintRequestRPT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="VehicleListingReport.cs" />
+    <Compile Include="VehicleListingReportProp.cs" />
+    <Compile Include="VehicleListingRPT.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="VehicleListingRPT.Designer.cs">
+      <DependentUpon>VehicleListingRPT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VehicleRequestReport.cs" />
+    <Compile Include="VehicleRequestRPT.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="VehicleRequestRPT.Designer.cs">
+      <DependentUpon>VehicleRequestRPT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VehicleSummaryReport.cs" />
+    <Compile Include="VehicleSummaryRPT.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="VehicleSummaryRPT.Designer.cs">
+      <DependentUpon>VehicleSummaryRPT.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="BillingInvoiceByDateRPT.resx">
+      <DependentUpon>BillingInvoiceByDateRPT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BillingInvoiceRPT.resx">
+      <DependentUpon>BillingInvoiceRPT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InventoryComparisionRPT.resx">
+      <DependentUpon>InventoryComparisionRPT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InvoiceSummaryRPT.resx">
+      <DependentUpon>InvoiceSummaryRPT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LaneSummaryRPT.resx">
+      <DependentUpon>LaneSummaryRPT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PortStorageInBoundRPT.resx">
+      <DependentUpon>PortStorageInBoundRPT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrintInvoiceErrorRPT.resx">
+      <DependentUpon>PrintInvoiceErrorRPT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrintInvoiceRPT.resx">
+      <DependentUpon>PrintInvoiceRPT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrintRequestRPT.resx">
+      <DependentUpon>PrintRequestRPT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="VehicleListingRPT.resx">
+      <DependentUpon>VehicleListingRPT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VehicleRequestRPT.resx">
+      <DependentUpon>VehicleRequestRPT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VehicleSummaryRPT.resx">
+      <DependentUpon>VehicleSummaryRPT.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\VehicleListingReportProp.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AppWorksService\AppWorksService.csproj">
+      <Project>{fc98b743-3b24-4ff1-85d6-5491f4529e54}</Project>
+      <Name>AppWorksService</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

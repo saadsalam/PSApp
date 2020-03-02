@@ -1,0 +1,133 @@
+﻿<UserControl x:Class="AppWorks.UI.View.UserControls.PortStorageRateAdmin"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:themeEx="clr-namespace:AppWorks.UI.Controls.Extensions;assembly=AppWorks.UI.Controls"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" >
+    <Grid>
+        <WrapPanel  HorizontalAlignment="Center" Width="auto">
+            <TextBlock Margin="3" VerticalAlignment="Center" FontSize="14">Customer</TextBlock>
+            <TextBox Width="220" Margin="5 5" Height="30" IsEnabled="{Binding IsEnabled}"  Text="{Binding CustomerName,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Center" />
+        </WrapPanel>
+      
+        <Grid>
+            <Grid.ColumnDefinitions>
+            <ColumnDefinition Width=".38*" />
+            <ColumnDefinition Width="200" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+        </Grid.RowDefinitions>
+            <TextBlock Height="28" Grid.Row="1" Grid.Column="0" 
+                                  HorizontalAlignment="Left" Margin="5" Padding="5" VerticalAlignment="Center">Entry Fees</TextBlock>
+            <TextBox Height="28" Grid.Row="1"  Grid.Column="1" 
+                                         Text="{Binding EntryFee,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged,StringFormat=N2}"
+                                 VerticalContentAlignment="Center" Margin="5"/>
+
+            <TextBlock Height="28" Grid.Row="2" Grid.Column="0" 
+                                 HorizontalAlignment="Left" Margin="5" Padding="5" VerticalAlignment="Center">Per Diem</TextBlock>
+            <TextBox Height="28" Grid.Row="2" Grid.Column="1"
+                                         Text="{Binding PerDiem,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged,StringFormat=N2}"
+                                 VerticalContentAlignment="Center" Margin="5"/>
+
+            <TextBlock Height="28" Grid.Row="3" Grid.Column="0" Margin="5" Padding="5" HorizontalAlignment="Left" VerticalAlignment="Center">Per Diem Grace Days</TextBlock>
+            <TextBox Height="28" Grid.Row="3" Grid.Column="1" 
+                                Text="{Binding PerDiemGraceDays,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalContentAlignment="Center" Margin="5"/>
+
+
+            <TextBlock Height="28" Grid.Row="4" Grid.Column="0" Margin="5" Padding="5" HorizontalAlignment="Left" VerticalAlignment="Center">Start Date</TextBlock>
+            <telerik:RadDatePicker Height="28" Margin="5" Grid.Row="4" Grid.Column="1" Culture="English (United States)" Name="StartDate"
+                                               InputMode="DatePicker"
+                                                           IsEnabled="{Binding IsRateDateEditable,
+                                                                               Mode=TwoWay,
+                                                                               UpdateSourceTrigger=PropertyChanged}"
+                                                           SelectedValue="{Binding StartDate,
+                                                                                   Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}"/>
+
+
+
+            <TextBlock Height="28" Grid.Row="5" Grid.Column="0" Margin="5" Padding="5" HorizontalAlignment="Left" VerticalAlignment="Center">End Date</TextBlock>
+            <telerik:RadDatePicker Height="28" Margin="5" Grid.Row="5" Grid.Column="1" Culture="English (United States)" Name="EndDate"
+                                               InputMode="DatePicker"  SelectedValue="{Binding EndDate,
+                                                                                   Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}"/>
+
+
+            <TextBlock Height="28" Grid.Row="6" Grid.Column="0" 
+                                  HorizontalAlignment="Left" Margin="5" Padding="5" VerticalAlignment="Center">Creation Date</TextBlock>
+            <TextBox Height="28" Grid.Row="6" Grid.Column="1" 
+                                IsEnabled="{Binding IsEnabled}"
+                                Text="{Binding CreationDate,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalContentAlignment="Center" Margin="5"/>
+
+            <TextBlock Height="28" Grid.Row="7" Grid.Column="0" Margin="5" Padding="5" HorizontalAlignment="Left" VerticalAlignment="Center">Created By</TextBlock>
+            <TextBox Height="28" Grid.Row="7" Grid.Column="1" 
+                               IsEnabled="{Binding IsEnabled}"
+                                Text="{Binding CreatedBy,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalContentAlignment="Center" Margin="5"/>
+
+            <TextBlock Height="28" Grid.Row="8" Grid.Column="0" Margin="5" Padding="5" HorizontalAlignment="Left" VerticalAlignment="Center">Updated Date</TextBlock>
+            <TextBox Height="28" Grid.Row="8" Grid.Column="1" 
+                                 IsEnabled="{Binding IsEnabled}"
+                                Text="{Binding UpdatedDate,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalContentAlignment="Center" Margin="5"/>
+
+            <TextBlock Height="28" Grid.Row="9" Grid.Column="0" 
+                   HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5" Padding="5"
+                                 >Updated By</TextBlock>
+            <TextBox Height="28" Grid.Row="9" Grid.Column="1"                  
+                                IsEnabled="{Binding IsEnabled}"
+                                Text="{Binding UpdatedBy,
+                                                        Mode=TwoWay,
+                                                        UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalContentAlignment="Center" Margin="5"/>
+        </Grid>
+        <WrapPanel VerticalAlignment="Bottom" Margin="5" >
+            <Button Width="100"
+                    Height="28" Margin="7 0"
+                            HorizontalAlignment="Left"
+                            Content="Ok"
+                            DockPanel.Dock="Bottom"
+                            Command="{Binding Path=BtnOk_Click}"
+                             />
+            <Button Width="100" Margin="7 0"
+                    Height="28"
+                            HorizontalAlignment="Left"
+                            Content="Cancel"
+                            DockPanel.Dock="Bottom"
+                            Command="{Binding Path=BtnCancel_Click}"
+                            />
+        </WrapPanel>
+    </Grid>
+
+</UserControl>

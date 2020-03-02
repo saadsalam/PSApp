@@ -1,0 +1,175 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:chromes="clr-namespace:Telerik.Windows.Controls.Chromes;assembly=Telerik.Windows.Controls"
+                    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                    xmlns:brushes="clr-namespace:AppWorks.UI.Controls.Themes">
+
+    <Style x:Key="RadClearSelectionButtonStyle" TargetType="{x:Type telerik:RadButton}">
+        <Setter Property="Background" Value="{DynamicResource {x:Static brushes:BrushSet.BackgroundBrushKey}}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type telerik:RadButton}">
+                    <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
+                        <ContentPresenter />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#484848" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type telerik:RadComboBoxItem}">
+        <Setter Property="Padding" Value="3,5" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type telerik:RadComboBoxItem}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Padding="{TemplateBinding Padding}">
+                        <ContentPresenter />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#6A6A6A" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <ControlTemplate x:Key="RadComboBoxNonEditableTemplate" TargetType="{x:Type telerik:RadComboBox}">
+        <Grid x:Name="VisualRoot">
+           
+
+            <Border Background="{TemplateBinding Background}"
+                    BorderBrush="{DynamicResource {x:Static brushes:BrushSet.BorderBrushKey}}"
+                    BorderThickness="2,2,0,2" />
+
+            <Border x:Name="DisableVisual"
+                    Grid.ColumnSpan="2"
+                    Visibility="Collapsed">
+                <Border.Background>
+                    <SolidColorBrush Opacity="0.3" Color="#424242" />
+                </Border.Background>
+            </Border>
+         
+            <telerik:RadToggleButton x:Name="PART_DropDownButton"
+                                     ClickMode="Press"
+                                     Foreground="{TemplateBinding Foreground}"
+                                     IsTabStop="False">
+                <telerik:RadToggleButton.Template>
+                    <ControlTemplate TargetType="{x:Type telerik:RadToggleButton}">
+                        <ContentPresenter Content="{TemplateBinding Content}"
+                                          ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}" />
+                    </ControlTemplate>
+                </telerik:RadToggleButton.Template>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                  
+                    <chromes:ButtonChrome x:Name="ButtonChrome" Grid.ColumnSpan="2"
+                                      Background="{DynamicResource {x:Static brushes:BrushSet.BackgroundBrushKey}}"
+                                      BorderBrush="{DynamicResource {x:Static brushes:BrushSet.BorderBrushKey}}"
+                                      Foreground="{DynamicResource {x:Static brushes:BrushSet.AccentForegroundBrushKey}}"
+                                      RenderEnabled="{TemplateBinding IsEnabled}"
+                                      RenderFocused="{TemplateBinding IsFocused}"
+                                      RenderMouseOver="{TemplateBinding IsMouseOver}"
+                                      RenderPressed="{TemplateBinding IsDropDownOpen}">
+                        <chromes:ButtonChrome.Template>
+                            <ControlTemplate TargetType="{x:Type chromes:ButtonChrome}">
+                                <Border x:Name="ButtonBorder"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="2">
+                                    <Grid HorizontalAlignment="Center">
+                                        <Path Width="10"
+                                          Height="5"
+                                          Data="M 0,0 L 10,0 5,5 Z"
+                                          Fill="{TemplateBinding Foreground}" />
+                                        <Path x:Name="BackgroundIcon"
+                                          Width="10"
+                                          Height="5"
+                                          Margin="0,0,0,2"
+                                          Data="M 0,0 L 10,0 5,5 Z"
+                                          Fill="{TemplateBinding Background}" />
+                                    </Grid>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="RenderPressed" Value="True">
+                                        <Setter TargetName="ButtonBorder" Property="Background" Value="{DynamicResource {x:Static brushes:BrushSet.BackgroundBrushKey}}" />
+                                        <Setter TargetName="BackgroundIcon" Property="Fill" Value="{DynamicResource {x:Static brushes:BrushSet.BackgroundBrushKey}}" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </chromes:ButtonChrome.Template>
+                    </chromes:ButtonChrome>
+                    
+                    <Border Background="{TemplateBinding Background}" Grid.ColumnSpan="2" CornerRadius="1" IsHitTestVisible="False" Margin="1"/>
+
+                    <ContentPresenter x:Name="Content"
+                              Grid.Column="0"
+                              Margin="{TemplateBinding Padding}"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                              Content="{TemplateBinding SelectionBoxItem}"
+                              ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                              IsHitTestVisible="False" />
+                </Grid>
+            </telerik:RadToggleButton>
+            
+            <Popup x:Name="PART_Popup">
+                <Border x:Name="PART_ResizeBorder"
+                        MinWidth="{TemplateBinding MinDropDownWidth}"
+                        MaxWidth="{TemplateBinding MinDropDownWidth}"
+                        MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{DynamicResource {x:Static brushes:BrushSet.BorderBrushKey}}"
+                        BorderThickness="2,0,2,2">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <telerik:RadButton x:Name="PART_ClearButton"
+                                           Grid.Row="0"
+                                           Content="{TemplateBinding ClearSelectionButtonContent}"
+                                           Style="{StaticResource RadClearSelectionButtonStyle}"
+                                           Visibility="{TemplateBinding ClearSelectionButtonVisibility}" />
+
+                        <ScrollViewer x:Name="PART_ScrollViewer"
+                                      Grid.Row="1"
+                                      Foreground="{TemplateBinding Foreground}"
+                                      HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+                                      VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}">
+                            <ItemsPresenter />
+                        </ScrollViewer>
+                    </Grid>
+                </Border>
+            </Popup>
+
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter TargetName="DisableVisual" Property="Visibility" Value="Visible" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+
+    <Style TargetType="{x:Type telerik:RadComboBox}">
+        <Setter Property="Background" Value="{DynamicResource {x:Static brushes:BrushSet.AccentBackgroundBrushKey}}" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden" />
+        <Setter Property="NonEditableTemplate" Value="{StaticResource RadComboBoxNonEditableTemplate}" />
+        <Setter Property="MinHeight" Value="25" />
+    </Style>
+</ResourceDictionary>

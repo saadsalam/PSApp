@@ -1,0 +1,221 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:PresentationOptions="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
+                    xmlns:theme="clr-namespace:AppWorks.UI.Controls.Extensions"
+                    xmlns:window="clr-namespace:AppWorks.UI.Controls.CustomControls"
+                    xmlns:brushes="clr-namespace:AppWorks.UI.Controls.Themes">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../Styles/ResizeGrips.xaml" />
+        <ResourceDictionary Source="../Styles/TextBlock.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style TargetType="{x:Type window:VSWindow}">
+        <Setter Property="WindowStyle" Value="None" />
+        <Setter Property="AllowsTransparency" Value="True" />
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static brushes:BrushSet.ForegroundBrushKey}}" />
+        <Setter Property="Background" Value="{DynamicResource {x:Static brushes:BrushSet.BackgroundBrushKey}}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static brushes:BrushSet.AlternativeAccentBorderBrushKey}}" />
+        <Setter Property="HeaderBackground" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type window:VSWindow}">
+                    <Grid>
+                        <AdornerDecorator>
+                            <Grid x:Name="LayoutRoot">
+                                <Grid.Resources>
+                                    <DropShadowEffect x:Key="WindowShadow"
+                                                      PresentationOptions:Freeze="True"
+                                                      BlurRadius="9"
+                                                      Opacity=".85"
+                                                      RenderingBias="Quality"
+                                                      ShadowDepth="0"
+                                                      Color="{Binding ElementName=WindowBorder,
+                                                                      Path=BorderBrush.Color}" />
+                                </Grid.Resources>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="31" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
+                                <Border x:Name="WindowBorder"
+                                        Grid.RowSpan="2"
+                                        Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}" />
+
+                                <Grid x:Name="PART_Header"
+                                      Margin="1,1,1,0"
+                                      Background="{TemplateBinding HeaderBackground}"
+                                      Focusable="False">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition x:Name="Icon" Width="auto" />
+                                        <ColumnDefinition x:Name="Title" Width="auto" />
+                                        <ColumnDefinition x:Name="AdditionalContent" Width="*" />
+                                        <ColumnDefinition x:Name="Minimize" Width="auto" />
+                                        <ColumnDefinition x:Name="Maximize" Width="auto" />
+                                        <ColumnDefinition x:Name="Close" Width="auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image x:Name="AppIcon"
+                                           Grid.Column="0"
+                                           MaxWidth="32"
+                                           MaxHeight="24"
+                                           Margin="5,0,0,0"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Source="{TemplateBinding Icon}" />
+
+                                    <TextBlock x:Name="AppTitle"
+                                               Grid.Column="1"
+                                               Margin="5,0,0,0"
+                                               VerticalAlignment="Center"
+                                               FontSize="16"
+                                               Text="{Binding RelativeSource={RelativeSource TemplatedParent},
+                                                              Path=Title}" />
+
+                                    <ContentControl x:Name="HeaderContent"
+                                                    Grid.Column="2"
+                                                    Margin="5,0"
+                                                    Content="{TemplateBinding HeaderContent}"
+                                                    ContentTemplate="{TemplateBinding HeaderContentTemplate}" />
+
+                                    <Button x:Name="PART_MinimizeButton"
+                                            Grid.Column="3"
+                                            Width="34"
+                                            Height="26"
+                                            VerticalAlignment="Top"
+                                            Style="{theme:ThemeResource MinimizeButtonStyle}" />
+
+                                    <ToggleButton x:Name="PART_MaximizeButton"
+                                                  Grid.Column="4"
+                                                  Width="34"
+                                                  Height="26"
+                                                  VerticalAlignment="Top"
+                                                  Style="{theme:ThemeResource MaximizeButtonStyle}" />
+
+                                    <Button x:Name="PART_CloseButton"
+                                            Grid.Column="5"
+                                            Width="34"
+                                            Height="26"
+                                            VerticalAlignment="Top"
+                                            Style="{theme:ThemeResource CloseButtonStyle}" />
+
+                                </Grid>
+
+                                <Border x:Name="PART_LeftSizeTool"
+                                        Grid.RowSpan="2"
+                                        Width="2"
+                                        HorizontalAlignment="Left"
+                                        Background="Transparent"
+                                        Cursor="SizeWE" />
+                                <Border x:Name="PART_TopSizeTool"
+                                        Height="2"
+                                        VerticalAlignment="Top"
+                                        Background="Transparent"
+                                        Cursor="SizeNS" />
+                                <Border x:Name="PART_RightSizeTool"
+                                        Grid.RowSpan="2"
+                                        Width="2"
+                                        HorizontalAlignment="Right"
+                                        Background="Transparent"
+                                        Cursor="SizeWE" />
+
+                                <Border x:Name="PART_DialogShadowBorder"
+                                        Grid.RowSpan="2"
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch"
+                                        Panel.ZIndex="100"
+                                        Background="{DynamicResource {x:Static brushes:BrushSet.BorderBrushKey}}"
+                                        Visibility="Collapsed" />
+
+                                <ContentPresenter Grid.Row="1" Margin="{TemplateBinding Padding}" />
+                                <Border x:Name="PART_BottomSizeTool"
+                                        Grid.Row="1"
+                                        Height="2"
+                                        VerticalAlignment="Bottom"
+                                        Background="Transparent"
+                                        Cursor="SizeNS" />
+
+                                <ResizeGrip x:Name="ResizeGrip"
+                                            Grid.Row="1"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Bottom"
+                                            IsTabStop="false"
+                                            Style="{StaticResource WindowResizeGrip}"
+                                            Visibility="Collapsed" />
+                            </Grid>
+                        </AdornerDecorator>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsActive" Value="True">
+                            <Setter Property="BorderBrush" Value="{DynamicResource {x:Static brushes:BrushSet.AlternativeAccentBackgroundBrushKey}}" />
+                            <Setter Property="Foreground" Value="{DynamicResource {x:Static brushes:BrushSet.ForegroundBrushKey}}" />
+                        </Trigger>
+                        <Trigger Property="IsActive" Value="False">
+                            <Setter Property="BorderBrush" Value="{DynamicResource {x:Static brushes:BrushSet.BorderBrushKey}}" />
+                            <Setter Property="Foreground" Value="{DynamicResource {x:Static brushes:BrushSet.AlternativeForegroundBrushKey}}" />
+                        </Trigger>
+                        <Trigger Property="ResizeMode" Value="CanResizeWithGrip">
+                            <Setter TargetName="ResizeGrip" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="PART_MinimizeButton" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="PART_MaximizeButton" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="PART_LeftSizeTool" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="PART_TopSizeTool" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="PART_RightSizeTool" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="PART_BottomSizeTool" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="ResizeMode" Value="CanResize">
+                            <Setter TargetName="ResizeGrip" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="PART_MinimizeButton" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="PART_MaximizeButton" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="PART_LeftSizeTool" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="PART_TopSizeTool" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="PART_RightSizeTool" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="PART_BottomSizeTool" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="ResizeMode" Value="CanMinimize">
+                            <Setter TargetName="PART_MinimizeButton" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="PART_MaximizeButton" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="PART_LeftSizeTool" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="PART_TopSizeTool" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="PART_RightSizeTool" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="PART_BottomSizeTool" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="ResizeMode" Value="NoResize">
+                            <Setter TargetName="PART_MaximizeButton" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="PART_MinimizeButton" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="PART_LeftSizeTool" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="PART_TopSizeTool" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="PART_RightSizeTool" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="PART_BottomSizeTool" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="IsGlowing" Value="False">
+                            <Setter TargetName="WindowBorder" Property="Effect" Value="{x:Null}" />
+                        </Trigger>
+                        <Trigger Property="WindowState" Value="Normal">
+                            <Setter TargetName="LayoutRoot" Property="Margin" Value="5" />
+                            <Setter TargetName="WindowBorder" Property="BorderThickness" Value="1" />
+                            <Setter TargetName="PART_MaximizeButton" Property="ToggleButton.IsChecked" Value="False" />
+                        </Trigger>
+                        <Trigger Property="WindowState" Value="Maximized">
+                            <Setter TargetName="LayoutRoot" Property="Margin" Value="6,6,-2,-2" />
+                            <Setter TargetName="WindowBorder" Property="BorderThickness" Value="0" />
+                            <Setter TargetName="ResizeGrip" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="WindowBorder" Property="Effect" Value="{x:Null}" />
+                            <Setter TargetName="PART_MaximizeButton" Property="ToggleButton.IsChecked" Value="True" />
+                            <Setter TargetName="PART_LeftSizeTool" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="PART_TopSizeTool" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="PART_RightSizeTool" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="PART_BottomSizeTool" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="IsGlowing" Value="True">
+                            <Setter TargetName="WindowBorder" Property="Effect" Value="{DynamicResource WindowShadow}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
